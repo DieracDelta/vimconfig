@@ -1,7 +1,7 @@
 { pkgs, dsl, ... }:
 with dsl; {
   plugins = with pkgs; [
-    # command discover 
+    # command discover
     which-key
     # for sane tab detection
     vimPlugins.vim-sleuth
@@ -114,6 +114,9 @@ with dsl; {
         "<cmd>lua require('telescope.builtins').live_grep {default_text='function'}<CR>"
         "grep for functions only"
       ];
+      "hs" = ["<cmd>Gitsigns preview_hunk<CR>" "preview hunk"];
+      "hn" = ["<cmd>Gitsigns next_hunk<CR>" "next hunk"];
+      "hp" = ["<cmd>Gitsigns prev_hunk<CR>" "prev hunk"];
 
       "rm" = [
         "<cmd>lua require'rust-tools.expand_macro'.expand_macro()<CR>"
