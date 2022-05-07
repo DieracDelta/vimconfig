@@ -211,6 +211,7 @@
         neovimConfig = pkgs.neovimBuilder {
           # Build with NodeJS
           withNodeJs = true;
+          withPython3 = true;
           package = pkgs.neovim;
           imports = [
             ./modules/essentials.nix
@@ -220,13 +221,14 @@
             ./modules/misc.nix
             ./modules/treesitter.nix
             ./modules/git.nix
+            ./modules/wilder.nix
           ];
         };
       in {
         # The package built by `nix build .`
         defaultPackage = neovimConfig;
         # The app run by `nix run .`
-        defaultApp = {
+        apps.defaultApp = {
           type = "app";
           program = "${neovimConfig}/bin/nvim";
         };
