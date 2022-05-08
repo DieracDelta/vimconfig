@@ -7,6 +7,8 @@ with dsl; {
     vimPlugins.vim-sleuth
   ];
 
+  set.autoread = true;
+
   vim.g = {
     mapleader = " ";
     nofoldenable = true;
