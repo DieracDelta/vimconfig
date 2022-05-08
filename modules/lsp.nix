@@ -83,6 +83,10 @@ with dsl; {
     };
   };
 
+  use.lspconfig.hls.setup = callWith {
+    cmd = ["${pkgs.haskell-language-server}/bin/haskell-language-server" "lsp"];
+  };
+
   use.lspconfig.pyright.setup =
     callWith { cmd = [ "${pkgs.pyright}/bin/pyright-langserver" "--stdio" ]; };
   use.lspconfig.terraformls.setup =
@@ -139,6 +143,9 @@ with dsl; {
     snippet.expand =
       rawLua ''function(args) vim.fn["vsnip#anonymous"](args.body) end '';
   };
+
+
+
 
   lua = ''
     vim.api.nvim_set_keymap("i", "<Tab>", "vsnip#available(1)  ? '<Plug>(vsnip-jump-next)': '<Tab>'", {expr = true})
