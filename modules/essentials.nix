@@ -1,5 +1,9 @@
 { pkgs, dsl, ... }:
-with dsl; {
+with dsl;
+let
+  cmd = command: desc: [ "<cmd>${cmd}<cr>" desc ];
+in
+{
   plugins = with pkgs; [
     # command discover
     which-key
@@ -65,19 +69,15 @@ with dsl; {
     "k" = [ "gk" "Wrapped up" ];
     "['<leader>']" = {
       name = "+leader_bindings";
-      "ai" = [ "<cmd>AnsiEsc<CR>" "Replace ansi escape codes with colors" ];
-      "D" = [ "<cmd>lua vim.lsp.buf.declaration()<CR>" "Jump to Declaration" ];
-      "d" = [ "<cmd>lua vim.lsp.buf.definition()<CR>" "Jump to Definition" ];
-      "i" = [
-        "<cmd>lua vim.lsp.buf.implementation()<CR>"
-        "Jump to Implementation"
-      ];
-      "s" = [
-        "<cmd>lua vim.lsp.buf.signature_help()<CR>"
-        "Get function signature"
-      ];
-      "k" =
-        [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];
+
+      ai = cmd "AnsiEsc" "Replace ansi escape codes with colors";
+      ai = cmd "AnsiEsc" "Replace ansi escape codes with colors";
+      D = cmd "lua vim.lsp.buf.declaration()" "Jump to Declaration";
+      d = cmd "lua vim.lsp.buf.definition()" "Jump to Definition";
+      i = cmd "lua vim.lsp.buf.implementation()" "Jump to Implementation";
+      s = cmd "lua vim.lsp.buf.signature_help()" "Get function signature";
+
+      "k" = [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];
       "rn" = [ "<cmd>lua vim.lsp.buf.rename()<CR>" "Rename function/variable" ];
       "ca" = [ "<cmd>lua vim.lsp.buf.code_action()<CR>" "Perform code action" ];
       "r" = [
