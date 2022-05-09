@@ -1,7 +1,7 @@
 { pkgs, dsl, ... }:
 with dsl;
 let
-  cmd = command: desc: [ "<cmd>${cmd}<cr>" desc ];
+  cmd = command: desc: [ "<cmd>${command}<cr>" desc ];
 in
 {
   plugins = with pkgs; [
@@ -70,7 +70,6 @@ in
     "['<leader>']" = {
       name = "+leader_bindings";
 
-      ai = cmd "AnsiEsc" "Replace ansi escape codes with colors";
       ai = cmd "AnsiEsc" "Replace ansi escape codes with colors";
       D = cmd "lua vim.lsp.buf.declaration()" "Jump to Declaration";
       d = cmd "lua vim.lsp.buf.definition()" "Jump to Definition";

@@ -26,9 +26,9 @@ with dsl; {
     fidget
   ];
 
-  use.fidget.setup = callWith { };
+  setup.fidget = { };
 
-  use.rust-tools.setup = callWith {
+  setup.rust-tools = {
     tools = {
       autoSetHints = true;
       runnables = { use_telescope = true; };
@@ -54,7 +54,7 @@ with dsl; {
     };
   };
 
-  use.crates.setup = callWith {
+  setup.crates = {
     text = {
       loading = "  Loading...";
       version = "  %s";

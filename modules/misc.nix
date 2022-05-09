@@ -8,5 +8,5 @@ with dsl; {
     # sick parinfer mode fast asf
     parinfer-rust-nvim
   ];
-  use.neogen.setup = callWith { enabled = true; };
+  setup.neogen.enabled = true;
 }
