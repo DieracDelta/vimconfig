@@ -84,7 +84,7 @@ with dsl; {
   };
 
   use.lspconfig.hls.setup = callWith {
-    cmd = ["${pkgs.haskell-language-server}/bin/haskell-language-server" "lsp"];
+    cmd = [ "${pkgs.haskell-language-server}/bin/haskell-language-server" "lsp" ];
   };
 
   use.lspconfig.pyright.setup =
