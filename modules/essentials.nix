@@ -85,8 +85,16 @@ with dsl; {
         "Get function/variable refs"
       ];
       "e" = [
-        "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>"
+        "<cmd>lua vim.diagnostic.open_float()<CR>"
         "Get lsp errors"
+      ];
+      "dn" = [
+        "<cmd>lua vim.diagnostic.goto_next()<CR>"
+        "next diag"
+      ];
+      "dp" = [
+        "<cmd>lua vim.diagnostic.goto_prev()<CR>"
+        "prev diag"
       ];
       "f" = [ "<cmd>lua vim.lsp.buf.formatting()<CR>" "Format buffer" ];
       "bb" = [ "<cmd>Telescope buffers<cr>" "Get buffer list" ];

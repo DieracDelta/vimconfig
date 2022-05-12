@@ -15,7 +15,7 @@
       url = "github:gytis-ivaskevicius/nix2vim";
       inputs.nixpkgs.follows = "stable";
     };
-    neovim = { url = "github:neovim/neovim?dir=contrib&tag=master"; };
+    neovim = { url = "github:neovim/neovim?dir=contrib&ref=333ba6569d833e22c0d291547d740d4bbfa3fdab"; };
     telescope-src = {
       url = "github:nvim-telescope/telescope.nvim";
       flake = false;
