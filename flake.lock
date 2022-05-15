@@ -173,6 +173,38 @@
         "type": "github"
       }
     },
+    "guess-indent-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1652633784,
+        "narHash": "sha256-XrLBDXdHD47R57Gxjctyn5cxomRSLsBu2lzu2Gz0HaA=",
+        "owner": "NMAC427",
+        "repo": "guess-indent.nvim",
+        "rev": "3c17b9a1e132d0b28a90772e3c24d226c47dbb7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NMAC427",
+        "repo": "guess-indent.nvim",
+        "type": "github"
+      }
+    },
+    "leap-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1652549500,
+        "narHash": "sha256-0AdsmtDXpgoSXPrrxGs8Zvs7ybT9WVr0ndLOU6vEtPk=",
+        "owner": "ggandor",
+        "repo": "leap.nvim",
+        "rev": "64b6baecbf1cea840f05c830b8d4a9e857ced6fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ggandor",
+        "repo": "leap.nvim",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -334,6 +366,8 @@
         "dracula-nvim": "dracula-nvim",
         "fidget-src": "fidget-src",
         "flake-utils": "flake-utils",
+        "guess-indent-src": "guess-indent-src",
+        "leap-src": "leap-src",
         "neogen-src": "neogen-src",
         "neovim": "neovim",
         "nix2vim": "nix2vim",

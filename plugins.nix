@@ -62,4 +62,7 @@ with inputs; {
   rust-tools = plugin "rust-tools" rust-tools-src;
   telescope-ui-select = plugin "telescope-ui-select" telescope-ui-select-src;
   which-key = plugin "which-key" which-key-src;
+  guess-indent = plugin "guess-indent" guess-indent-src;
+  leap = plugin "leap" leap-src;
+
 }

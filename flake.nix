@@ -75,6 +75,14 @@
       url = "github:powerman/vim-plugin-AnsiEsc";
       flake = false;
     };
+    guess-indent-src = {
+      url = "github:NMAC427/guess-indent.nvim";
+      flake = false;
+    };
+    leap-src = {
+      url = "github:ggandor/leap.nvim";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, neovim, nix2vim, ... }:
@@ -102,6 +110,7 @@
             ./modules/treesitter.nix
             ./modules/git.nix
             ./modules/wilder.nix
+            ./modules/leap.nix
           ];
         };
       in
