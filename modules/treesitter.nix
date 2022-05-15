@@ -5,6 +5,7 @@ with dsl; {
     comment-nvim
     # which method am I on
     vimPlugins.nvim-treesitter-context
+    vimPlugins.nvim-treesitter-textobjects
     (pkgs.vimPlugins.nvim-treesitter.withPlugins
       # tree sitter with language support
       (plugins:
