@@ -11,6 +11,9 @@ with dsl; {
     vimPlugins.surround-nvim
   ];
 
+  setup.neogen.enabled = true;
+
+
   use.surround.setup = callWith { 
     context_offset = 100;
     load_autogroups = false;
@@ -34,5 +37,5 @@ with dsl; {
     };
     prefix = "s";
   };
-  use.neogen.setup = callWith { enabled = true; };
+
 }

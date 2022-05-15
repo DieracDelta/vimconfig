@@ -173,22 +173,6 @@
         "type": "github"
       }
     },
-    "master": {
-      "locked": {
-        "lastModified": 1651936197,
-        "narHash": "sha256-wW216D2Q1OyX9t3fD83AOdlSzr2JwEbdKLZHYkCOIYE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "36f342125a26fbad0f9e778de563c6991575e1cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -252,7 +236,7 @@
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nixpkgs": [
-          "stable"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -321,7 +305,7 @@
       "inputs": {
         "naersk": "naersk",
         "nixpkgs": [
-          "stable"
+          "nixpkgs"
         ],
         "utils": "utils"
       },
@@ -350,7 +334,6 @@
         "dracula-nvim": "dracula-nvim",
         "fidget-src": "fidget-src",
         "flake-utils": "flake-utils",
-        "master": "master",
         "neogen-src": "neogen-src",
         "neovim": "neovim",
         "nix2vim": "nix2vim",
@@ -358,7 +341,6 @@
         "nvim-cmp": "nvim-cmp",
         "rnix-lsp": "rnix-lsp",
         "rust-tools-src": "rust-tools-src",
-        "stable": "stable",
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
@@ -378,22 +360,6 @@
       "original": {
         "owner": "simrat39",
         "repo": "rust-tools.nvim",
-        "type": "github"
-      }
-    },
-    "stable": {
-      "locked": {
-        "lastModified": 1651936197,
-        "narHash": "sha256-wW216D2Q1OyX9t3fD83AOdlSzr2JwEbdKLZHYkCOIYE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "36f342125a26fbad0f9e778de563c6991575e1cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },

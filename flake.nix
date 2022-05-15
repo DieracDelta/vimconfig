@@ -3,17 +3,17 @@
 
   # Input source for our derivation
   inputs = {
-    master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/master";
-    stable.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
+    neovim.url = "github:neovim/neovim?dir=contrib&tag=master";
+
     terraform-ls-src = {
       url = "github:hashicorp/terraform-ls";
       flake = false;
     };
     nix2vim = {
       url = "github:gytis-ivaskevicius/nix2vim";
-      inputs.nixpkgs.follows = "stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = { url = "github:neovim/neovim?dir=contrib&ref=333ba6569d833e22c0d291547d740d4bbfa3fdab"; };
     telescope-src = {
@@ -38,7 +38,7 @@
     };
     rnix-lsp = {
       url = "github:nix-community/rnix-lsp";
-      inputs.nixpkgs.follows = "stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     comment-nvim-src = {
       url = "github:numToStr/Comment.nvim";
@@ -65,8 +65,7 @@
       flake = false;
     };
     which-key-src = {
-      url =
-        "github:folke/which-key.nvim?ref=bd4411a2ed4dd8bb69c125e339d837028a6eea71";
+      url = "github:folke/which-key.nvim?ref=bd4411a2ed4dd8bb69c125e339d837028a6eea71";
       flake = false;
     };
     conceal-src = {
@@ -79,134 +78,16 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, neovim, dracula-nvim, nix2vim
-    , comment-nvim-src, blamer-nvim-src, telescope-ui-select-src, rust-tools-src
-    , which-key-src, fidget-src, neogen-src, conceal-src, colorizer-src, stable
-    , master, rnix-lsp, ... }:
-    let
-      # Function to override the source of a package
-      withSrc = pkg: src: pkg.overrideAttrs (_: { inherit src; });
-
-      overlay = prev: final: rec {
-        rnix-lsp = inputs.rnix-lsp.packages.${prev.system}.rnix-lsp;
-        terraform-ls = with prev;
-          (buildGoModule rec {
-            pname = "terraform-ls";
-            version = "0.27.0";
-
-            src = fetchFromGitHub {
-              owner = "hashicorp";
-              repo = pname;
-              rev = "v${version}";
-              sha256 = "sha256-TWxYCHdzeJtdyPajA3XxqwpDufXnLod6LWa28OHjyms=";
-            };
-
-            vendorSha256 =
-              "sha256-e/m/8h0gF+kux+pCUqZ7Pw0XlyJ5dL0Zyqb0nUlgfpc=";
-            ldflags =
-              [ "-s" "-w" "-X main.version=v${version}" "-X main.prerelease=" ];
-
-            # There's a mixture of tests that use networking and several that fail on aarch64
-            doCheck = false;
-
-            doInstallCheck = true;
-            installCheckPhase = ''
-              runHook preInstallCheck
-              $out/bin/terraform-ls --help
-              $out/bin/terraform-ls version | grep "v${version}"
-              runHook postInstallCheck
-            '';
-
-            meta = with lib; {
-              description = "Terraform Language Server (official)";
-              homepage = "https://github.com/hashicorp/terraform-ls";
-              changelog =
-                "https://github.com/hashicorp/terraform-ls/blob/v${version}/CHANGELOG.md";
-              license = licenses.mpl20;
-              maintainers = with maintainers; [ mbaillie jk ];
-            };
-          });
-
-        telescope-nvim =
-          (withSrc prev.vimPlugins.telescope-nvim inputs.telescope-src);
-        cmp-buffer = (withSrc prev.vimPlugins.cmp-buffer inputs.cmp-buffer);
-        nvim-cmp = (withSrc prev.vimPlugins.nvim-cmp inputs.nvim-cmp);
-
-        cmp-nvim-lsp = withSrc prev.vimPlugins.cmp-nvim-lsp inputs.cmp-nvim-lsp;
-
-        # Example of packaging plugin with Nix
-        dracula = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "dracula-nvim";
-          version = "master";
-          src = dracula-nvim;
-        };
-
-        comment-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "comment-nvim";
-          version = "master";
-          src = comment-nvim-src;
-        };
-
-        blamer-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "blamer-nvim";
-          version = "master";
-          src = blamer-nvim-src;
-        };
-
-        parinfer-rust-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "parinfer-rust";
-          version = "master";
-          src = prev.pkgs.parinfer-rust;
-        };
-
-        telescope-ui-select = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "telescope-ui-select";
-          version = "master";
-          src = telescope-ui-select-src;
-        };
-
-        rust-tools = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "rust-tools";
-          version = "master";
-          src = rust-tools-src;
-        };
-
-        fidget = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "fidget";
-          version = "master";
-          src = fidget-src;
-        };
-
-        neogen = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "neogen";
-          version = "master";
-          src = neogen-src;
-        };
-
-        which-key = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "which-key";
-          version = "master";
-          src = which-key-src;
-        };
-
-        conceal = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "conceal";
-          version = "master";
-          src = conceal-src;
-        };
-
-        colorizer = prev.vimUtils.buildVimPluginFrom2Nix {
-          pname = "colorizer";
-          version = "master";
-          src = colorizer-src;
-        };
-      };
-
-    in flake-utils.lib.eachDefaultSystem (system:
+  outputs = inputs@{ self, flake-utils, nixpkgs, neovim, nix2vim, ... }:
+    flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ neovim.overlay overlay nix2vim.overlay ];
+          overlays = [
+            neovim.overlay
+            (import ./plugins.nix inputs)
+            nix2vim.overlay
+          ];
         };
         neovimConfig = pkgs.neovimBuilder {
           # Build with NodeJS
@@ -224,7 +105,8 @@
             ./modules/wilder.nix
           ];
         };
-      in {
+      in
+      {
         # The package built by `nix build .`
         defaultPackage = neovimConfig;
         # The app run by `nix run .`
