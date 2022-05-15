@@ -5,7 +5,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
-    neovim.url = "github:neovim/neovim?dir=contrib&tag=master";
 
     terraform-ls-src = {
       url = "github:hashicorp/terraform-ls";
