@@ -47,10 +47,6 @@
       url = "github:APZelos/blamer.nvim";
       flake = false;
     };
-    telescope-ui-select-src = {
-      url = "github:nvim-telescope/telescope-ui-select.nvim";
-      flake = false;
-    };
     rust-tools-src = {
       url = "github:simrat39/rust-tools.nvim";
       flake = false;
@@ -81,6 +77,14 @@
     };
     leap-src = {
       url = "github:ggandor/leap.nvim";
+      flake = false;
+    };
+    telescope-smart-history-src = {
+      url = "github:nvim-telescope/telescope-smart-history.nvim";
+      flake = false;
+    };
+    telescope-ui-select-src = {
+      url = "github:nvim-telescope/telescope-ui-select.nvim";
       flake = false;
     };
   };

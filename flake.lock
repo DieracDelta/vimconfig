@@ -375,6 +375,7 @@
         "nvim-cmp": "nvim-cmp",
         "rnix-lsp": "rnix-lsp",
         "rust-tools-src": "rust-tools-src",
+        "telescope-smart-history-src": "telescope-smart-history-src",
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
@@ -394,6 +395,22 @@
       "original": {
         "owner": "simrat39",
         "repo": "rust-tools.nvim",
+        "type": "github"
+      }
+    },
+    "telescope-smart-history-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1630474636,
+        "narHash": "sha256-55O/7oU/kmR5EfMHA0pYnSxi3SuSLsNPxj8voSFiHv8=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-smart-history.nvim",
+        "rev": "7eb278cbac93738f142e8d92be7c2573d19436cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-smart-history.nvim",
         "type": "github"
       }
     },
