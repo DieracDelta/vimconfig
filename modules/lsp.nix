@@ -22,6 +22,8 @@ with dsl; {
     rust-tools
     # for updating rust crates
     vimPlugins.crates-nvim
+    # texx
+    vimPlugins.vimtex
     # for showing lsp progress
     fidget
   ];
@@ -108,6 +110,9 @@ with dsl; {
   use.lspconfig.clangd.setup =
     callWith { cmd = [ "${pkgs.clang-tools}/bin/clangd" ]; };
 
+  use.lspconfig.texlab.setup =
+    callWith { cmd = [ "${pkgs.texlab}/bin/texlab" ]; };
+
   use.lspconfig.gopls.setup = callWith { cmd = [ "${pkgs.gopls}/bin/gopls" ]; };
 
   use.lsp_signature.setup = callWith {
@@ -175,4 +180,20 @@ with dsl; {
         end
     end
   '';
+
+  vimscript = ''
+    let g:tex_flavor='latex'
+    let g:vimtex_view_method='zathura'
+    let g:vimtex_quickfix_mode=0
+    set conceallevel=1
+    let g:tex_conceal='abdmg'
+    let g:vimtex_compiler_latexmk = { 'options' : [ 'main.tex', '-shell-escape', '-interaction=nonstopmode' ] }
+    let g:vimtex_complete_enabled = 1
+    let g:vimtex_complete_close_braces = 1
+    let g:vimtex_complete_ignore_case = 1
+    let g:vimtex_complete_smart_case = 1
+
+  '';
+  # assumed brought in by devshell.
+  # let g:vimtex_compiler_latexmk = { 'executable' : '${pkgs.texlive}/bin/latexmk', }
 }

@@ -95,6 +95,7 @@ in
         "<cmd>lua vim.diagnostic.goto_prev()<CR>"
         "prev diag"
       ];
+      "mb" = [ ":VimtexCompile<CR>" "build latex buffer" ];
       "f" = [ "<cmd>lua vim.lsp.buf.formatting()<CR>" "Format buffer" ];
       "bb" = [ "<cmd>Telescope buffers<cr>" "Get buffer list" ];
       "fb" = [ "<cmd>Telescope file_browser<cr>" "Get buffer list" ];
