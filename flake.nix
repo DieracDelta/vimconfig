@@ -5,6 +5,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
+    cornelis.url = "github:isovector/cornelis";
 
     terraform-ls-src = {
       url = "github:hashicorp/terraform-ls";
@@ -111,6 +112,7 @@
             ./modules/git.nix
             ./modules/wilder.nix
             ./modules/leap.nix
+            ./modules/agda.nix
           ];
         };
       in

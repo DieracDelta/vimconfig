@@ -44,6 +44,8 @@ with inputs; {
     });
   rnix-lsp = inputs.rnix-lsp.packages.${prev.system}.rnix-lsp;
 
+  cornelis-vim = inputs.cornelis.packages.${prev.system}.cornelis-vim;
+
   telescope-nvim = (withSrc prev.vimPlugins.telescope-nvim inputs.telescope-src);
   cmp-buffer = (withSrc prev.vimPlugins.cmp-buffer inputs.cmp-buffer);
   nvim-cmp = (withSrc prev.vimPlugins.nvim-cmp inputs.nvim-cmp);
