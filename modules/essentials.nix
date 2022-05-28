@@ -153,6 +153,20 @@ in
       "gi" =
         [ "<cmd>GuessIndent<CR>" "guess indent again" ];
 
+
+      # adga specific things
+      "ad" = [ "<cmd>CornelisGoToDefinition<CR>" "Goto agda defn" ];
+      "ar" = [ "<cmd>CornelisLoad<CR>" "Reload Agda buffer" ];
+      "aR" = [ "<cmd>CornelisRefine<CR>" "Refine type" ];
+      "agn" = [ "<cmd>CornelisNextGoal<CR>" "Goto next goal" ];
+      "agp" = [ "<cmd>CornelisPrevGoal<CR>" "Goto prev goal" ];
+      "as" = [ "<cmd>CornelisSolve<CR>" "Goto prev goal" ];
+      "at" = [ "<cmd>CornelisAuto<CR>" "Auto whatever that means" ];
+      "aK" = [ "<cmd>CornelisTypeContext<CR>" "Type context" ];
+      "amc" = [ "<cmd>CornelisMakeCase<CR>" "Make case" ];
+
+
+
     };
   };
   use.which-key.setup = callWith { };

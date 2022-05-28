@@ -5,7 +5,18 @@ with dsl; {
     cornelis-vim
   ];
 
-  lua = ''
-    vim.g.cornelis_use_global_binary = 1
+  vim.g.cornelis_use_global_binary = 1;
+
+  vimscript = ''
+    au BufRead,BufNewFile *.agda call AgdaFiletype()
+    au BufWritePost *.agda execute "normal! :CornelisLoad\<CR>"
+    function! CornelisLoadWrapper()
+      if exists(":CornelisLoad") ==# 2
+        CornelisLoad
+      endif
+    endfunction
+
+    au BufReadPre *.agda call CornelisLoadWrapper()
+    au BufReadPre *.lagda* call CornelisLoadWrapper()
   '';
 }
