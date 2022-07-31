@@ -15,7 +15,9 @@
       url = "github:gytis-ivaskevicius/nix2vim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = { url = "github:neovim/neovim?dir=contrib&ref=333ba6569d833e22c0d291547d740d4bbfa3fdab"; };
+    # 0.7.2 doesn't build for whatever reason
+    # master does, so use that instead...
+    neovim = { url = "github:neovim/neovim?dir=contrib"; };
     telescope-src = {
       url = "github:nvim-telescope/telescope.nvim";
       flake = false;
