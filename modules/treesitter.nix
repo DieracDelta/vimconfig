@@ -48,6 +48,7 @@ with dsl; {
       use_languagetree = true;
       # TODO why?
       disable = [ "css" ];
+      additional_vim_regex_highlighting = true;
     };
     incremental_selection = {
       enable = true;

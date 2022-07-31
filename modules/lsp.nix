@@ -10,7 +10,8 @@ with dsl; {
     vimPlugins.lspkind-nvim
     vimPlugins.nvim-lspconfig
     # utility functions for lsp
-    vimPlugins.plenary-nvim
+    # vimPlugins.plenary-nvim
+    plenary-nvim
     # popout for documentation
     vimPlugins.popup-nvim
     # snippets funcitonality

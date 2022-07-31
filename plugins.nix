@@ -67,5 +67,6 @@ with inputs; {
   guess-indent = plugin "guess-indent" guess-indent-src;
   leap = plugin "leap" leap-src;
   wilder-nvim = plugin "wilder-nvim" wilder-nvim-src;
+  plenary-nvim = plugin "plenary-nvim" plenary-nvim-src;
 
 }

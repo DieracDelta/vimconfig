@@ -15,6 +15,15 @@
       url = "github:gytis-ivaskevicius/nix2vim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # use fork that copies data directory
+    # otherwise syntax highlighting for rg will not work
+    # <https://github.com/NixOS/nixpkgs/issues/183304#issuecomment-1200460219>
+    plenary-nvim-src = {
+      url = "github:teto/plenary.nvim/fix-rockspec";
+      flake = false;
+    };
+
     # 0.7.2 doesn't build for whatever reason
     # master does, so use that instead...
     neovim = { url = "github:neovim/neovim?dir=contrib"; };

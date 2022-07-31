@@ -399,6 +399,23 @@
         "type": "github"
       }
     },
+    "plenary-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659293138,
+        "narHash": "sha256-dDBLljG90XGn9Yi1BoBgJTnpkK47SMBu870yJmWAu6A=",
+        "owner": "teto",
+        "repo": "plenary.nvim",
+        "rev": "9a3af9e9e3b220a1f9d6cac9106a42bdb919e492",
+        "type": "github"
+      },
+      "original": {
+        "owner": "teto",
+        "ref": "fix-rockspec",
+        "repo": "plenary.nvim",
+        "type": "github"
+      }
+    },
     "rnix-lsp": {
       "inputs": {
         "naersk": "naersk",
@@ -440,6 +457,7 @@
         "nix2vim": "nix2vim",
         "nixpkgs": "nixpkgs_3",
         "nvim-cmp": "nvim-cmp",
+        "plenary-nvim-src": "plenary-nvim-src",
         "rnix-lsp": "rnix-lsp",
         "rust-tools-src": "rust-tools-src",
         "telescope-src": "telescope-src",
