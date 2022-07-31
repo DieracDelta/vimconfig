@@ -14,6 +14,8 @@ in
   set.autoread = true;
 
   vim.g = {
+    # perl bad
+    loaded_perl_provider = 0;
     mapleader = " ";
     nofoldenable = true;
     noshowmode = true;
@@ -165,6 +167,15 @@ in
       "aK" = [ "<cmd>CornelisTypeContext<CR>" "Type context" ];
       "amc" = [ "<cmd>CornelisMakeCase<CR>" "Make case" ];
 
+      # trouble keybinds
+      "xx" = [ "<cmd>TroubleToggle<CR>" "Toggle trouble diagnostics" ] ;
+      "xw" = [ "<cmd>TroubleToggle workspace_diagnostics<CR>" "Toggle trouble workspace diagnostics" ];
+      "xd" = [ "<cmd>TroubleToggle document_diagnostics<CR>" "Toggle trouble document diagnostics" ];
+      "xq" = [ "<cmd>TroubleToggle quickfix<CR>" "Toggle trouble quickfix list"];
+      "xl" = [ "<cmd>TroubleToggle loclist<CR>" "Toggle trouble local list" ];
+      "xr" = [ "<cmd>TroubleToggle lsp_references<CR>" "Toggle trouble lsp references" ];
+      "xn" = [ "cmd lua require(\"trouble\").next({skip_groups = true, jump = true})<CR>" "Jump next diagnostic"];
+      "xp" = [ "cmd lua require(\"trouble\").previous({skip_groups = true, jump = true})<CR>" "Jump next diagnostic"];
 
 
     };

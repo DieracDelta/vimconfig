@@ -66,5 +66,6 @@ with inputs; {
   which-key = plugin "which-key" which-key-src;
   guess-indent = plugin "guess-indent" guess-indent-src;
   leap = plugin "leap" leap-src;
+  wilder-nvim = plugin "wilder-nvim" wilder-nvim-src;
 
 }

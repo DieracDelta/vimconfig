@@ -1,13 +1,17 @@
 { pkgs, dsl, ... }:
 with dsl; {
   plugins = with pkgs; [
-    vimPlugins.wilder-nvim
+    wilder-nvim
     vimPlugins.cpsm
   ];
 
   lua = ''
     local wilder = require('wilder')
     wilder.setup({modes = {':', '/', '?'}})
+
+    -- brocken rtp path
+    -- https://github.com/gelguy/wilder.nvim/issues/109
+    wilder.set_option("use_python_remote_plugin", 0)
 
     wilder.set_option('pipeline', {
       wilder.branch(

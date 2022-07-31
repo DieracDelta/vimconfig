@@ -26,6 +26,8 @@ with dsl; {
     vimPlugins.vimtex
     # for showing lsp progress
     fidget
+    # for diagnostics/quickfix window
+    vimPlugins.trouble-nvim
   ];
 
   setup.fidget = { };
@@ -85,9 +87,13 @@ with dsl; {
     };
   };
 
+  # brocken on macos. TODO probably could add conditional
   # use.lspconfig.hls.setup = callWith {
   #   cmd = ["${pkgs.haskell-language-server}/bin/haskell-language-server" "lsp"];
   # };
+
+  # defaults are good enough for now
+  use.trouble.setup = callWith { };
 
   use.lspconfig.pyright.setup =
     callWith { cmd = [ "${pkgs.pyright}/bin/pyright-langserver" "--stdio" ]; };

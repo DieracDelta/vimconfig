@@ -445,7 +445,8 @@
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
-        "which-key-src": "which-key-src"
+        "which-key-src": "which-key-src",
+        "wilder-nvim-src": "wilder-nvim-src"
       }
     },
     "rust-tools-src": {
@@ -541,6 +542,22 @@
         "owner": "folke",
         "ref": "bd4411a2ed4dd8bb69c125e339d837028a6eea71",
         "repo": "which-key.nvim",
+        "type": "github"
+      }
+    },
+    "wilder-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656331581,
+        "narHash": "sha256-AIczXsKoTB5MpbL/AN3SZtd17V31jfsBI9ddnz2FYjE=",
+        "owner": "gelguy",
+        "repo": "wilder.nvim",
+        "rev": "86f5fb0962bc5954babf267ded6b144d992aef85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gelguy",
+        "repo": "wilder.nvim",
         "type": "github"
       }
     }

@@ -22,6 +22,10 @@
       url = "github:nvim-telescope/telescope.nvim";
       flake = false;
     };
+    wilder-nvim-src = {
+      url = "github:gelguy/wilder.nvim";
+      flake = false;
+    };
     dracula-nvim = {
       url = "github:Mofiqul/dracula.nvim";
       flake = false;
