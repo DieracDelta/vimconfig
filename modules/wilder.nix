@@ -29,9 +29,6 @@ with dsl; {
         wilder.substitute_pipeline({
           pipeline = wilder.python_search_pipeline({
             skip_cmdtype_check = 1,
-            pattern = wilder.python_fuzzy_pattern({
-              start_at_boundary = 0,
-            }),
           }),
         }),
         wilder.cmdline_pipeline({
@@ -40,12 +37,7 @@ with dsl; {
         {
           wilder.check(function(ctx, x) return x == "" end),
           wilder.history(),
-        },
-        wilder.python_search_pipeline({
-          pattern = wilder.python_fuzzy_pattern({
-            start_at_boundary = 0,
-          }),
-        })
+        }
       ),
     })
 
