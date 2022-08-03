@@ -402,16 +402,15 @@
     "plenary-nvim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1659293138,
-        "narHash": "sha256-dDBLljG90XGn9Yi1BoBgJTnpkK47SMBu870yJmWAu6A=",
-        "owner": "teto",
+        "lastModified": 1659369288,
+        "narHash": "sha256-G84JTsj06vwidfEyaNIUvLLaKM9HB5zNAexCDWbGfu4=",
+        "owner": "nvim-lua",
         "repo": "plenary.nvim",
-        "rev": "9a3af9e9e3b220a1f9d6cac9106a42bdb919e492",
+        "rev": "31807eef4ed574854b8a53ae40ea3292033a78ea",
         "type": "github"
       },
       "original": {
-        "owner": "teto",
-        "ref": "fix-rockspec",
+        "owner": "nvim-lua",
         "repo": "plenary.nvim",
         "type": "github"
       }

@@ -16,11 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # use fork that copies data directory
-    # otherwise syntax highlighting for rg will not work
-    # <https://github.com/NixOS/nixpkgs/issues/183304#issuecomment-1200460219>
     plenary-nvim-src = {
-      url = "github:teto/plenary.nvim/fix-rockspec";
+      url = "github:nvim-lua/plenary.nvim";
       flake = false;
     };
 
