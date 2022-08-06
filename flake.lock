@@ -383,6 +383,22 @@
         "type": "github"
       }
     },
+    "nvim-autopairs-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659746551,
+        "narHash": "sha256-mlq3rulITlxaE4QH7k+7zTbWkpG7S3Ag83tdU7raf6Q=",
+        "owner": "windwp",
+        "repo": "nvim-autopairs",
+        "rev": "8f7f682caa497e6cf6f9ed1a6e5ed3aba0cf26e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "windwp",
+        "repo": "nvim-autopairs",
+        "type": "github"
+      }
+    },
     "nvim-cmp": {
       "flake": false,
       "locked": {
@@ -455,6 +471,7 @@
         "neovim": "neovim",
         "nix2vim": "nix2vim",
         "nixpkgs": "nixpkgs_3",
+        "nvim-autopairs-src": "nvim-autopairs-src",
         "nvim-cmp": "nvim-cmp",
         "plenary-nvim-src": "plenary-nvim-src",
         "rnix-lsp": "rnix-lsp",

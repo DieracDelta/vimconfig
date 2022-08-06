@@ -68,5 +68,6 @@ with inputs; {
   leap = plugin "leap" leap-src;
   wilder-nvim = plugin "wilder-nvim" wilder-nvim-src;
   plenary-nvim = plugin "plenary-nvim" plenary-nvim-src;
+  nvim-autopairs = plugin "nvim-autopairs" nvim-autopairs-src;
 
 }

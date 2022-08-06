@@ -96,6 +96,10 @@
       url = "github:ggandor/leap.nvim";
       flake = false;
     };
+    nvim-autopairs-src = {
+      url = "github:windwp/nvim-autopairs";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, neovim, nix2vim, ... }:
@@ -125,6 +129,7 @@
             ./modules/wilder.nix
             ./modules/leap.nix
             ./modules/agda.nix
+            ./modules/autopairs.nix
           ];
         };
       in
