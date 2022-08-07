@@ -3,7 +3,7 @@
 
   # Input source for our derivation
   inputs = {
-    nixpkgs.url = "path:/home/jrestivo/nixpkgs";
+    nixpkgs.url = "github:DieracDelta/nixpkgs/jr/lean-lsp";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
