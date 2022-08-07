@@ -3,7 +3,7 @@
 
   # Input source for our derivation
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "path:/home/jrestivo/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 

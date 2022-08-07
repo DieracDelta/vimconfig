@@ -369,18 +369,14 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1659275907,
-        "narHash": "sha256-z80ddvTFiDXI6Ycyi+sGnFzdl6T3r0UWf/MJEcJ2gi8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "56d3fd2be4a1d3046d6c1ad537261c6354b8ee04",
-        "type": "github"
+        "lastModified": 1659882306,
+        "narHash": "sha256-r2cQjhLshL5YETGFdY0+azQD6gYgrYNJpuV/FGCuJAc=",
+        "path": "/home/jrestivo/nixpkgs",
+        "type": "path"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
+        "path": "/home/jrestivo/nixpkgs",
+        "type": "path"
       }
     },
     "nvim-autopairs-src": {

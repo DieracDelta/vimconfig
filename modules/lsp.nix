@@ -29,6 +29,9 @@ with dsl; {
     fidget
     # for diagnostics/quickfix window
     vimPlugins.trouble-nvim
+
+    # for lean support
+    vimPlugins.lean-nvim
   ];
 
   setup.fidget = { };
@@ -186,6 +189,39 @@ with dsl; {
             vim.lsp.buf.hover()
         end
     end
+
+    -- lean specific on_attach function
+    local function on_attach(_, bufnr)
+        local function cmd(mode, lhs, rhs)
+          vim.keymap.set(mode, lhs, rhs, { noremap = true, buffer = true })
+        end
+
+        -- Autocomplete using the Lean language server
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    end
+
+    require('lean').setup {
+      abbreviations = { builtin = true },
+      lsp = {
+        enable = false,
+      },
+      lsp3 = {
+        cmd = { "${pkgs.nodePackages.lean-language-server}/bin/lean-language-server", "--stdio", "--", "-M", "4096", "-T", "100000" },
+        enable = true,
+        mappings = true,
+      },
+      -- # lsp = {
+      -- #   cmd = { "${pkgs.nodePackages.lean-language-server}/bin/lean-language-server"},
+      -- # },
+      ft = {
+        default = "lean3"
+      },
+      mappings = true,
+      lean3 = {
+        mouse_events = false;
+      },
+    }
+
   '';
 
   vimscript = ''
