@@ -11,6 +11,11 @@
       url = "github:hashicorp/terraform-ls";
       flake = false;
     };
+
+    nil = {
+      url = "github:oxalica/nil";
+    };
+
     nix2vim = {
       url = "github:gytis-ivaskevicius/nix2vim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,10 +52,6 @@
     cmp-buffer = {
       url = "github:hrsh7th/cmp-buffer";
       flake = false;
-    };
-    rnix-lsp = {
-      url = "github:nix-community/rnix-lsp";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     comment-nvim-src = {
       url = "github:numToStr/Comment.nvim";

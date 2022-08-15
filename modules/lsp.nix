@@ -104,7 +104,8 @@ with dsl; {
   use.lspconfig.terraformls.setup =
     callWith { cmd = [ "${pkgs.terraform-ls}/bin/terraform-lsp" ]; };
   use.lspconfig.rnix.setup = callWith {
-    cmd = [ "${pkgs.rnix-lsp}/bin/rnix-lsp" ];
+    autostart = true;
+    cmd = [ "${pkgs.nil}/bin/nil" ];
     capabilities = rawLua
       "require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())";
   };

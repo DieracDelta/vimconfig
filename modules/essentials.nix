@@ -22,6 +22,7 @@ in
     completeopt = "menu,menuone,noselect";
     noswapfile = true;
     blamer_enabled = 1;
+    blamer_template = "<author-time> <committer> <summary>";
   };
 
   vim.o = {

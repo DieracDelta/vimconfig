@@ -42,7 +42,8 @@ with inputs; {
         maintainers = with maintainers; [ mbaillie jk ];
       };
     });
-  rnix-lsp = inputs.rnix-lsp.packages.${prev.system}.rnix-lsp;
+
+  nil = inputs.nil.packages.${prev.system}.nil;
 
   cornelis-vim = inputs.cornelis.packages.${prev.system}.cornelis-vim;
 
