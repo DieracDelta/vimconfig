@@ -487,6 +487,7 @@
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
+        "vim-illuminate-src": "vim-illuminate-src",
         "which-key-src": "which-key-src",
         "wilder-nvim-src": "wilder-nvim-src"
       }
@@ -577,6 +578,22 @@
       "original": {
         "owner": "hashicorp",
         "repo": "terraform-ls",
+        "type": "github"
+      }
+    },
+    "vim-illuminate-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661013571,
+        "narHash": "sha256-EUlvWkJGbdmKQZGMTraPHnUhnPq3/REpw8VzAmwvSho=",
+        "owner": "RRethy",
+        "repo": "vim-illuminate",
+        "rev": "78cf9c1ce0dc1ee3cfd6f29f9aab1b538a2784b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RRethy",
+        "repo": "vim-illuminate",
         "type": "github"
       }
     },

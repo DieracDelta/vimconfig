@@ -53,7 +53,7 @@ with inputs; {
 
   cmp-nvim-lsp = withSrc prev.vimPlugins.cmp-nvim-lsp inputs.cmp-nvim-lsp;
 
-  # Example of packaging plugin with Nix
+  # Packaging plugins with Nix
   blamer-nvim = plugin "blamer-nvim" blamer-nvim-src;
   colorizer = plugin "colorizer" colorizer-src;
   comment-nvim = plugin "comment-nvim" comment-nvim-src;
@@ -70,5 +70,6 @@ with inputs; {
   wilder-nvim = plugin "wilder-nvim" wilder-nvim-src;
   plenary-nvim = plugin "plenary-nvim" plenary-nvim-src;
   nvim-autopairs = plugin "nvim-autopairs" nvim-autopairs-src;
+  vim-illuminate = plugin "vim-illuminate" vim-illuminate-src;
 
 }

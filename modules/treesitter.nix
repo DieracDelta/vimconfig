@@ -23,6 +23,8 @@ with dsl; {
     vimPlugins.nvim-ts-rainbow
     # toggle btwn all the things with %
     vimPlugins.vim-matchup
+    # highlight other occurrences of a phrase
+    vim-illuminate
   ];
 
   use.Comment.setup = callWith {
@@ -186,4 +188,22 @@ with dsl; {
     matchup.enable = true;
     autotag.enable = true;
   };
+
+  lua = ''
+    -- default configuration
+    require('illuminate').configure({
+        -- providers: provider used to get references in the buffer, ordered by priority
+        providers = {
+            'lsp',
+            'treesitter',
+            'regex',
+        },
+        -- delay: delay in milliseconds
+        delay = 100,
+        -- under_cursor: whether or not to illuminate under the cursor
+        under_cursor = true,
+    })
+    require('illuminate').resume()
+  '';
+
 }

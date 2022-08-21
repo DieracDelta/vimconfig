@@ -7,6 +7,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
+    vim-illuminate-src = {
+      url = "github:RRethy/vim-illuminate";
+      flake = false;
+    };
+
     terraform-ls-src = {
       url = "github:hashicorp/terraform-ls";
       flake = false;
