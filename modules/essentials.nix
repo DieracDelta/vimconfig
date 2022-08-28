@@ -22,7 +22,6 @@ in
     completeopt = "menu,menuone,noselect";
     noswapfile = true;
     blamer_enabled = 1;
-    blamer_template = "<author-time> <committer> <summary>";
   };
 
   vim.o = {
@@ -49,7 +48,6 @@ in
     undoreload = 1000000;
     foldmethod = "indent";
     foldnestmax = 10;
-    foldlevel = 1;
     scrolloff = 3;
     sidescrolloff = 5;
     listchars = "tab:→→,trail:●,nbsp:○";
@@ -64,6 +62,12 @@ in
     expandtab = true;
     #pastetoggle = "<leader>v";
     wildmode = "list:longest,list:full";
+    # for nvim-ufo
+    foldcolumn = "1";
+    foldlevel = 99;
+    foldlevelstart = 99;
+    foldenable = true;
+
   };
 
   use.which-key.register = dsl.callWith {

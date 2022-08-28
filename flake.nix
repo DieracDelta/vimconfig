@@ -106,6 +106,16 @@
       url = "github:windwp/nvim-autopairs";
       flake = false;
     };
+
+    nvim-ufo-src = {
+      url = "github:kevinhwang91/nvim-ufo";
+      flake = false;
+    };
+
+    nvim-async-src = {
+      url = "github:kevinhwang91/promise-async";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, neovim, nix2vim, ... }:

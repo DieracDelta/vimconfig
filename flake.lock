@@ -413,6 +413,22 @@
         "type": "github"
       }
     },
+    "nvim-async-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658997334,
+        "narHash": "sha256-sYkEYXFabA4jcRJiTYBiU83kO/4ZYyyVjz2Fknx0314=",
+        "owner": "kevinhwang91",
+        "repo": "promise-async",
+        "rev": "005df1ae44ac801047f98052c923b38618b4ebb6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kevinhwang91",
+        "repo": "promise-async",
+        "type": "github"
+      }
+    },
     "nvim-autopairs-src": {
       "flake": false,
       "locked": {
@@ -442,6 +458,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "nvim-cmp",
+        "type": "github"
+      }
+    },
+    "nvim-ufo-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661058921,
+        "narHash": "sha256-rbwmwscPsFCqYerkBzzqtmPoWOcJd7b6wmRU1nWSgug=",
+        "owner": "kevinhwang91",
+        "repo": "nvim-ufo",
+        "rev": "ba18a3bb31c35f16b4178ca69db097d0c6ba261a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kevinhwang91",
+        "repo": "nvim-ufo",
         "type": "github"
       }
     },
@@ -480,8 +512,10 @@
         "nil": "nil",
         "nix2vim": "nix2vim",
         "nixpkgs": "nixpkgs_4",
+        "nvim-async-src": "nvim-async-src",
         "nvim-autopairs-src": "nvim-autopairs-src",
         "nvim-cmp": "nvim-cmp",
+        "nvim-ufo-src": "nvim-ufo-src",
         "plenary-nvim-src": "plenary-nvim-src",
         "rust-tools-src": "rust-tools-src",
         "telescope-src": "telescope-src",

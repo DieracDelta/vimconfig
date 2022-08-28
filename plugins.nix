@@ -71,5 +71,6 @@ with inputs; {
   plenary-nvim = plugin "plenary-nvim" plenary-nvim-src;
   nvim-autopairs = plugin "nvim-autopairs" nvim-autopairs-src;
   vim-illuminate = plugin "vim-illuminate" vim-illuminate-src;
-
+  nvim-ufo = plugin "nvim-ufo" nvim-ufo-src;
+  nvim-async = plugin "nvim-async" nvim-async-src;
 }

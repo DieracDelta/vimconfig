@@ -1,6 +1,10 @@
 { pkgs, dsl, ... }:
 with dsl; {
   plugins = with pkgs; [
+    # dependency for nvim-ufo
+    nvim-async
+    # folding with treesitter and lsp
+    nvim-ufo
     # commenting with treesiter
     comment-nvim
     # which method am I on
@@ -204,6 +208,23 @@ with dsl; {
         under_cursor = true,
     })
     require('illuminate').resume()
-  '';
 
+    -- Using ufo provider need remap `zR` and `zM`
+    vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+    require('ufo').setup({
+      preview = {
+          win_config = {
+              winblend = 12
+          },
+          mappings = {
+              scrollU = 'k',
+              scrollD = 'j'
+          }
+      },
+      provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter', 'indent'}
+      end
+    })
+  '';
 }
