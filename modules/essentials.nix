@@ -17,11 +17,11 @@ in
     # perl bad
     loaded_perl_provider = 0;
     mapleader = " ";
+    maplocalleader = ",";
     nofoldenable = true;
     noshowmode = true;
     completeopt = "menu,menuone,noselect";
     noswapfile = true;
-    blamer_enabled = 1;
   };
 
   vim.o = {

@@ -19,4 +19,5 @@ with dsl; {
     au BufReadPre *.agda call CornelisLoadWrapper()
     au BufReadPre *.lagda* call CornelisLoadWrapper()
   '';
+
 }

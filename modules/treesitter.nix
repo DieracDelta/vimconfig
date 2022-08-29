@@ -215,7 +215,7 @@ with dsl; {
     require('ufo').setup({
       preview = {
           win_config = {
-              winblend = 12
+              winblend = 0
           },
           mappings = {
               scrollU = 'k',

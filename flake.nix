@@ -17,6 +17,11 @@
       flake = false;
     };
 
+    conjure-src = {
+      url = "github:Olical/conjure";
+      flake = false;
+    };
+
     nil = {
       url = "github:oxalica/nil";
     };
@@ -33,7 +38,7 @@
 
     # 0.7.2 doesn't build for whatever reason
     # master does, so use that instead...
-    neovim = { url = "github:neovim/neovim?dir=contrib"; };
+    neovim = { url = "github:neovim/neovim?dir=contrib&ref=68ec497d52bc8e93e12c74099ee9826b9469c3be"; };
     telescope-src = {
       url = "github:nvim-telescope/telescope.nvim";
       flake = false;
@@ -146,6 +151,10 @@
             ./modules/leap.nix
             ./modules/agda.nix
             ./modules/autopairs.nix
+            # TODO uncomment when
+            # https://github.com/Olical/conjure/issues/401
+            # this will be quite useful
+            # ./modules/repl.nix
           ];
         };
       in
