@@ -148,7 +148,7 @@
             ./modules/treesitter.nix
             ./modules/git.nix
             ./modules/wilder.nix
-            ./modules/leap.nix
+            # ./modules/leap.nix
             ./modules/agda.nix
             ./modules/autopairs.nix
             # TODO uncomment when
