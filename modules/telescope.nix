@@ -11,7 +11,7 @@ with dsl; {
   lua = ''
     require("telescope").setup {
       defaults = {
-        file_ignore_patterns = { "node_modules", "target" },
+        file_ignore_patterns = { "node_modules", "target", "target_dirs" },
         prompt_prefix = "   ",
         selection_caret = "  ",
         entry_prefix = "  ",
