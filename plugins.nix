@@ -74,5 +74,6 @@ with inputs; {
   nvim-ufo = plugin "nvim-ufo" nvim-ufo-src;
   nvim-async = plugin "nvim-async" nvim-async-src;
   conjure = plugin "conjure" conjure-src;
+  lsp-config = plugin "lsp-config" lsp-config-src;
 
 }

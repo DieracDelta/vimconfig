@@ -8,7 +8,7 @@ with dsl; {
     # lsp things
     vimPlugins.lsp_signature-nvim
     vimPlugins.lspkind-nvim
-    vimPlugins.nvim-lspconfig
+    lsp-config
     # utility functions for lsp
     # vimPlugins.plenary-nvim
     plenary-nvim
@@ -110,13 +110,13 @@ with dsl; {
       "require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())";
   };
 
-  use.lspconfig.rust_analyzer.setup = callWith {
-    # assumed to be provided by the project's nix-shell
-    cmd = [ "rust-analyzer" ];
-    capabilities = rawLua
-      "require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())";
-    settings = { "['rust-analyzer']" = { procMacro = { enable = true; }; }; };
-  };
+  # use.lspconfig.rust_analyzer.setup = callWith {
+  #   # assumed to be provided by the project's nix-shell
+  #   cmd = [ "rust-analyzer" ];
+  #   capabilities = rawLua
+  #     "require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())";
+  #   settings = { "['rust-analyzer']" = { procMacro = { enable = true; }; }; };
+  # };
 
   use.lspconfig.clangd.setup =
     callWith { cmd = [ "${pkgs.clang-tools}/bin/clangd" ]; };
@@ -188,6 +188,8 @@ with dsl; {
               vim.cmd('Man '..vim.fn.expand('<cword>'))
           elseif vim.fn.expand('%:t') == 'Cargo.toml' then
               require('crates').show_popup()
+          elseif string.match(filetype, 'rust') == "rust" then
+              require'rust-tools'.hover_actions.hover_actions()
           else
               vim.lsp.buf.hover()
           end
@@ -195,14 +197,14 @@ with dsl; {
     end
 
     -- lean specific on_attach function
-     local function on_attach(_, bufnr)
-         local function cmd(mode, lhs, rhs)
-           vim.keymap.set(mode, lhs, rhs, { noremap = true, buffer = true })
-         end
+     -- local function on_attach(_, bufnr)
+     --     local function cmd(mode, lhs, rhs)
+     --       vim.keymap.set(mode, lhs, rhs, { noremap = true, buffer = true })
+     --     end
 
-         -- Autocomplete using the Lean language server
-         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-     end
+     --     -- Autocomplete using the Lean language server
+     --     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+     -- end
 
      -- require('lean').setup {
      --   abbreviations = { builtin = true },

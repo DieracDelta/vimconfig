@@ -43,6 +43,12 @@
       url = "github:nvim-telescope/telescope.nvim";
       flake = false;
     };
+
+    lsp-config-src = {
+      url = "github:neovim/nvim-lspconfig";
+      flake = false;
+    };
+
     wilder-nvim-src = {
       url = "github:gelguy/wilder.nvim";
       flake = false;

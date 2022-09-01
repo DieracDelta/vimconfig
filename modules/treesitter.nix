@@ -214,9 +214,6 @@ with dsl; {
     vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
     require('ufo').setup({
       preview = {
-          win_config = {
-              winblend = 0
-          },
           mappings = {
               scrollU = 'k',
               scrollD = 'j'
