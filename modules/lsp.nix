@@ -196,6 +196,9 @@ with dsl; {
         end
     end
 
+    -- set the target directory to be different/not shared with rustc
+    vim.fn.setenv("CARGO_TARGET_DIR", "nix_rust_analyzer_target")
+
     -- lean specific on_attach function
      -- local function on_attach(_, bufnr)
      --     local function cmd(mode, lhs, rhs)
