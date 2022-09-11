@@ -29,6 +29,7 @@ with dsl; {
     vimPlugins.vim-matchup
     # highlight other occurrences of a phrase
     vim-illuminate
+    markid
   ];
 
   use.Comment.setup = callWith {
@@ -49,6 +50,7 @@ with dsl; {
 
   use."nvim-treesitter.configs".setup = callWith {
     ensure_installed = [ "nix" "rust" ];
+    markid = { enable = true; };
     highlight = {
       enable = true;
       use_languagetree = true;

@@ -319,6 +319,22 @@
         "url": "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
       }
     },
+    "markid-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662913554,
+        "narHash": "sha256-rI8pVnQ1Kw+vgnfiWKXu1foffdBcdFouPyHJ+01S+Dw=",
+        "owner": "David-Kunz",
+        "repo": "markid",
+        "rev": "7fbf67aac39f2525aeee8e64b5f60b5e7e71d78d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "David-Kunz",
+        "repo": "markid",
+        "type": "github"
+      }
+    },
     "neogen-src": {
       "flake": false,
       "locked": {
@@ -559,6 +575,7 @@
         "leap-src": "leap-src",
         "lsp-config-src": "lsp-config-src",
         "lsp_lines-src": "lsp_lines-src",
+        "markid-src": "markid-src",
         "neogen-src": "neogen-src",
         "neovim": "neovim",
         "nil": "nil",

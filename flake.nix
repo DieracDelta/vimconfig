@@ -133,6 +133,11 @@
       flake = false;
     };
 
+    markid-src = {
+      url = "github:David-Kunz/markid";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, neovim, nix2vim, ... }:
