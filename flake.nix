@@ -127,6 +127,12 @@
       url = "github:kevinhwang91/promise-async";
       flake = false;
     };
+
+    lsp_lines-src = {
+      url = "git+https://git.sr.ht/~whynothugo/lsp_lines.nvim";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, neovim, nix2vim, ... }:

@@ -32,9 +32,13 @@ with dsl; {
 
     # for lean support
     # vimPlugins.lean-nvim
+
+    lsp_lines
   ];
 
   setup.fidget = { };
+
+  setup.lsp_lines = { };
 
   setup.rust-tools = {
     tools = {
@@ -231,8 +235,13 @@ with dsl; {
      --   },
      -- }
 
+    -- no longer needed b/c lsp_lines
+    vim.diagnostic.config({ virtual_text = false, })
+
    '';
 
+  # todo these are all globals...
+  # move to vim.g
   vimscript = ''
     let g:tex_flavor='latex'
     let g:vimtex_view_method='zathura'
@@ -244,8 +253,8 @@ with dsl; {
     let g:vimtex_complete_close_braces = 1
     let g:vimtex_complete_ignore_case = 1
     let g:vimtex_complete_smart_case = 1
-
   '';
+
   # assumed brought in by devshell.
   # let g:vimtex_compiler_latexmk = { 'executable' : '${pkgs.texlive}/bin/latexmk', }
 }
