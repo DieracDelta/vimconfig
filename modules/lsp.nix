@@ -213,28 +213,6 @@ with dsl; {
      --     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
      -- end
 
-     -- require('lean').setup {
-     --   abbreviations = { builtin = true },
-     --   lsp = {
-     --     enable = false,
-     --   },
-     --   lsp3 = {
-     --     cmd = { "${pkgs.nodePackages.lean-language-server}/bin/lean-language-server", "--stdio", "--", "-M", "4096", "-T", "100000" },
-     --     enable = true,
-     --     mappings = true,
-     --   },
-     --   -- # lsp = {
-     --   -- #   cmd = { "${pkgs.nodePackages.lean-language-server}/bin/lean-language-server"},
-     --   -- # },
-     --   ft = {
-     --     default = "lean3"
-     --   },
-     --   mappings = true,
-     --   lean3 = {
-     --     mouse_events = false;
-     --   },
-     -- }
-
     -- no longer needed b/c lsp_lines
     vim.diagnostic.config({ virtual_text = false, })
 
