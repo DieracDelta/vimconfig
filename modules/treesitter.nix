@@ -49,7 +49,7 @@ with dsl; {
   };
 
   use."nvim-treesitter.configs".setup = callWith {
-    ensure_installed = [ "nix" "rust" ];
+    ensure_installed = {};
     markid = { enable = true; };
     highlight = {
       enable = true;
