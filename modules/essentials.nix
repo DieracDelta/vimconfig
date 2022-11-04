@@ -30,6 +30,7 @@ in
     ignorecase = true;
     smartcase = true;
     cursorline = true;
+    cursorcolumn = true;
     wrap = true;
     autoindent = true;
     copyindent = true;
@@ -205,5 +206,9 @@ in
       \ if line("'\"") >= 1 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" |
       \ endif
+
+    autocmd BufRead,BufNewFile *  highlight CursorLine guibg=#6272A4
+    autocmd BufRead,BufNewFile * highlight CursorColumn guibg=#6272A4
+
   '';
 }
