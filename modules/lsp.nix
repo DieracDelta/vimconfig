@@ -41,6 +41,11 @@ with dsl; {
   setup.lsp_lines = { };
 
   setup.rust-tools = {
+    server = {
+      settings = { "[\"rust-analyzer\"]" = { cargo.features = rawLua "os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") and { os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") } or \"all\"" ;
+      };
+      };
+    };
     tools = {
       autoSetHints = true;
       runnables = { use_telescope = true; };
