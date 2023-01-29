@@ -79,7 +79,7 @@
       flake = false;
     };
     rust-tools-src = {
-      url = "github:simrat39/rust-tools.nvim";
+      url = "github:kdarkhan/rust-tools.nvim";
       flake = false;
     };
     fidget-src = {

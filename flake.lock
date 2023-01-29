@@ -569,15 +569,15 @@
     "rust-tools-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1662154544,
-        "narHash": "sha256-zR+6LMgHxzqWuPYuTT5U4HKW+lbgOZ2Zw6LzArRpQ5g=",
-        "owner": "simrat39",
+        "lastModified": 1672329614,
+        "narHash": "sha256-82QOD4o6po9PHbYUdSEnJpf5yR9lru3GTLNvfRNFydg=",
+        "owner": "kdarkhan",
         "repo": "rust-tools.nvim",
-        "rev": "86a2b4e31f504c00715d0dd082a6b8b5d4afbf03",
+        "rev": "a47f5d61ce06a433998fb5711f723773e3156f46",
         "type": "github"
       },
       "original": {
-        "owner": "simrat39",
+        "owner": "kdarkhan",
         "repo": "rust-tools.nvim",
         "type": "github"
       }

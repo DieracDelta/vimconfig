@@ -42,7 +42,8 @@ with dsl; {
 
   setup.rust-tools = {
     server = {
-      settings = { "[\"rust-analyzer\"]" = { cargo.features = rawLua "os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") and { os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") } or \"all\"" ;
+      # settings = { "[\"rust-analyzer\"]" = { cargo.features = rawLua "os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") and { os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") } or \"all\"" ;
+      settings = { "[\"rust-analyzer\"]" = { cargo.features = rawLua "loadfile(\".nvim/example.env.lua\") and { loadfile(\".nvim/example.env.lua\")() } or \"all\"" ;
       };
       };
     };
