@@ -33,12 +33,12 @@ with dsl; {
     # for lean support
     # vimPlugins.lean-nvim
 
-    lsp_lines
+    # lsp_lines
   ];
 
   setup.fidget = { };
 
-  setup.lsp_lines = { };
+  # setup.lsp_lines = { };
 
   setup.rust-tools = {
     server = {
@@ -117,7 +117,7 @@ with dsl; {
     autostart = true;
     cmd = [ "${pkgs.nil}/bin/nil" ];
     capabilities = rawLua
-      "require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())";
+      "require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())";
   };
 
   # use.lspconfig.rust_analyzer.setup = callWith {
@@ -220,7 +220,7 @@ with dsl; {
      -- end
 
     -- no longer needed b/c lsp_lines
-    vim.diagnostic.config({ virtual_text = false, })
+    -- vim.diagnostic.Config({ virtual_text = false, })
 
    '';
 

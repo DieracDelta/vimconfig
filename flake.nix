@@ -79,7 +79,7 @@
       flake = false;
     };
     rust-tools-src = {
-      url = "github:kdarkhan/rust-tools.nvim";
+      url = "github:simrat39/rust-tools.nvim";
       flake = false;
     };
     fidget-src = {
@@ -125,10 +125,10 @@
       flake = false;
     };
 
-    lsp_lines-src = {
-      url = "git+https://git.sr.ht/~whynothugo/lsp_lines.nvim";
-      flake = false;
-    };
+    # lsp_lines-src = {
+    #   url = "git+https://git.sr.ht/~whynothugo/lsp_lines.nvim";
+    #   flake = false;
+    # };
 
     markid-src = {
       url = "github:David-Kunz/markid";
