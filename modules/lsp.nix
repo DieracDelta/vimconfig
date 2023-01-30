@@ -174,6 +174,19 @@ with dsl; {
 
 
   lua = ''
+    local util = require 'lspconfig.util'
+    require'lspconfig'.efm.setup {
+      cmd = { '/Users/jrestivo/dev/tree-sitter/tree-sitter-riscv-asm/target_dirs/nix_rustc/release/lsp' },
+      filetypes = { 'asm' },
+      root_dir = function(fname)
+        return util.find_git_ancestor(fname) or vim.loop.os_homedir()
+      end,
+      settings = {},
+      init_options = {},
+
+    }
+
+
     vim.api.nvim_set_keymap("i", "<Tab>", "vsnip#available(1)  ? '<Plug>(vsnip-jump-next)': '<Tab>'", {expr = true})
     vim.api.nvim_set_keymap("s", "<Tab>", "vsnip#available(1)  ? '<Plug>(vsnip-jump-next)': '<Tab>'", {expr = true})
     vim.api.nvim_set_keymap("i", "<S-Tab>", "vsnip#available(-1)  ? '<Plug>(vsnip-jump-prev)': '<S-Tab>'", {expr = true})
