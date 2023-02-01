@@ -78,4 +78,8 @@ with inputs; {
   # lsp_lines = plugin "lsp_lines" lsp_lines-src;
   markid = plugin "markid" markid-src;
 
+  copilot-lua = plugin "copilot-lua" copilot-lua-src;
+  copilot-cmp = plugin "copilot-cmp" copilot-cmp-src;
+  copilot-vim = plugin "copilot-vim" copilot-vim-src;
+
 }

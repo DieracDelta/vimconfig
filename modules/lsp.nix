@@ -34,7 +34,22 @@ with dsl; {
     # vimPlugins.lean-nvim
 
     # lsp_lines
+    copilot-lua
+    copilot-cmp
+    # copilot-vim
   ];
+
+  setup.copilot = {
+    suggestion = { enabled = false; };
+    panel = { enabled = false; };
+  };
+
+  setup.copilot_cmp = {
+    method = "getCompletionsCycling";
+    formatters = {
+      insert_text = rawLua "require(\"copilot_cmp.format\").remove_existing";
+    };
+  };
 
   setup.fidget = { };
 
@@ -161,6 +176,7 @@ with dsl; {
         "require('cmp').mapping.confirm({ behavior = require('cmp').ConfirmBehavior.Replace, select = true, })";
     };
     sources = [
+      { name = "copilot"; }
       { name = "nvim_lsp"; }
       { name = "buffer"; }
       { name = "vsnip"; }
@@ -168,6 +184,16 @@ with dsl; {
     ];
     snippet.expand =
       rawLua ''function(args) vim.fn["vsnip#anonymous"](args.body) end '';
+    formatting = {
+      format = rawLua ''
+      require('lspkind').cmp_format({
+        mode = "symbol",
+        maxwidth = 50,
+        ellipsis_char = '...',
+        symbol_map = { Copilot = "" }
+      })
+    '';
+    };
   };
 
 

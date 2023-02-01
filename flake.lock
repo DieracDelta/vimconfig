@@ -155,6 +155,54 @@
         "type": "github"
       }
     },
+    "copilot-cmp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673124247,
+        "narHash": "sha256-41dHpSJhapXd5p74T9E1e8Vy0dKYfmVztQTswmauBVA=",
+        "owner": "zbirenbaum",
+        "repo": "copilot-cmp",
+        "rev": "b732a58ac8b7287b981cd9f0d9c0f61e5e9d5760",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot-cmp",
+        "type": "github"
+      }
+    },
+    "copilot-lua-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675152575,
+        "narHash": "sha256-Ge5xX7840oXrIZ6bDibdqP8ZrjbXpLwXNNihpgJPa74=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "bfae743805d5f16fc31f6d3a8f2e46b3f3dbb175",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
+    "copilot-vim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675267373,
+        "narHash": "sha256-Mo7SKK0FvjFpIncMr0WI/cl+9+6NCfZ+Y/wlprQwWMg=",
+        "owner": "github",
+        "repo": "copilot.vim",
+        "rev": "c7d166ebda265370f38cec374e33f02eeec2f857",
+        "type": "github"
+      },
+      "original": {
+        "owner": "github",
+        "repo": "copilot.vim",
+        "type": "github"
+      }
+    },
     "cornelis": {
       "inputs": {
         "agda": "agda",
@@ -543,6 +591,9 @@
         "comment-nvim-src": "comment-nvim-src",
         "conceal-src": "conceal-src",
         "conjure-src": "conjure-src",
+        "copilot-cmp-src": "copilot-cmp-src",
+        "copilot-lua-src": "copilot-lua-src",
+        "copilot-vim-src": "copilot-vim-src",
         "cornelis": "cornelis",
         "dracula-nvim": "dracula-nvim",
         "fidget-src": "fidget-src",

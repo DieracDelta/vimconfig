@@ -135,6 +135,21 @@
       flake = false;
     };
 
+    copilot-lua-src = {
+      url = "github:zbirenbaum/copilot.lua";
+      flake = false;
+    };
+
+    copilot-cmp-src = {
+      url = "github:zbirenbaum/copilot-cmp";
+      flake = false;
+    };
+
+    copilot-vim-src = {
+      url = "github:github/copilot.vim";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, ... }:
@@ -179,6 +194,5 @@
           type = "app";
           program = "${neovimConfig}/bin/nvim";
         };
-
       });
 }
