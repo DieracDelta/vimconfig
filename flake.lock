@@ -91,6 +91,22 @@
         "type": "github"
       }
     },
+    "codium-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675299171,
+        "narHash": "sha256-vdN744L8F+UZuQkyvPiyUWTrQWgJtvlUsItP8O0eGBI=",
+        "owner": "jcdickinson",
+        "repo": "codeium.nvim",
+        "rev": "fd282b1aed36af162e44b460006f1218a7c0d65f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jcdickinson",
+        "repo": "codeium.nvim",
+        "type": "github"
+      }
+    },
     "colorizer-src": {
       "flake": false,
       "locked": {
@@ -413,6 +429,22 @@
         "type": "github"
       }
     },
+    "neural-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1674823093,
+        "narHash": "sha256-k/Cc4Tk4Yb4t853vrUar+Kv6TxSGjs9Ig5XuenovMyY=",
+        "owner": "dense-analysis",
+        "repo": "neural",
+        "rev": "096020fdd41120d3fd0d2f94910c54a7d00bb5d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dense-analysis",
+        "repo": "neural",
+        "type": "github"
+      }
+    },
     "nil": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -502,6 +534,22 @@
         "type": "github"
       }
     },
+    "nui-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675269986,
+        "narHash": "sha256-4vf+eqT7e638VeWfmh23K8EslJXyR6ZK6arvaeVgWlw=",
+        "owner": "muniftanjim",
+        "repo": "nui.nvim",
+        "rev": "d147222a1300901656f3ebd5b95f91732785a329",
+        "type": "github"
+      },
+      "original": {
+        "owner": "muniftanjim",
+        "repo": "nui.nvim",
+        "type": "github"
+      }
+    },
     "nvim-async-src": {
       "flake": false,
       "locked": {
@@ -587,6 +635,7 @@
         "blamer-nvim-src": "blamer-nvim-src",
         "cmp-buffer": "cmp-buffer",
         "cmp-nvim-lsp": "cmp-nvim-lsp",
+        "codium-nvim-src": "codium-nvim-src",
         "colorizer-src": "colorizer-src",
         "comment-nvim-src": "comment-nvim-src",
         "conceal-src": "conceal-src",
@@ -603,15 +652,18 @@
         "lsp-config-src": "lsp-config-src",
         "markid-src": "markid-src",
         "neogen-src": "neogen-src",
+        "neural-src": "neural-src",
         "nil": "nil",
         "nix2vim": "nix2vim",
         "nixpkgs": "nixpkgs_3",
+        "nui-nvim-src": "nui-nvim-src",
         "nvim-async-src": "nvim-async-src",
         "nvim-autopairs-src": "nvim-autopairs-src",
         "nvim-cmp": "nvim-cmp",
         "nvim-ufo-src": "nvim-ufo-src",
         "plenary-nvim-src": "plenary-nvim-src",
         "rust-tools-src": "rust-tools-src",
+        "significant-nvim-src": "significant-nvim-src",
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
@@ -658,6 +710,22 @@
       "original": {
         "owner": "simrat39",
         "repo": "rust-tools.nvim",
+        "type": "github"
+      }
+    },
+    "significant-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664368712,
+        "narHash": "sha256-YOYySTU6PhnMqnYVKjbO8vQfTCz04Z5gC1+3aHppbc0=",
+        "owner": "elpiloto",
+        "repo": "significant.nvim",
+        "rev": "5450e9d5917dc6aa9afb0fcbe32355799b8303fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "elpiloto",
+        "repo": "significant.nvim",
         "type": "github"
       }
     },

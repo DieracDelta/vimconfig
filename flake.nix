@@ -150,6 +150,26 @@
       flake = false;
     };
 
+    codium-nvim-src = {
+      url = "github:jcdickinson/codeium.nvim";
+      flake = false;
+    };
+
+    neural-src = {
+      url = "github:dense-analysis/neural";
+      flake = false;
+    };
+
+    nui-nvim-src = {
+      url = "github:muniftanjim/nui.nvim";
+      flake = false;
+    };
+
+    significant-nvim-src = {
+      url = "github:elpiloto/significant.nvim";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, ... }:

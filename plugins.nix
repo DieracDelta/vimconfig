@@ -8,6 +8,36 @@ let
 in
 with inputs; {
 
+  codium-lsp = with prev;
+    stdenv.mkDerivation rec {
+      pname = "codium-lsp";
+      version = "v1.1.33";
+
+      src = fetchurl {
+        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.1.33/language_server_macos_arm.gz";
+        sha256 = "sha256-NYf0hSNO6bmICBFjpnzOvuKRBqPG7ijhdfbO02iOTBI=";
+      };
+
+      nativeBuildInputs = [
+        # autoPatchelfHook
+      ];
+
+      buildInputs = [
+      ];
+
+      phases = [ "installPhase" ];
+
+      # sourceRoot = ".";
+
+      installPhase = ''
+        mkdir -p $out/bin
+        gzip -d $src -c > $out/bin/language_server
+        chmod +x $out/bin/language_server
+      '';
+
+    }
+  ;
+
   terraform-ls = with prev;
     (buildGoModule rec {
       pname = "terraform-ls";
@@ -81,5 +111,13 @@ with inputs; {
   copilot-lua = plugin "copilot-lua" copilot-lua-src;
   copilot-cmp = plugin "copilot-cmp" copilot-cmp-src;
   copilot-vim = plugin "copilot-vim" copilot-vim-src;
+
+  codium-nvim = plugin "codium-nvim" codium-nvim-src;
+
+  neural = plugin "neural" neural-src;
+
+  nui-nvim = plugin "nui-nvim" nui-nvim-src;
+
+  significant-nvim = plugin "significant-nvim" significant-nvim-src;
 
 }

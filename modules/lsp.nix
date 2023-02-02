@@ -36,8 +36,20 @@ with dsl; {
     # lsp_lines
     copilot-lua
     copilot-cmp
-    # copilot-vim
+
+    neural
+    nui-nvim
+    significant-nvim
+
+    codium-nvim
+
   ];
+
+  setup.codeium = {
+    tools = {
+      language_server = "${pkgs.codium-lsp}/bin/language_server";
+    };
+  };
 
   setup.copilot = {
     suggestion = { enabled = false; };
@@ -177,6 +189,7 @@ with dsl; {
     };
     sources = [
       { name = "copilot"; }
+      { name = "codeium"; }
       { name = "nvim_lsp"; }
       { name = "buffer"; }
       { name = "vsnip"; }
@@ -195,6 +208,7 @@ with dsl; {
     '';
     };
   };
+
 
 
 
@@ -260,6 +274,15 @@ with dsl; {
 
     -- no longer needed b/c lsp_lines
     -- vim.diagnostic.Config({ virtual_text = false, })
+
+    local f = assert(io.open(os.getenv("HOME") .. "/OPENAISECRETKEY", "rb"))
+    local content = f:read("*all")
+    f:close()
+    require('neural').setup({
+        open_ai = {
+            api_key = content,
+        }
+    })
 
    '';
 
