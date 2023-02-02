@@ -170,6 +170,11 @@
       flake = false;
     };
 
+    chatgpt-nvim-src = {
+      url = "github:jackMort/ChatGPT.nvim";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, ... }:

@@ -37,11 +37,13 @@ with dsl; {
     copilot-lua
     copilot-cmp
 
-    neural
+    # neural
     nui-nvim
-    significant-nvim
+    # significant-nvim
 
     codium-nvim
+
+    chatgpt-nvim
 
   ];
 
@@ -64,6 +66,8 @@ with dsl; {
   };
 
   setup.fidget = { };
+
+  # setup.chatgpt = { };
 
   # setup.lsp_lines = { };
 
@@ -275,14 +279,20 @@ with dsl; {
     -- no longer needed b/c lsp_lines
     -- vim.diagnostic.Config({ virtual_text = false, })
 
-    local f = assert(io.open(os.getenv("HOME") .. "/OPENAISECRETKEY", "rb"))
-    local content = f:read("*all")
-    f:close()
-    require('neural').setup({
-        open_ai = {
-            api_key = content,
-        }
-    })
+    --local f = assert(io.open(os.getenv("HOME") .. "/OPENAISECRETKEY", "rb"))
+    --local sekritkey = f:read("*all")
+    --f:close()
+    --vim.fn.setenv("OPENAI_API_KEY", sekritkey)
+    require("chatgpt").setup({  })
+
+
+
+    --require('neural').setup({
+    --    open_ai = {
+    --        api_key = content,
+    --    }
+    --})
+
 
    '';
 

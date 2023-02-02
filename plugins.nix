@@ -120,4 +120,6 @@ with inputs; {
 
   significant-nvim = plugin "significant-nvim" significant-nvim-src;
 
+  chatgpt-nvim = plugin "chatgpt-nvim" chatgpt-nvim-src;
+
 }
