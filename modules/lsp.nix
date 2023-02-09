@@ -47,6 +47,8 @@ with dsl; {
 
   ];
 
+
+
   setup.codeium = {
     tools = {
       language_server = "${pkgs.codium-lsp}/bin/language_server";
@@ -151,6 +153,12 @@ with dsl; {
       "require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())";
   };
 
+  use.lspconfig."bsl_ls".setup =
+    callWith {
+      cmd = [ "${pkgs.coq-lsp}/bin/coq-lsp" ];
+      filetypes = [ "coq" "verilog" ];
+    };
+
   # use.lspconfig.rust_analyzer.setup = callWith {
   #   # assumed to be provided by the project's nix-shell
   #   cmd = [ "rust-analyzer" ];
@@ -166,6 +174,8 @@ with dsl; {
     callWith { cmd = [ "${pkgs.texlab}/bin/texlab" ]; };
 
   use.lspconfig.gopls.setup = callWith { cmd = [ "${pkgs.gopls}/bin/gopls" ]; };
+
+  use.lspconfig.r_language_server.setup = callWith { cmd = [ "${pkgs.myRSetup}/bin/R" "--slave" "-e" "languageserver::run()" ]; };
 
   use.lsp_signature.setup = callWith {
     bind = true;

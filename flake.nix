@@ -175,9 +175,22 @@
       flake = false;
     };
 
+    coq-lsp = {
+      type = "git";
+      url = "https://github.com/r-muhairi/coq-lsp";
+      ref = "feat/flake-parts";
+      submodules = true;
+    };
+
+
+    # coq-lsp = {
+    #   url = "github:r-muhairi/coq-lsp?ref=48bfb06558816861ca049b771b93f761e5e27fba&submodules=1";
+    #   flake = true;
+    # };
+
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -185,6 +198,11 @@
           overlays = [
             (import ./plugins.nix inputs)
             nix2vim.overlay
+            (prev: final:
+              {
+                coq-lsp = coq-lsp.packages.aarch64-darwin.default;
+              }
+            )
           ];
         };
         neovimConfig = pkgs.neovimBuilder {

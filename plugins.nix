@@ -122,4 +122,6 @@ with inputs; {
 
   chatgpt-nvim = plugin "chatgpt-nvim" chatgpt-nvim-src;
 
+  myRSetup = ( prev.rWrapper.override{ packages = with prev.rPackages; [ ggplot2 dplyr xts languageserver ]; });
+
 }
