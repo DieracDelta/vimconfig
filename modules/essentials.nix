@@ -184,13 +184,20 @@ in
       "xp" = [ "cmd lua require(\"trouble\").previous({skip_groups = true, jump = true})<CR>" "Jump next diagnostic"];
 
       # dap shit
-      "pc" = [ "<Cmd>lua require'dap'.continue()<CR>" "Dap Continue" ] ;
-      "po" = [ "<Cmd>lua require'dap'.step_over()<CR>" "Dap Step over" ] ;
-      "pi" = [ "<Cmd>lua require'dap'.step_into()<CR>" "Dap Step into" ] ;
-      "pO" = [ "<Cmd>lua require'dap'.step_out()<CR>" "Dap Step out" ] ;
-      "pb" = [ "<Cmd>lua require'dap'.toggle_breakpoint()<CR>" "Dap Toggle breakpoint" ] ;
-      "pr" = [ "<Cmd>lua require'dap'.repl.open()<CR>" "Dap Open repl" ] ;
-      "pl" = [ "<Cmd>lua require'dap'.run_last()<CR>" "Dap Run last" ] ;
+      "pc" = [ "<Cmd>lua require'dap'.continue()<CR>" "Dap Continue" ];
+      "po" = [ "<Cmd>lua require'dap'.step_over()<CR>" "Dap Step over" ];
+      "pi" = [ "<Cmd>lua require'dap'.step_into()<CR>" "Dap Step into" ];
+      "pO" = [ "<Cmd>lua require'dap'.step_out()<CR>" "Dap Step out" ];
+      "pb" = [ "<Cmd>lua require'dap'.toggle_breakpoint()<CR>" "Dap Toggle breakpoint" ];
+      "pr" = [ "<Cmd>lua require'dap'.repl.open()<CR>" "Dap Open repl" ];
+      "pl" = [ "<Cmd>lua require'dap'.run_last()<CR>" "Dap Run last" ];
+      "pu" = [ "<Cmd>lua require'dapui'.toggle()<CR>" "Dap UI Toggle" ];
+      "pC" = [ "<Cmd>lua require'telescope'.extensions.dap.commands{}<CR>" "Dap commands" ];
+      "pa" = [ "<Cmd>lua require'telescope'.extensions.dap.configurations{}<CR>" "Dap configurations" ];
+      "pL" = [ "<Cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>" "Dap list breakpoints" ];
+      "pv" = [ "<Cmd>lua require'telescope'.extensions.dap.variables{}<CR>" "Dap list variables" ];
+      "pf" = [ "<Cmd>lua require'telescope'.extensions.dap.frames{}<CR>" "Dap list frames" ];
+
     };
   };
   use.which-key.setup = callWith { };

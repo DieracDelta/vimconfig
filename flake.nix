@@ -191,7 +191,25 @@
       flake = false;
     };
 
+    nvim-dap-ui-src = {
+      url = "github:rcarriga/nvim-dap-ui";
+      flake = false;
+    };
 
+    nvim-dap-virtual-text-src = {
+      url = "github:theHamsta/nvim-dap-virtual-text";
+      flake = false;
+    };
+
+    telescope-dap-nvim-src = {
+      url = "github:nvim-telescope/telescope-dap.nvim";
+      flake = false;
+    };
+
+    cmp-dap-src = {
+      url = "github:rcarriga/cmp-dap";
+      flake = false;
+    };
 
     # coq-lsp = {
     #   url = "github:r-muhairi/coq-lsp?ref=48bfb06558816861ca049b771b93f761e5e27fba&submodules=1";

@@ -128,4 +128,12 @@ with inputs; {
 
   code-lldb = lldb-nix-fix.legacyPackages.${prev.system}.vscode-extensions.vadimcn.vscode-lldb;
 
+  nvim-dap-virtual-text = plugin "nvim-dap-virtual-text" nvim-dap-virtual-text-src;
+
+  nvim-dap-ui = plugin "nvim-dap-ui" nvim-dap-ui-src;
+
+  telescope-dap-nvim = plugin "telescope-dap-nvim" telescope-dap-nvim-src;
+
+  cmp-dap = plugin "cmp-dap" cmp-dap-src;
+
 }

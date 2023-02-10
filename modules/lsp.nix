@@ -46,9 +46,18 @@ with dsl; {
     chatgpt-nvim
 
     nvim-dap
+
+    nvim-dap-virtual-text
+
+    nvim-dap-ui
+
+    cmp-dap
   ];
 
 
+  setup.nvim-dap-virtual-text = {};
+
+  setup.dapui = {};
 
   setup.codeium = {
     tools = {
@@ -228,6 +237,12 @@ with dsl; {
       })
     '';
     };
+    enabled = rawLua "
+      function()
+        return vim.api.nvim_buf_get_option(0, \"buftype\") ~= \"prompt\"
+            or require(\"cmp_dap\").is_dap_buffer()
+      end
+    ";
   };
 
 
@@ -310,6 +325,11 @@ with dsl; {
     --    }
     --})
 
+      require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
 
    '';
 

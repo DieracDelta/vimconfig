@@ -6,6 +6,8 @@ with dsl; {
     vimPlugins.telescope-file-browser-nvim
     # sexy dropdown
     telescope-ui-select
+    # dap support
+    telescope-dap-nvim
   ];
 
   lua = ''
@@ -36,6 +38,7 @@ with dsl; {
     }
     require("telescope").load_extension("file_browser")
     require("telescope").load_extension("ui-select")
+    require('telescope').load_extension('dap')
   '';
 
   # vimscript = ''
