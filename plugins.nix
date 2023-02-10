@@ -122,6 +122,10 @@ with inputs; {
 
   chatgpt-nvim = plugin "chatgpt-nvim" chatgpt-nvim-src;
 
-  myRSetup = ( prev.rWrapper.override{ packages = with prev.rPackages; [ ggplot2 dplyr xts languageserver ]; });
+  myRSetup = ( prev.rWrapper.override{ packages = with prev.rPackages; [ /* vscDebugger */ ggplot2 dplyr xts languageserver ]; });
+
+  nvim-dap = plugin "nvim-dap" nvim-dap-src;
+
+  code-lldb = lldb-nix-fix.legacyPackages.${prev.system}.vscode-extensions.vadimcn.vscode-lldb;
 
 }

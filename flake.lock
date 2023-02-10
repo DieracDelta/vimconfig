@@ -488,6 +488,22 @@
         "type": "github"
       }
     },
+    "lldb-nix-fix": {
+      "locked": {
+        "lastModified": 1674009016,
+        "narHash": "sha256-oHp0AXEpzNvox+atVBm8pD2lYy/UKsbJezXQ4IVKfWg=",
+        "owner": "mstone",
+        "repo": "nixpkgs",
+        "rev": "7cc1d77de648dbb75e915dc037df78558546482d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mstone",
+        "ref": "darwin-fix-vscode-lldb",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "lsp-config-src": {
       "flake": false,
       "locked": {
@@ -790,6 +806,22 @@
         "type": "github"
       }
     },
+    "nvim-dap-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675860353,
+        "narHash": "sha256-fYYW+elpE9I8Cl0O3h57CACs2+m+H3klNbSLxgznHis=",
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "rev": "0d77088e0a3532ae653996abbefb8d951b4ed7ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "type": "github"
+      }
+    },
     "nvim-ufo-src": {
       "flake": false,
       "locked": {
@@ -843,6 +875,7 @@
         "flake-utils": "flake-utils_3",
         "guess-indent-src": "guess-indent-src",
         "leap-src": "leap-src",
+        "lldb-nix-fix": "lldb-nix-fix",
         "lsp-config-src": "lsp-config-src",
         "markid-src": "markid-src",
         "neogen-src": "neogen-src",
@@ -854,6 +887,7 @@
         "nvim-async-src": "nvim-async-src",
         "nvim-autopairs-src": "nvim-autopairs-src",
         "nvim-cmp": "nvim-cmp",
+        "nvim-dap-src": "nvim-dap-src",
         "nvim-ufo-src": "nvim-ufo-src",
         "plenary-nvim-src": "plenary-nvim-src",
         "rust-tools-src": "rust-tools-src",
@@ -894,11 +928,11 @@
     "rust-tools-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1674685175,
-        "narHash": "sha256-MLY+8rMGqCmo0az1eZPid7ppxTcBjUVdtE6pZ+70krs=",
+        "lastModified": 1675562213,
+        "narHash": "sha256-SIVfaBTGil3gYa3VK1l8EXQqLILO2WbHBkOp+zQBSmo=",
         "owner": "simrat39",
         "repo": "rust-tools.nvim",
-        "rev": "b297167d9e01accc9b9afe872ce91e791df2dde0",
+        "rev": "bd1aa99ffb911a1cf99b3fcf3b44c0391c57e3ef",
         "type": "github"
       },
       "original": {

@@ -7,6 +7,10 @@
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
+    lldb-nix-fix = {
+      url = "github:mstone/nixpkgs/darwin-fix-vscode-lldb";
+    };
+
     vim-illuminate-src = {
       url = "github:RRethy/vim-illuminate";
       flake = false;
@@ -181,6 +185,12 @@
       ref = "feat/flake-parts";
       submodules = true;
     };
+
+    nvim-dap-src = {
+      url = "github:mfussenegger/nvim-dap";
+      flake = false;
+    };
+
 
 
     # coq-lsp = {

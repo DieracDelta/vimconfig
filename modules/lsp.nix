@@ -45,6 +45,7 @@ with dsl; {
 
     chatgpt-nvim
 
+    nvim-dap
   ];
 
 
@@ -102,6 +103,10 @@ with dsl; {
         right_align_padding = 7;
         highlight = "DiagnosticSignWarn";
       };
+    };
+    dap = {
+    # TODO this will need to be different on linux
+      adapter = rawLua "require(\"rust-tools.dap\").get_codelldb_adapter(\"${pkgs.code-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb\", \"${pkgs.code-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.dylib\")";
     };
   };
 
@@ -183,6 +188,8 @@ with dsl; {
     hi_parameter = "Visual";
     handler_opts.border = "single";
   };
+
+
 
   use.cmp.setup = callWith {
     mapping = {
