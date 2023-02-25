@@ -215,6 +215,15 @@
     #   url = "github:r-muhairi/coq-lsp?ref=48bfb06558816861ca049b771b93f761e5e27fba&submodules=1";
     #   flake = true;
     # };
+    node-type-nvim-src = {
+      url = "github:roobert/node-type.nvim";
+      flake = false;
+    };
+
+    # statusline-action-hints-src = {
+    #   url = "github:roobert/statusline-action-hints.nvim";
+    #   flake = false;
+    # };
 
   };
 

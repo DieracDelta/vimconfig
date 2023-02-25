@@ -758,6 +758,22 @@
         "type": "github"
       }
     },
+    "node-type-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676449371,
+        "narHash": "sha256-hcpfx5U8BrUYX4yzdWyENCZm9DQnN/cmc/M5zdERbTY=",
+        "owner": "roobert",
+        "repo": "node-type.nvim",
+        "rev": "e9feba6c01aca3ed0bb473f4c58a38ae4f771809",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roobert",
+        "repo": "node-type.nvim",
+        "type": "github"
+      }
+    },
     "nui-nvim-src": {
       "flake": false,
       "locked": {
@@ -932,6 +948,7 @@
         "nil": "nil",
         "nix2vim": "nix2vim",
         "nixpkgs": "nixpkgs_6",
+        "node-type-nvim-src": "node-type-nvim-src",
         "nui-nvim-src": "nui-nvim-src",
         "nvim-async-src": "nvim-async-src",
         "nvim-autopairs-src": "nvim-autopairs-src",

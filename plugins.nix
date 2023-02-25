@@ -136,4 +136,8 @@ with inputs; {
 
   cmp-dap = plugin "cmp-dap" cmp-dap-src;
 
+  node-type-nvim = plugin "node-type-nvim" node-type-nvim-src;
+
+  # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
+
 }

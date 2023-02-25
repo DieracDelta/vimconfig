@@ -52,7 +52,11 @@ with dsl; {
     nvim-dap-ui
 
     cmp-dap
+
+    node-type-nvim
   ];
+
+  setup.node-type = {};
 
 
   setup.nvim-dap-virtual-text = {};
@@ -233,7 +237,8 @@ with dsl; {
         mode = "symbol",
         maxwidth = 50,
         ellipsis_char = '...',
-        symbol_map = { Copilot = "" }
+        --
+        symbol_map = { Copilot = "", Suggestion = "", }
       })
     '';
     };
