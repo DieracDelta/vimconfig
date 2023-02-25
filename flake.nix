@@ -181,8 +181,7 @@
 
     coq-lsp = {
       type = "git";
-      url = "https://github.com/r-muhairi/coq-lsp";
-      ref = "feat/flake-parts";
+      url = "https://github.com/ejgallego/coq-lsp";
       submodules = true;
     };
 

@@ -261,20 +261,19 @@
         "treefmt": "treefmt"
       },
       "locked": {
-        "lastModified": 1675682703,
-        "narHash": "sha256-p0JqEJE2msyGwj48hzxrmhpKd3KFOVJS+7bFD/7a8m4=",
-        "ref": "feat/flake-parts",
-        "rev": "f2c2e800156f390bb2d13e1b9c70a4ff3a4f7354",
-        "revCount": 563,
+        "lastModified": 1677248244,
+        "narHash": "sha256-ZNq2UZJ/D4KGzSK10oQhgEnVjjMpm61ytxkBJQUAgCo=",
+        "ref": "refs/heads/main",
+        "rev": "8ba9284e6847c2abe61a7b3858e89aa433496b36",
+        "revCount": 820,
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/r-muhairi/coq-lsp"
+        "url": "https://github.com/ejgallego/coq-lsp"
       },
       "original": {
-        "ref": "feat/flake-parts",
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/r-muhairi/coq-lsp"
+        "url": "https://github.com/ejgallego/coq-lsp"
       }
     },
     "coq-serapi": {
