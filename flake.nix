@@ -224,10 +224,19 @@
     #   url = "github:roobert/statusline-action-hints.nvim";
     #   flake = false;
     # };
+    neovim = {
+      url = "github:neovim/neovim?dir=contrib";
+    };
+
+
+    floating-input-src = {
+      url = "github:liangxianzhe/floating-input.nvim";
+      flake = false;
+    };
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -238,6 +247,7 @@
             (prev: final:
               {
                 coq-lsp = coq-lsp.packages.aarch64-darwin.default;
+                nvim = neovim.packages.${system}.neovim;
               }
             )
           ];
@@ -246,7 +256,8 @@
         #  # Build with NodeJS
           withNodeJs = true;
           withPython3 = true;
-          package = nixpkgs.legacyPackages.${system}.neovim-unwrapped;
+          package = neovim.packages.${system}.neovim;
+          # package = nixpkgs.legacyPackages.${system}.neovim-unwrapped;
           imports = [
             ./modules/essentials.nix
             ./modules/lsp.nix

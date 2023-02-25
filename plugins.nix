@@ -138,6 +138,8 @@ with inputs; {
 
   node-type-nvim = plugin "node-type-nvim" node-type-nvim-src;
 
+  floating-input = plugin "floating-input" floating-input-src;
+
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }

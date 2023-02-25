@@ -459,6 +459,21 @@
     },
     "flake-utils_5": {
       "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_6": {
+      "locked": {
         "lastModified": 1659877975,
         "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
         "owner": "numtide",
@@ -469,6 +484,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "floating-input-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676999668,
+        "narHash": "sha256-XAeGMDsz1IJazVzzdPrwswbTJmcL+jgvNceb5Jq+Ejc=",
+        "owner": "liangxianzhe",
+        "repo": "floating-input.nvim",
+        "rev": "3f9ec061dee7376e9e5f09f1a0b05bf0ef88cfce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "liangxianzhe",
+        "repo": "floating-input.nvim",
         "type": "github"
       }
     },
@@ -587,6 +618,27 @@
         "type": "github"
       }
     },
+    "neovim": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "dir": "contrib",
+        "lastModified": 1677347225,
+        "narHash": "sha256-FfygP6u8HqO4CTJBMFolnY8EH68Geu4BUBEU1zfqPUM=",
+        "owner": "neovim",
+        "repo": "neovim",
+        "rev": "c1514d7e6762ed62dee027ecc29bafd4aae2206e",
+        "type": "github"
+      },
+      "original": {
+        "dir": "contrib",
+        "owner": "neovim",
+        "repo": "neovim",
+        "type": "github"
+      }
+    },
     "neural-src": {
       "flake": false,
       "locked": {
@@ -605,8 +657,8 @@
     },
     "nil": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_5",
+        "flake-utils": "flake-utils_5",
+        "nixpkgs": "nixpkgs_6",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -625,7 +677,7 @@
     },
     "nix2vim": {
       "inputs": {
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_6",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -728,6 +780,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1671983799,
+        "narHash": "sha256-Z2Ro6hFPZHkBqkVXY5/aBUzxi5xizQGvuHQ9+T5B/ks=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "fad51abd42ca17a60fc1d4cb9382e2d79ae31836",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1675309347,
         "narHash": "sha256-D3CQ6HRDT2m3XJlrzb5jKq4vNFR5xFTEFKC7iSjlFpM=",
         "owner": "nixos",
@@ -742,7 +810,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1675034571,
         "narHash": "sha256-CQYWTYL4SDAHyoGom815VdZm3DRZiVHvg5bklu798lI=",
@@ -938,16 +1006,18 @@
         "dracula-nvim": "dracula-nvim",
         "fidget-src": "fidget-src",
         "flake-utils": "flake-utils_3",
+        "floating-input-src": "floating-input-src",
         "guess-indent-src": "guess-indent-src",
         "leap-src": "leap-src",
         "lldb-nix-fix": "lldb-nix-fix",
         "lsp-config-src": "lsp-config-src",
         "markid-src": "markid-src",
         "neogen-src": "neogen-src",
+        "neovim": "neovim",
         "neural-src": "neural-src",
         "nil": "nil",
         "nix2vim": "nix2vim",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "node-type-nvim-src": "node-type-nvim-src",
         "nui-nvim-src": "nui-nvim-src",
         "nvim-async-src": "nvim-async-src",

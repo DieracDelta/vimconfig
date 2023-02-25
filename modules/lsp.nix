@@ -54,9 +54,14 @@ with dsl; {
     cmp-dap
 
     node-type-nvim
+
+    floating-input
+
   ];
 
   setup.node-type = {};
+
+  setup.floating-input = {};
 
 
   setup.nvim-dap-virtual-text = {};
