@@ -1034,6 +1034,7 @@
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
+        "ts-node-action-src": "ts-node-action-src",
         "vim-illuminate-src": "vim-illuminate-src",
         "which-key-src": "which-key-src",
         "wilder-nvim-src": "wilder-nvim-src"
@@ -1175,6 +1176,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "ts-node-action-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677273144,
+        "narHash": "sha256-eXTN1mApSdiVgcd+jFmnBx6/pPxmhyEQR01AjEAOQfk=",
+        "owner": "CKolkey",
+        "repo": "ts-node-action",
+        "rev": "6bc45ed4460b2be86ec66a06041138c584564db8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CKolkey",
+        "repo": "ts-node-action",
         "type": "github"
       }
     },

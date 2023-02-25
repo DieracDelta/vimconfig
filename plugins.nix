@@ -140,6 +140,8 @@ with inputs; {
 
   floating-input = plugin "floating-input" floating-input-src;
 
+  ts-node-action = plugin "ts-node-action" ts-node-action-src;
+
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }

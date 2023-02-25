@@ -30,7 +30,11 @@ with dsl; {
     # highlight other occurrences of a phrase
     vim-illuminate
     markid
+    # provides node action
+    ts-node-action
   ];
+
+  setup.ts-node-action = {};
 
   use.Comment.setup = callWith {
     toggler = {

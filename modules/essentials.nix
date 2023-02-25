@@ -198,6 +198,8 @@ in
       "pv" = [ "<Cmd>lua require'telescope'.extensions.dap.variables{}<CR>" "Dap list variables" ];
       "pf" = [ "<Cmd>lua require'telescope'.extensions.dap.frames{}<CR>" "Dap list frames" ];
 
+      "na" = [ "<Cmd>lua require(\"ts-node-action\").node_action{}<CR>" "Trigger Node Action"];
+
     };
   };
   use.which-key.setup = callWith { };

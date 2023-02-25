@@ -234,6 +234,11 @@
       flake = false;
     };
 
+    ts-node-action-src = {
+      url = "github:CKolkey/ts-node-action";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, ... }:
