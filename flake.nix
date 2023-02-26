@@ -250,7 +250,7 @@
             nix2vim.overlay
             (prev: final:
               {
-                coq-lsp = coq-lsp.packages.aarch64-darwin.default;
+                coq-lsp = coq-lsp.packages.${system}.default;
                 nvim = neovim.packages.${system}.neovim;
               }
             )
