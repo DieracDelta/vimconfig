@@ -200,6 +200,23 @@ in
 
       "na" = [ "<Cmd>lua require(\"ts-node-action\").node_action{}<CR>" "Trigger Node Action"];
 
+
+      "tm" = [ "<Cmd>lua require(\"trailblazer\").new_trail_mark()<CR>" "Trailblazer: new trail mark"];
+      "tb" = [ "<Cmd>lua require(\"trailblazer\").track_back()<CR>" "Trailblazer: track back (deletes mark)"];
+      "tn" = [ "<Cmd>lua require(\"trailblazer\").peek_move_next_down()<CR>" "Trailblazer: next down"];
+      "tp" = [ "<Cmd>lua require(\"trailblazer\").peek_move_previous_up()<CR>" "Trailblazer: previous up"];
+      "tj" = [ "<Cmd>lua require(\"trailblazer\").move_to_nearest()<CR>" "Trailblazer: jump to nearest"];
+      "tl" = [ "<Cmd>lua require(\"trailblazer\").toggle_trail_mark_list()<CR>" "Trailblazer: list"];
+      "tD" = [ "<Cmd>lua require(\"trailblazer\").delete_all_trail_marks()<CR>" "Trailblazer: nuke all trail marks"];
+      "tq" = [ "<Cmd>lua require(\"trailblazer\").paste_at_last_trail_mark()<CR>" "Trailblazer: paste at last trail mark"];
+      "tQ" = [ "<Cmd>lua require(\"trailblazer\").paste_at_all_trail_marks()<CR>" "Trailblazer: paste at all trail marks"];
+      "ts" = [ "<Cmd>lua require(\"trailblazer\").switch_to_next_trail_mark_stack()<CR>" "Trailblazer: next mark stack"];
+      "tS" = [ "<Cmd>lua require(\"trailblazer\").switch_to_previous_trail_mark_stack()<CR>" "Trailblazer: previous mark stack"];
+      "to" = [ "<Cmd>lua require(\"trailblazer\").set_trail_mark_stack_sort_mode()<CR>" "Trailblazer: sort mode"];
+      "ti" = [ "<Cmd>lua require(\"trailblazer\").set_trail_mark_select_mode()<CR>" "Trailblazer: select mode"];
+      "tz" = [ "<Cmd>TrailBlazerSaveSession<CR>" "Trailblazer: save"];
+      "tZ" = [ "<Cmd>TrailBlazerLoadSession<CR>" "Trailblazer: load"];
+
     };
   };
   use.which-key.setup = callWith { };

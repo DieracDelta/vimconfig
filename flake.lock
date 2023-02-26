@@ -971,6 +971,22 @@
         "type": "github"
       }
     },
+    "nvim-trailblazer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677340031,
+        "narHash": "sha256-H5ooHE5tC6UZhcDSQpY441TOG5ZMV4kxc3SfKpMtCXQ=",
+        "owner": "LeonHeidelbach",
+        "repo": "trailblazer.nvim",
+        "rev": "5276270cbcf73146659054987afa8338926d5db5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LeonHeidelbach",
+        "repo": "trailblazer.nvim",
+        "type": "github"
+      }
+    },
     "nvim-ufo-src": {
       "flake": false,
       "locked": {
@@ -1043,6 +1059,7 @@
         "nvim-dap-src": "nvim-dap-src",
         "nvim-dap-ui-src": "nvim-dap-ui-src",
         "nvim-dap-virtual-text-src": "nvim-dap-virtual-text-src",
+        "nvim-trailblazer-src": "nvim-trailblazer-src",
         "nvim-ufo-src": "nvim-ufo-src",
         "plenary-nvim-src": "plenary-nvim-src",
         "rust-tools-src": "rust-tools-src",

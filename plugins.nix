@@ -142,6 +142,9 @@ with inputs; {
 
   ts-node-action = plugin "ts-node-action" ts-node-action-src;
 
+  nvim-trailblazer = plugin "nvim-trailblazer" nvim-trailblazer-src;
+
+
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }

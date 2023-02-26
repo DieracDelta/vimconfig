@@ -238,6 +238,11 @@
       flake = false;
     };
 
+    nvim-trailblazer-src = {
+      url = "github:LeonHeidelbach/trailblazer.nvim";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, ... }:
@@ -273,7 +278,8 @@
             ./modules/wilder.nix
             # ./modules/leap.nix
             ./modules/agda.nix
-            #./modules/autopairs.nix
+            ./modules/autopairs.nix
+            ./modules/trailblazer.nix
             # TODO uncomment when
             # https://github.com/Olical/conjure/issues/401
             # this will be quite useful

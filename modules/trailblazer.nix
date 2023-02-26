@@ -1,7 +1,7 @@
 { pkgs, dsl, ... }:
 with dsl; {
   plugins = with pkgs; [
-    nvim-trailbazer
+    nvim-trailblazer
   ];
 
   lua = ''
@@ -9,9 +9,10 @@ with dsl; {
       -- Adjust these values to your liking
       {
           lang = "en",
-          auto_save_trailblazer_state_on_exit = false,
-          auto_load_trailblazer_state_on_enter = false, -- experimental
-          custom_session_storage_dir = "", -- i.e. "~/trail_blazer_sessions/"
+          auto_save_trailblazer_state_on_exit = true,
+          -- BROKEN FOR ME
+          --auto_load_trailblazer_state_on_enter = true, -- experimental
+          custom_session_storage_dir = "~/trail_blazer_sessions/", -- i.e. "~/trail_blazer_sessions/"
           trail_options = {
               -- The trail mark priority sets the global render priority of trail marks in the sign/number
               -- column as well as the highlights within the text (e.g. Treesitter sets a value of 100).
@@ -38,15 +39,11 @@ with dsl; {
               current_trail_mark_list_type = "quickfix", -- currently only quickfix lists are supported
               trail_mark_list_rows = 10, -- number of rows to show in the trail mark list
               verbose_trail_mark_select = true, -- print current mode notification on mode change
-              mark_symbol = "•", --  will only be used if trail_mark_symbol_line_indicators_enabled = true
-              newest_mark_symbol = "⬤", -- disable this mark symbol by setting its value to ""
-              cursor_mark_symbol = "⬤", -- disable this mark symbol by setting its value to ""
-              next_mark_symbol = "⬤", -- disable this mark symbol by setting its value to ""
-              previous_mark_symbol = "⬤", -- disable this mark symbol by setting its value to ""
+              mark_symbol = "‼", --  will only be used if trail_mark_symbol_line_indicators_enabled = true
               multiple_mark_symbol_counters_enabled = true,
               number_line_color_enabled = true,
               trail_mark_in_text_highlights_enabled = true,
-              trail_mark_symbol_line_indicators_enabled = false, -- show indicators for all trail marks in symbol column
+              trail_mark_symbol_line_indicators_enabled = true, -- show indicators for all trail marks in symbol column
               symbol_line_enabled = true,
               default_trail_mark_stacks = {
                   -- this is the list of trail mark stacks that will be created by default. Add as many
@@ -67,7 +64,7 @@ with dsl; {
           mappings = { -- rename this to "force_mappings" to completely override default mappings and not merge with them
               nv = { -- Mode union: normal & visual mode. Can be extended by adding i, x, ...
                   motions = {
-                      new_trail_mark = '<A-l>',
+                      new_trail_mark = '<C-t>',
                       track_back = '<A-b>',
                       peek_move_next_down = '<A-J>',
                       peek_move_previous_up = '<A-K>',
@@ -84,14 +81,6 @@ with dsl; {
                       set_trail_mark_stack_sort_mode = '<A-s>',
                   },
               },
-              -- You can also add/move any motion or action to mode specific mappings i.e.:
-              -- i = {
-              --     motions = {
-              --         new_trail_mark = '<C-l>',
-              --         ...
-              --     },
-              --     ...
-              -- },
           },
           quickfix_mappings = { -- rename this to "force_quickfix_mappings" to completely override default mappings and not merge with them
               nv = {

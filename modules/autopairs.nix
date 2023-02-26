@@ -79,7 +79,8 @@ with dsl; {
           tex = false,
           ocaml = false,
           haskell = false,
-          nix = false,
+          nix = true,
+          rust = true,
         }
       })
     )
