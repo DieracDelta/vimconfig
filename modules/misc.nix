@@ -7,14 +7,13 @@ with dsl; {
     neogen
     # sick parinfer mode fast asf
     parinfer-rust-nvim
-    # paren stuffs
+    # surroundings stuffs
     vimPlugins.surround-nvim
   ];
 
   setup.neogen.enabled = true;
 
-
-  use.surround.setup = callWith { 
+  use.surround.setup = callWith {
     context_offset = 100;
     load_autogroups = false;
     mappings_style = "sandwich";

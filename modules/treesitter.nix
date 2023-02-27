@@ -62,6 +62,7 @@ with dsl; {
       disable = [ "css" ];
       additional_vim_regex_highlighting = true;
     };
+    ignore = ["QuickScopePrimary" "QuickScopeSecondary"];
     incremental_selection = {
       enable = true;
       keymaps = {

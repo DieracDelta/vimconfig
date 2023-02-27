@@ -144,6 +144,7 @@ with inputs; {
 
   nvim-trailblazer = plugin "nvim-trailblazer" nvim-trailblazer-src;
 
+  quick-scope = plugin "quick-scope" quick-scope-src;
 
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 

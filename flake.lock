@@ -1019,6 +1019,22 @@
         "type": "github"
       }
     },
+    "quick-scope-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653690622,
+        "narHash": "sha256-MfqxI8CXmVXn3ZAyZqCufgZ690GTuy6PMgKTPVBuNm4=",
+        "owner": "unblevable",
+        "repo": "quick-scope",
+        "rev": "428e8698347f254d24b248af9f656194a80081e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "unblevable",
+        "repo": "quick-scope",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "blamer-nvim-src": "blamer-nvim-src",
@@ -1062,6 +1078,7 @@
         "nvim-trailblazer-src": "nvim-trailblazer-src",
         "nvim-ufo-src": "nvim-ufo-src",
         "plenary-nvim-src": "plenary-nvim-src",
+        "quick-scope-src": "quick-scope-src",
         "rust-tools-src": "rust-tools-src",
         "significant-nvim-src": "significant-nvim-src",
         "telescope-dap-nvim-src": "telescope-dap-nvim-src",

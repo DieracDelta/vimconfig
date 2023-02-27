@@ -1,5 +1,5 @@
 {
-  description = "Tutorial Flake accompanying vimconf talk.";
+  description = "My Personal Vim config";
 
   # Input source for our derivation
   inputs = {
@@ -243,6 +243,11 @@
       flake = false;
     };
 
+    quick-scope-src = {
+      url = "github:unblevable/quick-scope";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, ... }:
@@ -276,10 +281,13 @@
             ./modules/treesitter.nix
             ./modules/git.nix
             ./modules/wilder.nix
-            # ./modules/leap.nix
+
+
             ./modules/agda.nix
             ./modules/autopairs.nix
             ./modules/trailblazer.nix
+
+            # ./modules/leap.nix
             # TODO uncomment when
             # https://github.com/Olical/conjure/issues/401
             # this will be quite useful
