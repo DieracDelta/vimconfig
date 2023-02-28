@@ -1082,6 +1082,7 @@
         "rust-tools-src": "rust-tools-src",
         "significant-nvim-src": "significant-nvim-src",
         "telescope-dap-nvim-src": "telescope-dap-nvim-src",
+        "telescope-dapzzzz-src": "telescope-dapzzzz-src",
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
@@ -1161,6 +1162,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope-dap.nvim",
+        "type": "github"
+      }
+    },
+    "telescope-dapzzzz-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671089547,
+        "narHash": "sha256-XD83M7P3eTmeABxEiDqO1MYRJ8zdBhfo82crKpGNXAo=",
+        "owner": "HUAHUAI23",
+        "repo": "telescope-dapzzzz",
+        "rev": "d926a96c9143e79ce8c4f33a959c8574f9bd5bdb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "HUAHUAI23",
+        "repo": "telescope-dapzzzz",
         "type": "github"
       }
     },

@@ -146,6 +146,8 @@ with inputs; {
 
   quick-scope = plugin "quick-scope" quick-scope-src;
 
+  telescope-dapzzzz = plugin "telescope-dapzzzz" telescope-dapzzzz-src;
+
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }

@@ -8,6 +8,8 @@ with dsl; {
     telescope-ui-select
     # dap support
     telescope-dap-nvim
+    # dapzzzz
+    telescope-dapzzzz
   ];
 
   lua = ''
@@ -39,6 +41,7 @@ with dsl; {
     require("telescope").load_extension("file_browser")
     require("telescope").load_extension("ui-select")
     require('telescope').load_extension('dap')
+    require('telescope').load_extension('i23')
   '';
 
   # vimscript = ''

@@ -248,6 +248,11 @@
       flake = false;
     };
 
+    telescope-dapzzzz-src = {
+      url = "github:HUAHUAI23/telescope-dapzzzz";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, ... }:
@@ -271,7 +276,6 @@
           withNodeJs = true;
           withPython3 = true;
           package = neovim.packages.${system}.neovim;
-          # package = nixpkgs.legacyPackages.${system}.neovim-unwrapped;
           imports = [
             ./modules/essentials.nix
             ./modules/lsp.nix
