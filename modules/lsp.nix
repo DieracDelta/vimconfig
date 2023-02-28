@@ -548,7 +548,7 @@ with dsl; {
     local sysroot = vim.fn.system({ "rustc", "--print", "sysroot" }):match("^%s*(.-)%s*$")
     dap.configurations.rust = {
       {
-        type = "codelldb",
+        type = "lldb",
         request = "launch",
         name = "Launch Program (codelldb)",
         program = function()
