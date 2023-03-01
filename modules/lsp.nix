@@ -450,7 +450,7 @@ with dsl; {
     end
 
 
-    require("dap").adapters.codelldb = {
+    require("dap").adapters.lldb = {
       type = "server",
       port = "1337",
       executable = {
