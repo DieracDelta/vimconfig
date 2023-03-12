@@ -197,6 +197,10 @@ in
       "pL" = [ "<Cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>" "Dap list breakpoints" ];
       "pv" = [ "<Cmd>lua require'telescope'.extensions.dap.variables{}<CR>" "Dap list variables" ];
       "pf" = [ "<Cmd>lua require'telescope'.extensions.dap.frames{}<CR>" "Dap list frames" ];
+      "pe" = [ "<Cmd>lua require('dapui').eval(vim.fn.input('Expression to evaluate: '))<CR>" "Dap eval expression" ];
+      "ps" = [ "<Cmd>lua require('dap.ext.vscode').load_launchjs(nil, { [\"lldb\"] = {\"rust\"} })<CR>" "Dap load configs" ];
+
+
 
       "na" = [ "<Cmd>lua require(\"ts-node-action\").node_action{}<CR>" "Trigger Node Action"];
 
