@@ -10,7 +10,9 @@ with dsl; {
     # which method am I on
     vimPlugins.nvim-treesitter-context
     vimPlugins.nvim-treesitter-textobjects
-    (pkgs.vimPlugins.nvim-treesitter.withPlugins
+    ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
+      src = nvim-treesitter-src;
+    }) ).withPlugins
       # tree sitter with language support
       (plugins:
         with plugins; [

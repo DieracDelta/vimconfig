@@ -139,21 +139,21 @@
       flake = false;
     };
 
-    copilot-lua-src = {
-      url = "github:zbirenbaum/copilot.lua";
-      flake = false;
-    };
-
-    copilot-cmp-src = {
-      url = "github:zbirenbaum/copilot-cmp";
-      flake = false;
-    };
-
-    copilot-vim-src = {
-      url = "github:github/copilot.vim";
-      flake = false;
-    };
-
+    # copilot-lua-src = {
+    #   url = "github:zbirenbaum/copilot.lua";
+    #   flake = false;
+    # };
+    #
+    # copilot-cmp-src = {
+    #   url = "github:zbirenbaum/copilot-cmp";
+    #   flake = false;
+    # };
+    #
+    # copilot-vim-src = {
+    #   url = "github:github/copilot.vim";
+    #   flake = false;
+    # };
+    #
     codium-nvim-src = {
       url = "github:jcdickinson/codeium.nvim";
       flake = false;
@@ -182,6 +182,7 @@
     coq-lsp = {
       type = "git";
       url = "https://github.com/ejgallego/coq-lsp";
+      ref = "main";
       submodules = true;
     };
 
@@ -244,6 +245,11 @@
       flake = false;
     };
 
+    nvim-treesitter-src = {
+      url = "github:nvim-treesitter/nvim-treesitter";
+      flake = false;
+    };
+
     quick-scope-src = {
       url = "github:unblevable/quick-scope";
       flake = false;
@@ -254,9 +260,14 @@
       flake = false;
     };
 
+    sg-nvim-src = {
+      url = "github:sourcegraph/sg.nvim";
+      # inputs.pre-commit-nix.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, sg-nvim-src, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -268,6 +279,9 @@
               {
                 coq-lsp = coq-lsp.packages.${system}.default;
                 nvim = neovim.packages.${system}.neovim;
+                sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
+                    buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
+                    });
               }
             )
           ];
@@ -276,7 +290,18 @@
         #  # Build with NodeJS
           withNodeJs = true;
           withPython3 = true;
-          package = neovim.packages.${system}.neovim;
+          package = neovim.packages.${system}.neovim.overrideAttrs (oldAttrs:
+	  {
+	    propagatedBuildInputs = [ pkgs.sg ];
+	  }
+
+	  );
+	  extraMakeWrapperArgs = ''
+	      --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
+	  '';
+          # extraMakeWrapperArgs = ''
+          #       --set PATH '${pkgs.lib.makeBinPath (with pkgs; [ sg ripgrep fd curl git nix ])}:$PATH' /* --set LD_LIBRARY_PATH '${pkgs.sg}/lib/:$LD_LIBRARY_PATH' */
+          #       '';
           imports = [
             ./modules/essentials.nix
             ./modules/lsp.nix
@@ -291,6 +316,7 @@
             ./modules/agda.nix
             ./modules/autopairs.nix
             ./modules/trailblazer.nix
+            ./modules/sg.nix
 
             # ./modules/leap.nix
             # TODO uncomment when
@@ -308,5 +334,6 @@
           type = "app";
           program = "${neovimConfig}/bin/nvim";
         };
+        packages.sg = pkgs.sg;
       });
 }

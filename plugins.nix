@@ -8,14 +8,18 @@ let
 in
 with inputs; {
 
+  sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
+    buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
+  });
+
   codium-lsp = with prev;
-    stdenv.mkDerivation rec {
+    stdenv.mkDerivation {
       pname = "codium-lsp";
       version = "v1.1.33";
 
       src = fetchurl {
-        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.1.33/language_server_macos_arm.gz";
-        sha256 = "sha256-NYf0hSNO6bmICBFjpnzOvuKRBqPG7ijhdfbO02iOTBI=";
+        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.1.73/language_server_macos_arm.gz";
+        sha256 = "sha256-1vHrM07YtPePwzxvGeM7r0vDXsRPz5wI/Zukc2kN70A=";
       };
 
       nativeBuildInputs = [
@@ -147,6 +151,10 @@ with inputs; {
   quick-scope = plugin "quick-scope" quick-scope-src;
 
   telescope-dapzzzz = plugin "telescope-dapzzzz" telescope-dapzzzz-src;
+
+  nvim-treesitter = plugin "nvim-treesitter" nvim-treesitter-src;
+
+  sg-nvim = plugin "sg-nvim" sg-nvim-src;
 
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 

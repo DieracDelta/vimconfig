@@ -34,8 +34,8 @@ with dsl; {
     # vimPlugins.lean-nvim
 
     # lsp_lines
-    copilot-lua
-    copilot-cmp
+    # copilot-lua
+    # copilot-cmp
 
     # neural
     nui-nvim
@@ -91,17 +91,17 @@ with dsl; {
     };
   };
 
-  setup.copilot = {
-    suggestion = { enabled = false; };
-    panel = { enabled = false; };
-  };
+  # setup.copilot = {
+  #   suggestion = { enabled = false; };
+  #   panel = { enabled = false; };
+  # };
 
-  setup.copilot_cmp = {
-    method = "getCompletionsCycling";
-    formatters = {
-      insert_text = rawLua "require(\"copilot_cmp.format\").remove_existing";
-    };
-  };
+  # setup.copilot_cmp = {
+  #   method = "getCompletionsCycling";
+  #   formatters = {
+  #     insert_text = rawLua "require(\"copilot_cmp.format\").remove_existing";
+  #   };
+  # };
 
   setup.fidget = { };
 
@@ -261,7 +261,7 @@ with dsl; {
         "require('cmp').mapping.confirm({ behavior = require('cmp').ConfirmBehavior.Replace, select = true, })";
     };
     sources = [
-      { name = "copilot"; }
+      # { name = "copilot"; }
       { name = "codeium"; }
       { name = "nvim_lsp"; }
       { name = "buffer"; }
@@ -277,7 +277,7 @@ with dsl; {
         maxwidth = 50,
         ellipsis_char = '...',
         --
-        symbol_map = { Copilot = "", Suggestion = "", }
+        symbol_map = { Suggestion = "", }
       })
     '';
     };
@@ -558,7 +558,7 @@ with dsl; {
 
     -- set the target directory to be different/not shared with rustc
     vim.fn.setenv("CARGO_TARGET_DIR", "target_dirs/nix_ra")
-    
+
     if os.getenv("OPENAI_API_KEY") ~= nil then
       require("chatgpt").setup({  })
     end
