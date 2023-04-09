@@ -621,15 +621,17 @@
     "neovim": {
       "inputs": {
         "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1677417626,
-        "narHash": "sha256-A94lfWBqBX+AFAdPX6qrDtB8Va6FRZX0yXQwLsN19Tc=",
+        "lastModified": 1680867322,
+        "narHash": "sha256-EftjQrPTqboQJCN79f0y02Wwm6qqZonxLoaLq1GZy/8=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "48990a7077bb6767f3d218907344ee7fb0bfaaff",
+        "rev": "1b57a02969870de8503f34f7014df69ae53a7f0d",
         "type": "github"
       },
       "original": {
@@ -658,7 +660,7 @@
     "nil": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -780,22 +782,6 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1671983799,
-        "narHash": "sha256-Z2Ro6hFPZHkBqkVXY5/aBUzxi5xizQGvuHQ9+T5B/ks=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "fad51abd42ca17a60fc1d4cb9382e2d79ae31836",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_6": {
-      "locked": {
         "lastModified": 1675309347,
         "narHash": "sha256-D3CQ6HRDT2m3XJlrzb5jKq4vNFR5xFTEFKC7iSjlFpM=",
         "owner": "nixos",
@@ -810,19 +796,19 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_6": {
       "locked": {
-        "lastModified": 1677416845,
-        "narHash": "sha256-egFI0sBdu/UUwer8KRdyAoof4oE3+v05x2sntkF9eiY=",
-        "owner": "nixos",
+        "lastModified": 1680873626,
+        "narHash": "sha256-ahLLzydOSrdgZzxBzugQL+kiN2Y9/dZ26Itf+ymss/k=",
+        "owner": "GaetanLepage",
         "repo": "nixpkgs",
-        "rev": "94d78e46ede53556fe359a0a9731990b985fbe7a",
+        "rev": "09f49769746a9ba87ea3985402615e0f90dc7ffb",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "master",
+        "owner": "GaetanLepage",
         "repo": "nixpkgs",
+        "rev": "09f49769746a9ba87ea3985402615e0f90dc7ffb",
         "type": "github"
       }
     },
@@ -1066,7 +1052,7 @@
         "neural-src": "neural-src",
         "nil": "nil",
         "nix2vim": "nix2vim",
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_6",
         "node-type-nvim-src": "node-type-nvim-src",
         "nui-nvim-src": "nui-nvim-src",
         "nvim-async-src": "nvim-async-src",
