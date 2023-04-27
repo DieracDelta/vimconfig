@@ -41,7 +41,7 @@ with dsl; {
     nui-nvim
     # significant-nvim
 
-    codium-nvim
+    codeium-nvim
 
     chatgpt-nvim
 
@@ -87,7 +87,7 @@ with dsl; {
 
   setup.codeium = {
     tools = {
-      language_server = "${pkgs.codium-lsp}/bin/language_server";
+      language_server = "${pkgs.codeium-lsp}/bin/codeium-lsp";
     };
   };
 
@@ -112,6 +112,7 @@ with dsl; {
   # setup.lsp_lines = { };
 
   setup.rust-tools = {
+    client.server_capabilities.semanticTokensProvider = "nil";
     server = {
       # settings = { "[\"rust-analyzer\"]" = { cargo.features = rawLua "os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") and { os.getenv(\"NVIM_RUST_ENABLED_FEATURE_FLAGS\") } or \"all\"" ;
       settings = { "[\"rust-analyzer\"]" = { cargo.features = rawLua "loadfile(\".nvim/example.env.lua\") and { loadfile(\".nvim/example.env.lua\")() } or \"all\"" ;

@@ -154,7 +154,7 @@
     #   flake = false;
     # };
     #
-    codium-nvim-src = {
+    codeium-nvim-src = {
       url = "github:jcdickinson/codeium.nvim";
       flake = false;
     };
@@ -225,7 +225,7 @@
     #   flake = false;
     # };
     neovim = {
-      url = "github:neovim/neovim?dir=contrib";
+      url = "github:neovim/neovim?dir=contrib&ref=2d2ed4f6fdcb9c876a5635a02ccb48ff0cabddfa";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -291,9 +291,10 @@
           withNodeJs = true;
           withPython3 = true;
           package = neovim.packages.${system}.neovim.overrideAttrs (oldAttrs:
-	  {
-	    propagatedBuildInputs = [ pkgs.sg ];
-	  }
+          {}
+              # {
+              # propagatedBuildInputs = [ pkgs.sg ];
+              # }
 
 	  );
 	  extraMakeWrapperArgs = ''

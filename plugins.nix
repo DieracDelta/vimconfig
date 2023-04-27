@@ -12,32 +12,35 @@ with inputs; {
     buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
   });
 
-  codium-lsp = with prev;
+  codeium-lsp = with prev;
     stdenv.mkDerivation {
-      pname = "codium-lsp";
-      version = "v1.1.33";
+      pname = "codeium-lsp";
+      version = "v1.2.8";
 
-      src = fetchurl {
-        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.1.73/language_server_macos_arm.gz";
-        sha256 = "sha256-1vHrM07YtPePwzxvGeM7r0vDXsRPz5wI/Zukc2kN70A=";
+
+      src =
+      if prev.stdenv.isDarwin then
+      fetchurl {
+        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.8/language_server_macos_arm";
+        sha256 = lib.fakeSha256;
+      }
+      else
+      fetchurl {
+        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.8/language_server_linux_x64";
+        sha256 = "sha256-pn/tUB0j6xIpyvHltD2Ev9d7Cpa2FxcpHicXzWflMi0=";
       };
 
       nativeBuildInputs = [
-        # autoPatchelfHook
+        autoPatchelfHook
+        stdenv.cc.cc
       ];
-
-      buildInputs = [
-      ];
-
-      phases = [ "installPhase" ];
-
-      # sourceRoot = ".";
 
       installPhase = ''
         mkdir -p $out/bin
-        gzip -d $src -c > $out/bin/language_server
-        chmod +x $out/bin/language_server
+        install -m755 $src $out/bin/codeium-lsp
       '';
+
+      phases = ["installPhase" "fixupPhase"];
 
     }
   ;
@@ -116,7 +119,7 @@ with inputs; {
   copilot-cmp = plugin "copilot-cmp" copilot-cmp-src;
   copilot-vim = plugin "copilot-vim" copilot-vim-src;
 
-  codium-nvim = plugin "codium-nvim" codium-nvim-src;
+  codeium-nvim = plugin "codeium-nvim" codeium-nvim-src;
 
   neural = plugin "neural" neural-src;
 
