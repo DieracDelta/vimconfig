@@ -21,12 +21,12 @@ with inputs; {
       src =
       if prev.stdenv.isDarwin then
       fetchurl {
-        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.8/language_server_macos_arm";
-        sha256 = "sha256-m33CRyi4T7lozAAcqOC30dG7NLr9k98BgK3Vj1y+U0s=";
+        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.23/language_server_macos_arm";
+        sha256 = "sha256-9rEd/87gjNMbgOh2luP68Kd6+20zuA3O83Ma42rmd5Y=";
       }
       else
       fetchurl {
-        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.8/language_server_linux_x64";
+        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.23/language_server_linux_x64";
         sha256 = "sha256-pn/tUB0j6xIpyvHltD2Ev9d7Cpa2FxcpHicXzWflMi0=";
       };
 
