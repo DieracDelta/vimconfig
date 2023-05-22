@@ -22,7 +22,7 @@ with inputs; {
       if prev.stdenv.isDarwin then
       fetchurl {
         url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.8/language_server_macos_arm";
-        sha256 = lib.fakeSha256;
+        sha256 = "sha256-m33CRyi4T7lozAAcqOC30dG7NLr9k98BgK3Vj1y+U0s=";
       }
       else
       fetchurl {
@@ -31,9 +31,8 @@ with inputs; {
       };
 
       nativeBuildInputs = [
-        autoPatchelfHook
         stdenv.cc.cc
-      ];
+      ] ++ (if !prev.stdenv.isDarwin then [autoPatchelfHook] else []);
 
       installPhase = ''
         mkdir -p $out/bin

@@ -225,7 +225,7 @@
     #   flake = false;
     # };
     neovim = {
-      url = "github:neovim/neovim?dir=contrib&ref=2d2ed4f6fdcb9c876a5635a02ccb48ff0cabddfa";
+      url = "github:neovim/neovim?dir=contrib&ref=e51e524175505877f67578a36a579472ce59eecf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -290,13 +290,14 @@
         #  # Build with NodeJS
           withNodeJs = true;
           withPython3 = true;
-          package = neovim.packages.${system}.neovim.overrideAttrs (oldAttrs:
-          {}
-              # {
-              # propagatedBuildInputs = [ pkgs.sg ];
-              # }
-
-	  );
+          # package = neovim.packages.${system}.neovim;
+   #        .overrideAttrs (oldAttrs:
+   #        {}
+   #            # {
+   #            # propagatedBuildInputs = [ pkgs.sg ];
+   #            # }
+	  #
+	  # );
 	  extraMakeWrapperArgs = ''
 	      --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
 	  '';
