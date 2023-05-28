@@ -1,5 +1,15 @@
 { pkgs, dsl, ... }:
-with dsl; {
+with dsl;
+let setupCodeium = (if !pkgs.neovimArgs.makeOffline then {
+  setup.codeium = {
+    tools = {
+      language_server = "${pkgs.codeium-lsp}/bin/codeium-lsp";
+    };
+  };
+} else {});
+in
+setupCodeium //
+{
   plugins = with pkgs; [
     # completion framework
     cmp-nvim-lsp
@@ -82,12 +92,6 @@ with dsl; {
       expanded = "▾";
       collapsed = "▸";
       current_frame = "-";
-    };
-  };
-
-  setup.codeium = {
-    tools = {
-      language_server = "${pkgs.codeium-lsp}/bin/codeium-lsp";
     };
   };
 

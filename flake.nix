@@ -270,13 +270,14 @@
   outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, sg-nvim-src, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
+        unappliedPkgs = (neovimArgs: import nixpkgs {
           inherit system;
           overlays = [
             (import ./plugins.nix inputs)
             nix2vim.overlay
             (prev: final:
               {
+                inherit neovimArgs;
                 coq-lsp = coq-lsp.packages.${system}.default;
                 nvim = neovim.packages.${system}.neovim;
                 sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
@@ -285,57 +286,66 @@
               }
             )
           ];
-        };
-        neovimConfig = pkgs.neovimBuilder {
-        #  # Build with NodeJS
-          withNodeJs = true;
-          withPython3 = true;
-          # package = neovim.packages.${system}.neovim;
-   #        .overrideAttrs (oldAttrs:
-   #        {}
-   #            # {
-   #            # propagatedBuildInputs = [ pkgs.sg ];
-   #            # }
-	  #
-	  # );
-	  extraMakeWrapperArgs = ''
-	      --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
-	  '';
-          # extraMakeWrapperArgs = ''
-          #       --set PATH '${pkgs.lib.makeBinPath (with pkgs; [ sg ripgrep fd curl git nix ])}:$PATH' /* --set LD_LIBRARY_PATH '${pkgs.sg}/lib/:$LD_LIBRARY_PATH' */
-          #       '';
-          imports = [
-            ./modules/essentials.nix
-            ./modules/lsp.nix
-            ./modules/aesthetics.nix
-            ./modules/telescope.nix
-            ./modules/misc.nix
-            ./modules/treesitter.nix
-            ./modules/git.nix
-            ./modules/wilder.nix
+        });
+        neovimConfig = (neovimArgs:
+          let pkgs = (unappliedPkgs neovimArgs);
+          in
+            pkgs.neovimBuilder {
+            #  # Build with NodeJS
+              withNodeJs = true;
+              withPython3 = true;
+              # package = neovim.packages.${system}.neovim;
+       #        .overrideAttrs (oldAttrs:
+       #        {}
+       #            # {
+       #            # propagatedBuildInputs = [ pkgs.sg ];
+       #            # }
+              #
+              # );
+              extraMakeWrapperArgs = ''
+                  --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
+              '';
+              # extraMakeWrapperArgs = ''
+              #       --set PATH '${pkgs.lib.makeBinPath (with pkgs; [ sg ripgrep fd curl git nix ])}:$PATH' /* --set LD_LIBRARY_PATH '${pkgs.sg}/lib/:$LD_LIBRARY_PATH' */
+              #       '';
+              imports = [
+                ./modules/essentials.nix
+                ./modules/lsp.nix
+                ./modules/aesthetics.nix
+                ./modules/telescope.nix
+                ./modules/misc.nix
+                ./modules/treesitter.nix
+                ./modules/git.nix
+                ./modules/wilder.nix
 
 
-            ./modules/agda.nix
-            ./modules/autopairs.nix
-            ./modules/trailblazer.nix
-            ./modules/sg.nix
+                ./modules/agda.nix
+                ./modules/autopairs.nix
+                ./modules/trailblazer.nix
+                ./modules/sg.nix
 
-            # ./modules/leap.nix
-            # TODO uncomment when
-            # https://github.com/Olical/conjure/issues/401
-            # this will be quite useful
-            # ./modules/repl.nix
-          ];
-        };
+                # ./modules/leap.nix
+                # TODO uncomment when
+                # https://github.com/Olical/conjure/issues/401
+                # this will be quite useful
+                # ./modules/repl.nix
+              ];
+            }
+        );
       in
       {
         # The package built by `nix build .`
-        defaultPackage = neovimConfig;
+        defaultPackage = neovimConfig {
+          makeOffline = false;
+        };
         # The app run by `nix run .`
         apps.defaultApp = {
           type = "app";
           program = "${neovimConfig}/bin/nvim";
         };
-        packages.sg = pkgs.sg;
+        # packages.sg = pkgs.sg;
+
+        packages.neovimFull = neovimConfig { makeOffline = false; };
+        packages.neovimOffline = neovimConfig { makeOffline = true; };
       });
 }
