@@ -195,6 +195,21 @@ setupCodeium //
     capabilities = rawLua
       "require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())";
   };
+
+  use.lspconfig.ltex.setup = callWith {
+    cmd = ["${pkgs.ltex-ls}/bin/ltex-ls"];
+    language = "en-US";
+    settings = {
+      ltex = {
+        additionalRules = {
+          languageModel = "~/ngrams/";
+          enablePickyRules = true;
+        };
+      };
+    };
+  };
+
+
   use.lspconfig.lua_ls.setup = callWith {
     cmd = ["${pkgs.lua-language-server}/bin/lua-language-server"];
     settings = {

@@ -30,3 +30,5 @@ A bunch of common stuff:
 - Copilot, Codeium, and Chatgpt for AI driven development
 - Parinfer for lisp
 - Cornelus for agda
+- ltex + ngram for grammarly-esque support
+- random lsps that are useful
