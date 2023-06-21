@@ -155,7 +155,7 @@
     # };
     #
     codeium-nvim = {
-      url = "github:jcdickinson/codeium.nvim";
+      url = "github:DieracDelta/codeium.nvim/jr/actually_works";
       flake = true;
     };
 

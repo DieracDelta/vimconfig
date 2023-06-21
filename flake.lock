@@ -113,15 +113,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1687314081,
-        "narHash": "sha256-b//pO05G/DUOzgbyPfdcQ5uQUNiZTmVl+IIVM0Prhm8=",
-        "owner": "jcdickinson",
+        "lastModified": 1687384191,
+        "narHash": "sha256-g20SeKzsBk3XkVzIeBTFuxA73VQzChAjXLo4mL1AWx0=",
+        "owner": "DieracDelta",
         "repo": "codeium.nvim",
-        "rev": "7b47b0d2ff56049c6664f7dd02aa411ea5572c5d",
+        "rev": "9b3f2bec68d43452b5847cd68b4da2725a0943e2",
         "type": "github"
       },
       "original": {
-        "owner": "jcdickinson",
+        "owner": "DieracDelta",
+        "ref": "jr/actually_works",
         "repo": "codeium.nvim",
         "type": "github"
       }
