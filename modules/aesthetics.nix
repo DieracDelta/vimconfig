@@ -14,6 +14,7 @@ with dsl; {
 
   vimscript = ''
     colorscheme dracula
+    autocmd ColorScheme * highlight Comment guifg='#ff0000'
     autocmd ColorScheme * highlight QuickScopePrimary guifg='#ff0000' guibg='#0000ff' ctermfg='196'
     autocmd ColorScheme * highlight QuickScopeSecondary guifg='#880000' guibg='#000088' gui=underline ctermfg='196'
   '';
