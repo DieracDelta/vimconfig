@@ -12,37 +12,37 @@ with inputs; {
     buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
   });
 
-  codeium-lsp = with prev;
-    stdenv.mkDerivation {
-      pname = "codeium-lsp";
-      version = "v1.2.8";
-
-
-      src =
-      if prev.stdenv.isDarwin then
-      fetchurl {
-        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.23/language_server_macos_arm";
-        sha256 = "sha256-9rEd/87gjNMbgOh2luP68Kd6+20zuA3O83Ma42rmd5Y=";
-      }
-      else
-      fetchurl {
-        url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.23/language_server_linux_x64";
-        sha256 = "sha256-pn/tUB0j6xIpyvHltD2Ev9d7Cpa2FxcpHicXzWflMi0=";
-      };
-
-      nativeBuildInputs = [
-        stdenv.cc.cc
-      ] ++ (if !prev.stdenv.isDarwin then [autoPatchelfHook] else []);
-
-      installPhase = ''
-        mkdir -p $out/bin
-        install -m755 $src $out/bin/codeium-lsp
-      '';
-
-      phases = ["installPhase" "fixupPhase"];
-
-    }
-  ;
+  # codeium-lsp = with prev;
+  #   stdenv.mkDerivation {
+  #     pname = "codeium-lsp";
+  #     version = "v1.2.36";
+  #
+  #
+  #     src =
+  #     if prev.stdenv.isDarwin then
+  #     fetchurl {
+  #       url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.36/language_server_macos_arm";
+  #       sha256 = "sha256-9rEd/87gjNMbgOh2luP68Kd6+20zuA3O83Ma42rmd5Y=";
+  #     }
+  #     else
+  #     fetchurl {
+  #       url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.36/language_server_linux_x64";
+  #       sha256 = "sha256-YzQV5w/p0X+KHUU6sL3Djc2En/3pex5Iht7Er7U4UHY=";
+  #     };
+  #
+  #     nativeBuildInputs = [
+  #       stdenv.cc.cc
+  #     ] ++ (if !prev.stdenv.isDarwin then [autoPatchelfHook] else []);
+  #
+  #     installPhase = ''
+  #       mkdir -p $out/bin
+  #       install -m755 $src $out/bin/codeium-lsp
+  #     '';
+  #
+  #     phases = ["installPhase" "fixupPhase"];
+  #
+  #   }
+  # ;
 
   terraform-ls = with prev;
     (buildGoModule rec {
@@ -126,7 +126,7 @@ with inputs; {
 
   significant-nvim = plugin "significant-nvim" significant-nvim-src;
 
-  chatgpt-nvim = plugin "chatgpt-nvim" chatgpt-nvim-src;
+  # chatgpt-nvim = plugin "chatgpt-nvim" chatgpt-nvim-src;
 
   myRSetup = ( prev.rWrapper.override{ packages = with prev.rPackages; [ /* vscDebugger */ ggplot2 dplyr xts languageserver ]; });
 
@@ -157,6 +157,8 @@ with inputs; {
   nvim-treesitter = plugin "nvim-treesitter" nvim-treesitter-src;
 
   sg-nvim = plugin "sg-nvim" sg-nvim-src;
+
+  nvim-matchup = plugin "nvim-matchup" nvim-matchup-src;
 
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 

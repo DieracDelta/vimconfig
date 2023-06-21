@@ -87,7 +87,7 @@
       flake = false;
     };
     fidget-src = {
-      url = "github:j-hui/fidget.nvim";
+      url = "github:j-hui/fidget.nvim/legacy";
       flake = false;
     };
     neogen-src = {
@@ -154,9 +154,9 @@
     #   flake = false;
     # };
     #
-    codeium-nvim-src = {
+    codeium-nvim = {
       url = "github:jcdickinson/codeium.nvim";
-      flake = false;
+      flake = true;
     };
 
     neural-src = {
@@ -174,10 +174,10 @@
       flake = false;
     };
 
-    chatgpt-nvim-src = {
-      url = "github:jackMort/ChatGPT.nvim";
-      flake = false;
-    };
+    # chatgpt-nvim-src = {
+    #   url = "github:jackMort/ChatGPT.nvim";
+    #   flake = false;
+    # };
 
     coq-lsp = {
       type = "git";
@@ -250,6 +250,11 @@
       flake = false;
     };
 
+    nvim-matchup-src = {
+      url = "github:andymass/vim-matchup";
+      flake = false;
+    };
+
     quick-scope-src = {
       url = "github:unblevable/quick-scope";
       flake = false;
@@ -267,7 +272,7 @@
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, sg-nvim-src, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, sg-nvim-src, codeium-nvim, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         unappliedPkgs = (neovimArgs: import nixpkgs {
@@ -278,6 +283,8 @@
             (prev: final:
               {
                 inherit neovimArgs;
+                codeium-nvim = codeium-nvim.packages.${system}.vimPlugins.codeium-nvim;
+                codeium-lsp = codeium-nvim.packages.${system}.codeium-lsp;
                 coq-lsp = coq-lsp.packages.${system}.default;
                 nvim = neovim.packages.${system}.neovim;
                 sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {

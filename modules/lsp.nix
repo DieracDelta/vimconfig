@@ -1,14 +1,16 @@
 { pkgs, dsl, ... }:
 with dsl;
-let setupCodeium = (if !pkgs.neovimArgs.makeOffline then {
+let setupCodeium = (if !pkgs.neovimArgs.makeOffline then
+{
   setup.codeium = {
-    tools = {
-      language_server = "${pkgs.codeium-lsp}/bin/codeium-lsp";
-    };
+    # tools = {
+    #   language_server = builtins.trace "FUUU" "${pkgs.codeium-lsp}/bin/codeium-lsp";
+    # };
   };
-} else {});
+} else builtins.trace "NOOO" {});
 in
-setupCodeium //
+pkgs.lib.mkMerge [
+setupCodeium
 {
   plugins = with pkgs; [
     # completion framework
@@ -53,7 +55,7 @@ setupCodeium //
 
     codeium-nvim
 
-    chatgpt-nvim
+    # chatgpt-nvim
 
     nvim-dap
 
@@ -579,9 +581,9 @@ setupCodeium //
     -- set the target directory to be different/not shared with rustc
     vim.fn.setenv("CARGO_TARGET_DIR", "target_dirs/nix_ra")
 
-    if os.getenv("OPENAI_API_KEY") ~= nil then
-      require("chatgpt").setup({  })
-    end
+    --if os.getenv("OPENAI_API_KEY") ~= nil then
+    --  require("chatgpt").setup({  })
+    --end
 
 
 
@@ -633,4 +635,4 @@ setupCodeium //
 
   # assumed brought in by devshell.
   # let g:vimtex_compiler_latexmk = { 'executable' : '${pkgs.texlive}/bin/latexmk', }
-}
+}]
