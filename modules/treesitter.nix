@@ -12,17 +12,7 @@ with dsl; {
     vimPlugins.nvim-treesitter-textobjects
     ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
       src = nvim-treesitter-src;
-    }) ).withPlugins
-      # tree sitter with language support
-      (plugins:
-        with plugins; [
-          tree-sitter-nix
-          tree-sitter-rust
-          tree-sitter-json
-          tree-sitter-c
-          tree-sitter-go
-          tree-sitter-hcl
-        ]))
+    }) ).withAllGrammars)
     # auto open/close html tags with treesitter
     vimPlugins.nvim-ts-autotag
     # highlighted parens
@@ -199,7 +189,7 @@ with dsl; {
       };
     };
     # TODO treesitter issue, wait until better ts
-    matchup.enable = false;
+    matchup.enable = true;
     autotag.enable = true;
   };
 
