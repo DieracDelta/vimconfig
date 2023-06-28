@@ -18,11 +18,12 @@ with dsl; {
       vim.api.nvim_command('redir END') -- Stop redirecting output
 
       local output = vim.fn.getreg('+')
+      local modifiedOutput = output:gsub("^\n?git@", "")
 
-      if output == "" then
+      if modifiedOutput == "" then
         print("No output from GithubLink command")
       else
-        vim.fn.setreg("+", output)
+        vim.fn.setreg("+", modifiedOutput)
         print("Output has been copied to the clipboard")
       end
     end
