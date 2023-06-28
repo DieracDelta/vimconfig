@@ -5,6 +5,8 @@ let
 in
 {
   plugins = with pkgs; [
+    # for getting github links
+    nvim-github-linker
     # command discover
     which-key
     # for sane tab detection
@@ -84,6 +86,7 @@ in
       i = cmd "lua vim.lsp.buf.implementation()" "Jump to Implementation";
       s = cmd "lua vim.lsp.buf.signature_help()" "Get function signature";
 
+      "yg" = [ "<cmd>lua PipeToClipboard()<CR>" "Link to github"];
       "k" = [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];
       "rn" = [ "<cmd>lua vim.lsp.buf.rename()<CR>" "Rename function/variable" ];
       "ca" = [ "<cmd>lua vim.lsp.buf.code_action()<CR>" "Perform code action" ];

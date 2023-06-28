@@ -7,10 +7,10 @@ let
   };
 in
 with inputs; {
-
-  sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
-    buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
-  });
+  #
+  # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
+  #   buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
+  # });
 
   # codeium-lsp = with prev;
   #   stdenv.mkDerivation {
@@ -156,9 +156,11 @@ with inputs; {
 
   nvim-treesitter = plugin "nvim-treesitter" nvim-treesitter-src;
 
-  sg-nvim = plugin "sg-nvim" sg-nvim-src;
+  # sg-nvim = plugin "sg-nvim" sg-nvim-src;
 
   nvim-matchup = plugin "nvim-matchup" nvim-matchup-src;
+
+  nvim-github-linker = plugin "nvim-github-linker" nvim-github-linker-src;
 
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 

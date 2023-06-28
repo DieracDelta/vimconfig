@@ -2,11 +2,11 @@
 with dsl;
 let setupCodeium = (if !pkgs.neovimArgs.makeOffline then
 {
-  setup.codeium = {
+  # setup.codeium = {
     # tools = {
     #   language_server = builtins.trace "FUUU" "${pkgs.codeium-lsp}/bin/codeium-lsp";
     # };
-  };
+  # };
 } else builtins.trace "NOOO" {});
 in
 pkgs.lib.mkMerge [

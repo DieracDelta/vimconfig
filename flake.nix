@@ -265,14 +265,19 @@
       flake = false;
     };
 
-    sg-nvim-src = {
-      url = "github:sourcegraph/sg.nvim";
-      # inputs.pre-commit-nix.follows = "nixpkgs";
+    # sg-nvim-src = {
+    #   url = "github:sourcegraph/sg.nvim";
+    #   # inputs.pre-commit-nix.follows = "nixpkgs";
+    # };
+
+    nvim-github-linker-src = {
+      url = "github:vincent178/nvim-github-linker";
+
     };
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, sg-nvim-src, codeium-nvim, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, /* sg-nvim-src, */ codeium-nvim, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         unappliedPkgs = (neovimArgs: import nixpkgs {
@@ -287,9 +292,9 @@
                 codeium-lsp = codeium-nvim.packages.${system}.codeium-lsp;
                 coq-lsp = coq-lsp.packages.${system}.default;
                 nvim = neovim.packages.${system}.neovim;
-                sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
-                    buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
-                    });
+                # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
+                #     buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
+                #     });
               }
             )
           ];
@@ -301,20 +306,9 @@
             #  # Build with NodeJS
               withNodeJs = true;
               withPython3 = true;
-              # package = neovim.packages.${system}.neovim;
-       #        .overrideAttrs (oldAttrs:
-       #        {}
-       #            # {
-       #            # propagatedBuildInputs = [ pkgs.sg ];
-       #            # }
-              #
-              # );
-              extraMakeWrapperArgs = ''
-                  --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
-              '';
               # extraMakeWrapperArgs = ''
-              #       --set PATH '${pkgs.lib.makeBinPath (with pkgs; [ sg ripgrep fd curl git nix ])}:$PATH' /* --set LD_LIBRARY_PATH '${pkgs.sg}/lib/:$LD_LIBRARY_PATH' */
-              #       '';
+              #     --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
+              # '';
               imports = [
                 ./modules/essentials.nix
                 ./modules/lsp.nix
@@ -329,7 +323,8 @@
                 ./modules/agda.nix
                 ./modules/autopairs.nix
                 ./modules/trailblazer.nix
-                ./modules/sg.nix
+                ./modules/github.nix
+                # ./modules/sg.nix
 
                 # ./modules/leap.nix
                 # TODO uncomment when
@@ -350,7 +345,6 @@
           type = "app";
           program = "${neovimConfig}/bin/nvim";
         };
-        # packages.sg = pkgs.sg;
 
         packages.neovimFull = neovimConfig { makeOffline = false; };
         packages.neovimOffline = neovimConfig { makeOffline = true; };
