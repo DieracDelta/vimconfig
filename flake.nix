@@ -7,6 +7,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
+    coq-lsp-nvim-src = {
+      url = "github:tomtomjhj/coq-lsp.nvim?ref=36467bd7442943af19ce84c646a64f356a0ca5bb";
+      flake = false;
+    };
+
     lldb-nix-fix = {
       url = "github:mstone/nixpkgs/darwin-fix-vscode-lldb";
     };
@@ -229,7 +234,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     floating-input-src = {
       url = "github:liangxianzhe/floating-input.nvim";
       flake = false;
@@ -306,9 +310,10 @@
             #  # Build with NodeJS
               withNodeJs = true;
               withPython3 = true;
-              # extraMakeWrapperArgs = ''
-              #     --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
-              # '';
+                  # --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
+              extraMakeWrapperArgs = ''
+                  --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.coq-lsp ]}
+              '';
               imports = [
                 ./modules/essentials.nix
                 ./modules/lsp.nix
@@ -324,6 +329,7 @@
                 ./modules/autopairs.nix
                 ./modules/trailblazer.nix
                 ./modules/github.nix
+                ./modules/coq.nix
                 # ./modules/sg.nix
 
                 # ./modules/leap.nix

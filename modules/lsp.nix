@@ -232,11 +232,11 @@ setupCodeium
     };
   };
 
-  use.lspconfig."bsl_ls".setup =
-    callWith {
-      cmd = [ "${pkgs.coq-lsp}/bin/coq-lsp" ];
-      filetypes = [ "coq" "verilog" ];
-    };
+  # use.lspconfig."bsl_ls".setup =
+  #   callWith {
+  #     cmd = [ "${pkgs.coq-lsp}/bin/coq-lsp" ];
+  #     filetypes = [ "coq" "verilog" ];
+  #   };
 
   # use.lspconfig.rust_analyzer.setup = callWith {
   #   # assumed to be provided by the project's nix-shell
