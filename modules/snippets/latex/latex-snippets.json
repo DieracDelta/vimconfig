@@ -1,0 +1,7 @@
+{
+  "Item": {
+          "prefix": "it",
+          "body": ["item"],
+          "description": "An item"
+  }
+}

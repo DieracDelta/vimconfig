@@ -16,6 +16,7 @@ setupCodeium
     # completion framework
     cmp-nvim-lsp
     nvim-cmp
+    vimPlugins.cmp-vsnip
     cmp-buffer
     # lsp things
     vimPlugins.lsp_signature-nvim
@@ -284,14 +285,23 @@ setupCodeium
     };
     sources = [
       # { name = "copilot"; }
-      { name = "codeium"; }
+      # { name = "codeium"; }
       { name = "nvim_lsp"; }
-      { name = "buffer"; }
       { name = "vsnip"; }
+      { name = "buffer"; }
       { name = "crates"; }
     ];
     snippet.expand =
-      rawLua ''function(args) vim.fn["vsnip#anonymous"](args.body) end '';
+      rawLua ''
+        function(args)
+          vim.fn['vsnip#anonymous'](args.body)
+        end
+      '';
+      # snippet = {
+  #   expand = function(args)
+  #     vim.fn['vsnip#anonymous'](args.body)
+  #   end
+  # },
     formatting = {
       format = rawLua ''
       require('lspkind').cmp_format({
@@ -626,11 +636,14 @@ setupCodeium
     let g:vimtex_quickfix_mode=0
     set conceallevel=1
     let g:tex_conceal='abdmg'
-    let g:vimtex_compiler_latexmk = { 'options' : [ 'main.tex', '-shell-escape', '-interaction=nonstopmode' ] }
+    let g:vimtex_compiler_latexmk = { 'options' : [ 'notes.tex', '-shell-escape', '-interaction=nonstopmode' ] }
     let g:vimtex_complete_enabled = 1
     let g:vimtex_complete_close_braces = 1
     let g:vimtex_complete_ignore_case = 1
     let g:vimtex_complete_smart_case = 1
+
+    let g:vsnip_snippet_dir='~/.vsnip/'
+
   '';
 
   # assumed brought in by devshell.

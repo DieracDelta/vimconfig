@@ -1,11 +1,12 @@
 { pkgs, dsl, ...}:
-with dsl; {
+{
 
   # use.lspconfig."bsl_ls".setup =
   #   callWith {
   #     cmd = [ "${pkgs.coq-lsp}/bin/coq-lsp" ];
   #     filetypes = [ "coq" "verilog" ];
   #   };
+
   plugins = with pkgs; [
     coq-lsp-nvim
     vimPlugins.Coqtail
@@ -18,7 +19,9 @@ with dsl; {
 
   lua = ''
     require'coq-lsp'.setup{
+      lsp = {
+        cmd = { "${pkgs.coq-lsp}/bin/coq-lsp" }
+      }
     }
   '';
-
 }

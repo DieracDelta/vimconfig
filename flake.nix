@@ -8,7 +8,7 @@
     cornelis.url = "github:isovector/cornelis";
 
     coq-lsp-nvim-src = {
-      url = "github:tomtomjhj/coq-lsp.nvim?ref=36467bd7442943af19ce84c646a64f356a0ca5bb";
+      url = "github:tomtomjhj/coq-lsp.nvim";
       flake = false;
     };
 
@@ -186,7 +186,7 @@
 
     coq-lsp = {
       type = "git";
-      url = "https://github.com/ejgallego/coq-lsp";
+      url = "https://github.com/ejgallego/coq-lsp/";
       ref = "main";
       submodules = true;
     };
@@ -276,7 +276,7 @@
 
     nvim-github-linker-src = {
       url = "github:vincent178/nvim-github-linker";
-
+      flake = false;
     };
 
   };
@@ -329,7 +329,7 @@
                 ./modules/autopairs.nix
                 ./modules/trailblazer.nix
                 ./modules/github.nix
-                ./modules/coq.nix
+                # ./modules/coq.nix
                 # ./modules/sg.nix
 
                 # ./modules/leap.nix
