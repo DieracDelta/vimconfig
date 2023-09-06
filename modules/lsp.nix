@@ -13,6 +13,7 @@ pkgs.lib.mkMerge [
 setupCodeium
 {
   plugins = with pkgs; [
+    vimPlugins.haskell-tools-nvim
     # completion framework
     cmp-nvim-lsp
     nvim-cmp
@@ -182,7 +183,7 @@ setupCodeium
 
   # brocken on macos. TODO probably could add conditional
   # use.lspconfig.hls.setup = callWith {
-  #   cmd = ["${pkgs.haskell-language-server}/bin/haskell-language-server" "lsp"];
+  #   cmd = ["haskell-language-server" "--lsp"];
   # };
 
   # defaults are good enough for now
@@ -626,6 +627,11 @@ setupCodeium
       vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl= 'DapBreakpoint' })
       vim.fn.sign_define('DapLogPoint', { text='', texthl='DapLogPoint', linehl='DapLogPoint', numhl= 'DapLogPoint' })
       vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })
+
+
+      require('haskell-tools')
+      require('telescope').load_extension('ht')
+
    '';
 
   # todo these are all globals...
