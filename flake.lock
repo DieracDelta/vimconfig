@@ -1123,6 +1123,7 @@
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
         "ts-node-action-src": "ts-node-action-src",
+        "typst-vim-src": "typst-vim-src",
         "vim-illuminate-src": "vim-illuminate-src",
         "which-key-src": "which-key-src",
         "wilder-nvim-src": "wilder-nvim-src"
@@ -1371,6 +1372,22 @@
       "original": {
         "owner": "CKolkey",
         "repo": "ts-node-action",
+        "type": "github"
+      }
+    },
+    "typst-vim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693342179,
+        "narHash": "sha256-8S36GP95HdiFGxSLgMhaQzQO9gdifu0vfwTeeQVfd+Q=",
+        "owner": "kaarmu",
+        "repo": "typst.vim",
+        "rev": "555b76ceb3e5d4fbd040e2948646204501ecfdad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kaarmu",
+        "repo": "typst.vim",
         "type": "github"
       }
     },

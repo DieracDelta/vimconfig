@@ -163,6 +163,7 @@ with inputs; {
   nvim-github-linker = plugin "nvim-github-linker" nvim-github-linker-src;
 
   coq-lsp-nvim = plugin "coq-lsp-nvim" coq-lsp-nvim-src;
+  typst-vim = plugin "typst-vim" typst-vim-src;
 
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 

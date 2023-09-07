@@ -3,6 +3,10 @@
 
   # Input source for our derivation
   inputs = {
+    typst-vim-src = {
+      url = "github:kaarmu/typst.vim";
+      flake = false;
+    };
     nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";

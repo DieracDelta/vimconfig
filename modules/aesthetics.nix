@@ -9,14 +9,14 @@ with dsl; {
     # statusline-action-hints
 
     # jump to character on line
-    quick-scope
+    # quick-scope
   ];
 
+  # autocmd ColorScheme * highlight QuickScopePrimary guifg='#ff0000' guibg='#0000ff' ctermfg='196'
+  # autocmd ColorScheme * highlight QuickScopeSecondary guifg='#880000' guibg='#000088' gui=underline ctermfg='196'
   vimscript = ''
     colorscheme dracula
     autocmd ColorScheme * highlight Comment guifg='#ff0000'
-    autocmd ColorScheme * highlight QuickScopePrimary guifg='#ff0000' guibg='#0000ff' ctermfg='196'
-    autocmd ColorScheme * highlight QuickScopeSecondary guifg='#880000' guibg='#000088' gui=underline ctermfg='196'
   '';
 
   setup.tabline.show_index = false;

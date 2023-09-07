@@ -13,6 +13,8 @@ pkgs.lib.mkMerge [
 setupCodeium
 {
   plugins = with pkgs; [
+    typst-vim
+    vimPlugins.vim-ormolu
     vimPlugins.haskell-tools-nvim
     # completion framework
     cmp-nvim-lsp
@@ -212,7 +214,6 @@ setupCodeium
       };
     };
   };
-
 
   use.lspconfig.lua_ls.setup = callWith {
     cmd = ["${pkgs.lua-language-server}/bin/lua-language-server"];
@@ -631,6 +632,7 @@ setupCodeium
 
       require('haskell-tools')
       require('telescope').load_extension('ht')
+      require'lspconfig'.typst_lsp.setup{}
 
    '';
 
