@@ -19,9 +19,6 @@
 
   lua = ''
     require'coq-lsp'.setup{
-      lsp = {
-        cmd = { "${pkgs.coq-lsp}/bin/coq-lsp" }
-      }
     }
   '';
 }
