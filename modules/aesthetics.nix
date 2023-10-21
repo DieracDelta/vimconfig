@@ -43,7 +43,7 @@ with dsl; {
       lualine_a = [ "mode" ];
       lualine_b = [ "branch" "diff" "diagnostics" ];
       lualine_c = [ "filename" ];
-      lualine_x = [/* (rawLua "require(\"statusline-action-hints\").statusline") */ (rawLua "require(\"node-type\").statusline") "encoding" "fileformat" ];
+      # lualine_x = [/* (rawLua "require(\"statusline-action-hints\").statusline") */ (rawLua "require(\"node-type\").statusline") "encoding" "fileformat" ];
       lualine_z = [ "location" ];
     };
     tabline = { };

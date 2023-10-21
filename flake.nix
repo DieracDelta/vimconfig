@@ -326,14 +326,15 @@
                 ./modules/misc.nix
                 ./modules/treesitter.nix
                 ./modules/git.nix
-                ./modules/wilder.nix
-
-
-                ./modules/agda.nix
+                # ./modules/wilder.nix
+                #
+                #
+                # ./modules/agda.nix
                 ./modules/autopairs.nix
-                ./modules/trailblazer.nix
-                ./modules/github.nix
+                # ./modules/trailblazer.nix
+                # ./modules/github.nix
                 ./modules/coq.nix
+
                 # ./modules/sg.nix
 
                 # ./modules/leap.nix
