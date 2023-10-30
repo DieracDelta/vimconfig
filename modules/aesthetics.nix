@@ -6,6 +6,7 @@ with dsl; {
     vimPlugins.tabline-nvim
     vimPlugins.nvim-web-devicons
     node-type-nvim
+    vim-circom-syntax
     # statusline-action-hints
 
     # jump to character on line

@@ -11,6 +11,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
+    vim-circom-syntax-src = {
+      url = "github:iden3/vim-circom-syntax";
+      flake = false;
+    };
+
     coq-lsp-nvim-src = {
       url = "github:tomtomjhj/coq-lsp.nvim";
       flake = false;
@@ -148,16 +153,16 @@
       flake = false;
     };
 
-    # copilot-lua-src = {
-    #   url = "github:zbirenbaum/copilot.lua";
-    #   flake = false;
-    # };
-    #
-    # copilot-cmp-src = {
-    #   url = "github:zbirenbaum/copilot-cmp";
-    #   flake = false;
-    # };
-    #
+    copilot-lua-src = {
+      url = "github:zbirenbaum/copilot.lua";
+      flake = false;
+    };
+
+    copilot-cmp-src = {
+      url = "github:zbirenbaum/copilot-cmp";
+      flake = false;
+    };
+
     # copilot-vim-src = {
     #   url = "github:github/copilot.vim";
     #   flake = false;

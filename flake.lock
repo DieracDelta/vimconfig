@@ -191,6 +191,38 @@
         "type": "github"
       }
     },
+    "copilot-cmp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694286652,
+        "narHash": "sha256-srgNohm/aJpswNJ5+T7p+zi9Jinp9e5FA8/wdk6VRiY=",
+        "owner": "zbirenbaum",
+        "repo": "copilot-cmp",
+        "rev": "72fbaa03695779f8349be3ac54fa8bd77eed3ee3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot-cmp",
+        "type": "github"
+      }
+    },
+    "copilot-lua-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698216718,
+        "narHash": "sha256-vP8RAO/U0rDhdPYDrBkLFO5zraXgjgP24blyrUdzeV0=",
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "rev": "688762a3999eeee54b78f447719854f52672ec02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zbirenbaum",
+        "repo": "copilot.lua",
+        "type": "github"
+      }
+    },
     "coq-lsp": {
       "inputs": {
         "coq-serapi": "coq-serapi",
@@ -1082,6 +1114,8 @@
         "comment-nvim-src": "comment-nvim-src",
         "conceal-src": "conceal-src",
         "conjure-src": "conjure-src",
+        "copilot-cmp-src": "copilot-cmp-src",
+        "copilot-lua-src": "copilot-lua-src",
         "coq-lsp": "coq-lsp",
         "coq-lsp-nvim-src": "coq-lsp-nvim-src",
         "cornelis": "cornelis",
@@ -1124,6 +1158,7 @@
         "terraform-ls-src": "terraform-ls-src",
         "ts-node-action-src": "ts-node-action-src",
         "typst-vim-src": "typst-vim-src",
+        "vim-circom-syntax-src": "vim-circom-syntax-src",
         "vim-illuminate-src": "vim-illuminate-src",
         "which-key-src": "which-key-src",
         "wilder-nvim-src": "wilder-nvim-src"
@@ -1388,6 +1423,22 @@
       "original": {
         "owner": "kaarmu",
         "repo": "typst.vim",
+        "type": "github"
+      }
+    },
+    "vim-circom-syntax-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1557919501,
+        "narHash": "sha256-I0b6D5uvY4kWJJ3s4AyP7bgBUtSxdQcXf2+VBf6i5Ro=",
+        "owner": "iden3",
+        "repo": "vim-circom-syntax",
+        "rev": "da7bb12643086c6907c334c5d049dad58a230ae2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iden3",
+        "repo": "vim-circom-syntax",
         "type": "github"
       }
     },

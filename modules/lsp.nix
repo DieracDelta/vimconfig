@@ -50,8 +50,8 @@ setupCodeium
     # vimPlugins.lean-nvim
 
     # lsp_lines
-    # copilot-lua
-    # copilot-cmp
+    copilot-lua
+    copilot-cmp
 
     # neural
     nui-nvim
@@ -101,17 +101,17 @@ setupCodeium
     };
   };
 
-  # setup.copilot = {
-  #   suggestion = { enabled = false; };
-  #   panel = { enabled = false; };
-  # };
+  setup.copilot = {
+    suggestion = { enabled = true; };
+    panel = { enabled = true; };
+  };
 
-  # setup.copilot_cmp = {
-  #   method = "getCompletionsCycling";
-  #   formatters = {
-  #     insert_text = rawLua "require(\"copilot_cmp.format\").remove_existing";
-  #   };
-  # };
+  setup.copilot_cmp = {
+    method = "getCompletionsCycling";
+    formatters = {
+      insert_text = rawLua "require(\"copilot_cmp.format\").remove_existing";
+    };
+  };
 
   setup.fidget = { };
 
@@ -286,7 +286,7 @@ setupCodeium
         "require('cmp').mapping.confirm({ behavior = require('cmp').ConfirmBehavior.Replace, select = true, })";
     };
     sources = [
-      # { name = "copilot"; }
+      { name = "copilot"; }
       # { name = "codeium"; }
       { name = "nvim_lsp"; }
       { name = "vsnip"; }
