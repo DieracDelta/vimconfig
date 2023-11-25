@@ -86,7 +86,7 @@ in
       i = cmd "lua vim.lsp.buf.implementation()" "Jump to Implementation";
       s = cmd "lua vim.lsp.buf.signature_help()" "Get function signature";
 
-      "yg" = [ "<cmd>lua (function() vim.api.nvim_command('redir @+') vim.api.nvim_exec('GithubLink', true) vim.api.nvim_command('redir END') local output = vim.fn.getreg('+') local modifiedOutput = output:gsub(\"^\n?git@\", \"\") if modifiedOutput == "" then print("No output from GithubLink command") else vim.fn.setreg(\"+\", modifiedOutput) print("Output has been copied to the clipboard") end end)() <CR>" "Link to github"];
+      "yg" = [ "<cmd>lua (function() vim.api.nvim_command('redir @+') vim.api.nvim_exec('GithubLink', true) vim.api.nvim_command('redir END') local output = vim.fn.getreg('+') local modifiedOutput = output:gsub(\"^\n?git@\", \"\") if modifiedOutput == \"\" then print(\"No output from GithubLink command\") else vim.fn.setreg(\"+\", modifiedOutput) print(\"Output has been copied to the clipboard\") end end)() <CR>" "Link to github"];
       "k" = [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];
       "rn" = [ "<cmd>lua vim.lsp.buf.rename()<CR>" "Rename function/variable" ];
       "ca" = [ "<cmd>lua vim.lsp.buf.code_action()<CR>" "Perform code action" ];

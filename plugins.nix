@@ -1,7 +1,7 @@
 inputs: final: prev:
 let
   withSrc = pkg: src: pkg.overrideAttrs (_: { inherit src; });
-  plugin = pname: src: prev.vimUtils.buildVimPluginFrom2Nix {
+  plugin = pname: src: prev.vimUtils.buildVimPlugin {
     inherit pname src;
     version = "master";
   };
@@ -56,7 +56,7 @@ with inputs; {
         sha256 = "sha256-TWxYCHdzeJtdyPajA3XxqwpDufXnLod6LWa28OHjyms=";
       };
 
-      vendorSha256 = "sha256-e/m/8h0gF+kux+pCUqZ7Pw0XlyJ5dL0Zyqb0nUlgfpc=";
+      vendorHash = "sha256-e/m/8h0gF+kux+pCUqZ7Pw0XlyJ5dL0Zyqb0nUlgfpc=";
       ldflags = [ "-s" "-w" "-X main.version=v${version}" "-X main.prerelease=" ];
 
       # There's a mixture of tests that use networking and several that fail on aarch64
@@ -95,6 +95,7 @@ with inputs; {
   comment-nvim = plugin "comment-nvim" comment-nvim-src;
   conceal = plugin "conceal" conceal-src;
   dracula = plugin "dracula" dracula-nvim;
+  gruvbox-nvim = plugin "gruvbox-nvim" gruvbox-nvim-src;
   fidget = plugin "fidget" fidget-src;
   neogen = plugin "neogen" neogen-src;
   parinfer-rust-nvim = plugin "parinfer-rust" prev.parinfer-rust;

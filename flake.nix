@@ -81,6 +81,10 @@
       url = "github:Mofiqul/dracula.nvim";
       flake = false;
     };
+    gruvbox-nvim-src = {
+      url = "github:ellisonleao/gruvbox.nvim";
+      flake = false;
+    };
     nvim-cmp = {
       url = "github:hrsh7th/nvim-cmp";
       flake = false;
