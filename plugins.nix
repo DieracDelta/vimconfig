@@ -167,6 +167,8 @@ with inputs; {
 
   vim-circom-syntax = plugin "vim-circom-syntax" vim-circom-syntax-src;
 
+  vscoq-nvim = plugin "vscoq-nvim" vscoq-nvim-src;
+
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }

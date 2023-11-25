@@ -1,4 +1,5 @@
 { pkgs, dsl, ...}:
+with dsl;
 {
 
   # use.lspconfig."bsl_ls".setup =
@@ -8,6 +9,7 @@
   #   };
 
   plugins = with pkgs; [
+    vscoq-nvim
     coq-lsp-nvim
     vimPlugins.Coqtail
   ];
@@ -17,8 +19,13 @@
     let g:coqtail#supported = 0
   '';
 
+  # use.lspconfig.vscoq.setup =
+  #   callWith { cmd = [ "${pkgs.vscoqlsp}/bin/vscoqtop" ]; };
+
+    # require'coq-lsp'.setup{
+    # }
   lua = ''
-    require'coq-lsp'.setup{
-    }
+    require'vscoq'.setup({ lsp = { cmd = {"${pkgs.vscoqlsp}/bin/vscoqtop"}}})
+
   '';
 }

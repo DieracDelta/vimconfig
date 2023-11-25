@@ -3,6 +3,15 @@
 
   # Input source for our derivation
   inputs = {
+    vscoq = {
+      url = "github:coq-community/vscoq";
+      flake = true;
+    };
+    vscoq-nvim-src = {
+      url = "github:tomtomjhj/vscoq.nvim";
+      flake = false;
+    };
+
     typst-vim-src = {
       url = "github:kaarmu/typst.vim";
       flake = false;
@@ -290,7 +299,7 @@
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, /* sg-nvim-src, */ codeium-nvim, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, /* sg-nvim-src, */ codeium-nvim, vscoq, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         unappliedPkgs = (neovimArgs: import nixpkgs {
@@ -305,6 +314,7 @@
                 codeium-lsp = codeium-nvim.packages.${system}.codeium-lsp;
                 coq-lsp = coq-lsp.packages.${system}.default;
                 nvim = neovim.packages.${system}.neovim;
+                vscoqlsp = vscoq.packages.${system}.vscoq-language-server;
                 # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
                 #     buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
                 #     });
@@ -321,7 +331,7 @@
               withPython3 = true;
                   # --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
               extraMakeWrapperArgs = ''
-                  --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.coq-lsp ]}
+                  --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.coq-lsp pkgs.vscoqlsp ]}
               '';
               imports = [
                 ./modules/essentials.nix

@@ -115,8 +115,6 @@ setupCodeium
 
   setup.fidget = { };
 
-
-
   # setup.chatgpt = { };
 
   # setup.lsp_lines = { };
