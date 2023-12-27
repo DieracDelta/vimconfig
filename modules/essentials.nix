@@ -85,6 +85,7 @@ in
       d = cmd "lua vim.lsp.buf.definition()" "Jump to Definition";
       i = cmd "lua vim.lsp.buf.implementation()" "Jump to Implementation";
       s = cmd "lua vim.lsp.buf.signature_help()" "Get function signature";
+      u = ["<cmd>UndotreeToggle<CR>" "Trigger UndoTree"];
 
       "yg" = [ "<cmd>lua (function() vim.api.nvim_command('redir @+') vim.api.nvim_exec('GithubLink', true) vim.api.nvim_command('redir END') local output = vim.fn.getreg('+') local modifiedOutput = output:gsub(\"^\n?git@\", \"\") if modifiedOutput == \"\" then print(\"No output from GithubLink command\") else vim.fn.setreg(\"+\", modifiedOutput) print(\"Output has been copied to the clipboard\") end end)() <CR>" "Link to github"];
       "k" = [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];

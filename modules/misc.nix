@@ -9,6 +9,8 @@ with dsl; {
     parinfer-rust-nvim
     # surroundings stuffs
     vimPlugins.surround-nvim
+    # undo tree
+    vimPlugins.undotree
   ];
 
   setup.neogen.enabled = true;

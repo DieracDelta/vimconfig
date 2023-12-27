@@ -648,7 +648,32 @@ setupCodeium
     let g:vimtex_complete_ignore_case = 1
     let g:vimtex_complete_smart_case = 1
 
+
     let g:vsnip_snippet_dir='~/.vsnip/'
+
+    function! RustfmtFormat()
+      let save_cursor = getpos('.')
+      let save_modified = &modified
+
+      try
+        silent execute '%!rustfmt'
+        " Check if rustfmt was successful (exit code 0)
+        if v:shell_error == 0
+          " Success, update cursor position and modified flag
+          call setpos('.', save_cursor)
+          let modified=0
+        else
+          echohl WarningMsg | echo "rustfmt encountered an error" | echohl None
+        endif
+      finally
+        " Always restore modified flag
+        let &modified = save_modified
+      endtry
+    endfunction
+
+    autocmd BufWritePre *.rs let b:cursor_save = getpos(".")
+    autocmd BufWritePost *.rs call setpos('.', b:cursor_save)
+    autocmd BufWritePre *.rs call RustfmtFormat()
 
   '';
 
