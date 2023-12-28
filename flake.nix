@@ -31,7 +31,7 @@
     };
 
     lldb-nix-fix = {
-      url = "github:mstone/nixpkgs/darwin-fix-vscode-lldb";
+      url = "github:mstone/nixpkgs?rev=fa70e7499b08524a4a02e7ce9e39847b9d3c95df";
     };
 
     vim-illuminate-src = {

@@ -16,7 +16,7 @@ with dsl; {
     # auto open/close html tags with treesitter
     vimPlugins.nvim-ts-autotag
     # highlighted parens
-    vimPlugins.nvim-ts-rainbow
+    vimPlugins.rainbow-delimiters-nvim
     # toggle btwn all the things with %
     nvim-matchup
     # highlight other occurrences of a phrase
