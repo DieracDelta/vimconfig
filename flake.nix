@@ -3,6 +3,10 @@
 
   # Input source for our derivation
   inputs = {
+    magma-nvim-src = {
+      url = "github:dccsillag/magma-nvim";
+      flake = false;
+    };
     vscoq = {
       url = "github:coq-community/vscoq";
       flake = true;
@@ -345,6 +349,7 @@
                 ./modules/misc.nix
                 ./modules/treesitter.nix
                 ./modules/git.nix
+                ./modules/jupyter.nix
                 # ./modules/wilder.nix
                 #
                 #

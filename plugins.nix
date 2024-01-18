@@ -170,6 +170,8 @@ with inputs; {
 
   vscoq-nvim = plugin "vscoq-nvim" vscoq-nvim-src;
 
+  magma-nvim = plugin "magma-nvim" magma-nvim-src;
+
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }

@@ -616,6 +616,22 @@
         "type": "github"
       }
     },
+    "magma-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688797521,
+        "narHash": "sha256-IrMR57gk9iCk73esHO24KZeep9VrlkV5sOC4PzGexyo=",
+        "owner": "dccsillag",
+        "repo": "magma-nvim",
+        "rev": "ff3deba8a879806a51c005e50782130246143d06",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dccsillag",
+        "repo": "magma-nvim",
+        "type": "github"
+      }
+    },
     "markid-src": {
       "flake": false,
       "locked": {
@@ -676,11 +692,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1703762819,
-        "narHash": "sha256-s1tX/UPdbyzydwkJWKyXMdHm0vTNGKLdVtALapP56Dg=",
+        "lastModified": 1703942545,
+        "narHash": "sha256-xrDDZtp43+r0TKk5ISdNeeZC1o1lj9SRUkQz5Te8oQ0=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "2b9d3869f8f366399327d01155f557e90038ca97",
+        "rev": "bf0be0f63e7142675f1376781c128116d12c520d",
         "type": "github"
       },
       "original": {
@@ -1154,6 +1170,7 @@
         "leap-src": "leap-src",
         "lldb-nix-fix": "lldb-nix-fix",
         "lsp-config-src": "lsp-config-src",
+        "magma-nvim-src": "magma-nvim-src",
         "markid-src": "markid-src",
         "neogen-src": "neogen-src",
         "neovim": "neovim",

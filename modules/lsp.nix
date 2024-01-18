@@ -13,6 +13,7 @@ pkgs.lib.mkMerge [
 setupCodeium
 {
   plugins = with pkgs; [
+    vimPlugins.typescript-tools-nvim
     typst-vim
     vimPlugins.vim-ormolu
     vimPlugins.haskell-tools-nvim
@@ -631,6 +632,10 @@ setupCodeium
       require('haskell-tools')
       require('telescope').load_extension('ht')
       require'lspconfig'.typst_lsp.setup{}
+      require("typescript-tools").setup {
+        tsserver_path = "./node_modules/typescript/lib/",
+
+      }
 
    '';
 
@@ -652,23 +657,6 @@ setupCodeium
     let g:vsnip_snippet_dir='~/.vsnip/'
 
     function! RustfmtFormat()
-      let save_cursor = getpos('.')
-      let save_modified = &modified
-
-      try
-        silent execute '%!rustfmt'
-        " Check if rustfmt was successful (exit code 0)
-        if v:shell_error == 0
-          " Success, update cursor position and modified flag
-          call setpos('.', save_cursor)
-          let modified=0
-        else
-          echohl WarningMsg | echo "rustfmt encountered an error" | echohl None
-        endif
-      finally
-        " Always restore modified flag
-        let &modified = save_modified
-      endtry
     endfunction
 
     autocmd BufWritePre *.rs let b:cursor_save = getpos(".")
