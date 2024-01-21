@@ -99,7 +99,6 @@ with inputs; {
   fidget = plugin "fidget" fidget-src;
   neogen = plugin "neogen" neogen-src;
   parinfer-rust-nvim = plugin "parinfer-rust" prev.parinfer-rust;
-  rust-tools = plugin "rust-tools" rust-tools-src;
   telescope-ui-select = plugin "telescope-ui-select" telescope-ui-select-src;
   which-key = plugin "which-key" which-key-src;
   guess-indent = plugin "guess-indent" guess-indent-src;
@@ -171,6 +170,10 @@ with inputs; {
   vscoq-nvim = plugin "vscoq-nvim" vscoq-nvim-src;
 
   magma-nvim = plugin "magma-nvim" magma-nvim-src;
+
+  rustaceanvim = plugin "rustaceanvim" rustaceanvim-src;
+
+  ferris-nvim = plugin "ferris-nvim" ferris-nvim-src;
 
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
