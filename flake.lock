@@ -552,6 +552,22 @@
         "type": "github"
       }
     },
+    "gitlinker-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705146502,
+        "narHash": "sha256-IF2Qafa000+SxiTbvDqBG8Ol3ieOMtPWUsrTfuB8c4M=",
+        "owner": "linrongbin16",
+        "repo": "gitlinker.nvim",
+        "rev": "f6705d4f38cc2727c34f196a49700d0d7c6f7464",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linrongbin16",
+        "repo": "gitlinker.nvim",
+        "type": "github"
+      }
+    },
     "gruvbox-nvim-src": {
       "flake": false,
       "locked": {
@@ -1050,22 +1066,6 @@
         "type": "github"
       }
     },
-    "nvim-github-linker-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1676767486,
-        "narHash": "sha256-Y49Ex41vdMJ/qgbg2VFfVXYH8foNtEPRX8KNkrVskXY=",
-        "owner": "vincent178",
-        "repo": "nvim-github-linker",
-        "rev": "274d6bc1fd4c64ffc1b41bd5470bd162f487d6c8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vincent178",
-        "repo": "nvim-github-linker",
-        "type": "github"
-      }
-    },
     "nvim-matchup-src": {
       "flake": false,
       "locked": {
@@ -1183,6 +1183,7 @@
         "fidget-src": "fidget-src",
         "flake-utils": "flake-utils_4",
         "floating-input-src": "floating-input-src",
+        "gitlinker-nvim-src": "gitlinker-nvim-src",
         "gruvbox-nvim-src": "gruvbox-nvim-src",
         "guess-indent-src": "guess-indent-src",
         "leap-src": "leap-src",
@@ -1204,7 +1205,6 @@
         "nvim-dap-src": "nvim-dap-src",
         "nvim-dap-ui-src": "nvim-dap-ui-src",
         "nvim-dap-virtual-text-src": "nvim-dap-virtual-text-src",
-        "nvim-github-linker-src": "nvim-github-linker-src",
         "nvim-matchup-src": "nvim-matchup-src",
         "nvim-trailblazer-src": "nvim-trailblazer-src",
         "nvim-treesitter-src": "nvim-treesitter-src",

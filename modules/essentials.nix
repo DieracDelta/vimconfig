@@ -5,8 +5,6 @@ let
 in
 with dsl; {
   plugins = with pkgs; [
-    # for getting github links
-    nvim-github-linker
     # command discover
     which-key
     # for sane tab detection
@@ -90,7 +88,8 @@ with dsl; {
       s = cmd "lua vim.lsp.buf.signature_help()" "Get function signature";
       u = ["<cmd>UndotreeToggle<CR>" "Trigger UndoTree"];
 
-      "yg" = [ "<cmd>lua (function() vim.api.nvim_command('redir @+') vim.api.nvim_exec('GithubLink', true) vim.api.nvim_command('redir END') local output = vim.fn.getreg('+') local modifiedOutput = output:gsub(\"^\n?git@\", \"\") if modifiedOutput == \"\" then print(\"No output from GithubLink command\") else vim.fn.setreg(\"+\", modifiedOutput) print(\"Output has been copied to the clipboard\") end end)() <CR>" "Link to github"];
+      "yg" = [ "<cmd GitLink<CR>" "Link to git url"];
+      "yb" = [ "<cmd GitLink blame<CR>" "Link to git blame"];
       "k" = [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];
       "rn" = [ "<cmd>lua vim.lsp.buf.rename()<CR>" "Rename function/variable" ];
       "ca" = [ "<cmd>lua vim.lsp.buf.code_action()<CR>" "Perform code action" ];

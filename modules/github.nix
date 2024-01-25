@@ -11,24 +11,32 @@ with dsl; {
   #   copy_to_clipboard = true;
   # };
   lua = ''
-    require("nvim-github-linker").setup({ mappings = true, default_remote = "origin", copy_to_clipboard = false, })
-    function PipeToClipboard()
-      vim.api.nvim_command('redir @+') -- Redirect output to register '+'
-      vim.api.nvim_exec('GithubLink', true) -- Execute GithubLink command
-      vim.api.nvim_command('redir END') -- Stop redirecting output
-
-      local output = vim.fn.getreg('+')
-      local modifiedOutput = output:gsub("^\n?git@", "")
-
-      if modifiedOutput == "" then
-        print("No output from GithubLink command")
-      else
-        vim.fn.setreg("+", modifiedOutput)
-        print("Output has been copied to the clipboard")
-      end
-    end
+    require('gitlinker').setup()
+    -- browse
+    vim.keymap.set(
+      {"n", 'v'},
+      "<leader>gl",
+      "<cmd>GitLink<cr>",
+      { silent = true, noremap = true, desc = "Copy git permlink to clipboard" }
+    )
+    vim.keymap.set(
+      {"n", 'v'},
+      "<leader>gL",
+      "<cmd>GitLink!<cr>",
+      { silent = true, noremap = true, desc = "Open git permlink in browser" }
+    )
+    -- blame
+    vim.keymap.set(
+      {"n", 'v'},
+      "<leader>gb",
+      "<cmd>GitLink blame<cr>",
+      { silent = true, noremap = true, desc = "Copy git blame link to clipboard" }
+    )
+    vim.keymap.set(
+      {"n", 'v'},
+      "<leader>gB",
+      "<cmd>GitLink! blame<cr>",
+      { silent = true, noremap = true, desc = "Open git blame link in browser" }
+    )
   '';
 }
-
-
-

@@ -7,6 +7,10 @@
       url = "github:mrcjkb/rustaceanvim";
       flake = false;
     };
+     gitlinker-nvim-src = {
+      url = "github:linrongbin16/gitlinker.nvim";
+      flake = false;
+    };
 
     ferris-nvim-src = {
       url = "github:vxpm/ferris.nvim";
@@ -305,11 +309,6 @@
     #   url = "github:sourcegraph/sg.nvim";
     #   # inputs.pre-commit-nix.follows = "nixpkgs";
     # };
-
-    nvim-github-linker-src = {
-      url = "github:vincent178/nvim-github-linker";
-      flake = false;
-    };
 
   };
 

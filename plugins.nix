@@ -160,8 +160,6 @@ with inputs; {
 
   nvim-matchup = plugin "nvim-matchup" nvim-matchup-src;
 
-  nvim-github-linker = plugin "nvim-github-linker" nvim-github-linker-src;
-
   coq-lsp-nvim = plugin "coq-lsp-nvim" coq-lsp-nvim-src;
   typst-vim = plugin "typst-vim" typst-vim-src;
 
@@ -174,6 +172,8 @@ with inputs; {
   rustaceanvim = plugin "rustaceanvim" rustaceanvim-src;
 
   ferris-nvim = plugin "ferris-nvim" ferris-nvim-src;
+
+  gitlinker-nvim = plugin "gitlinker-nvim" gitlinker-nvim-src;
 
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
