@@ -88,8 +88,8 @@ with dsl; {
       s = cmd "lua vim.lsp.buf.signature_help()" "Get function signature";
       u = ["<cmd>UndotreeToggle<CR>" "Trigger UndoTree"];
 
-      "yg" = [ "<cmd GitLink<CR>" "Link to git url"];
-      "yb" = [ "<cmd GitLink blame<CR>" "Link to git blame"];
+      "yg" = [ "<cmd> GitLink<CR>" "Link to git url"];
+      "yb" = [ "<cmd> GitLink blame<CR>" "Link to git blame"];
       "k" = [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];
       "rn" = [ "<cmd>lua vim.lsp.buf.rename()<CR>" "Rename function/variable" ];
       "ca" = [ "<cmd>lua vim.lsp.buf.code_action()<CR>" "Perform code action" ];

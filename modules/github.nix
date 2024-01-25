@@ -2,14 +2,9 @@
 with dsl; {
   plugins = with pkgs; [
     # for getting github links
-    nvim-github-linker
+    gitlinker-nvim
 
   ];
-  # setup.nvim-github-linker = {
-  #   mappings = false;
-  #   default_remote = "origin";
-  #   copy_to_clipboard = true;
-  # };
   lua = ''
     require('gitlinker').setup()
     -- browse

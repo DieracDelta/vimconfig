@@ -362,7 +362,7 @@
                 # ./modules/agda.nix
                 ./modules/autopairs.nix
                 # ./modules/trailblazer.nix
-                # ./modules/github.nix
+                ./modules/github.nix
                 ./modules/coq.nix
 
                 # ./modules/sg.nix
