@@ -167,7 +167,7 @@ with inputs; {
 
   vscoq-nvim = plugin "vscoq-nvim" vscoq-nvim-src;
 
-  magma-nvim = plugin "magma-nvim" magma-nvim-src;
+  molten-nvim = plugin "molten-nvim" molten-nvim-src;
 
   rustaceanvim = plugin "rustaceanvim" rustaceanvim-src;
 

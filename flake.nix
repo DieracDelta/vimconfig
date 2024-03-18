@@ -17,8 +17,13 @@
       flake = false;
     };
 
-    magma-nvim-src = {
-      url = "github:dccsillag/magma-nvim";
+    # typst-conceal-src = {
+    #   url = "github:MrPicklePinosaur/typst-conceal";
+    #   flake = false;
+    # };
+
+    molten-nvim-src = {
+      url = "github:benlubas/molten-nvim";
       flake = false;
     };
     vscoq = {

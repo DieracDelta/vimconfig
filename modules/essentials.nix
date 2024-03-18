@@ -25,6 +25,7 @@ with dsl; {
     noshowmode = true;
     completeopt = "menu,menuone,noselect";
     noswapfile = true;
+    typst_conceal = true;
   };
 
   vim.o = {
