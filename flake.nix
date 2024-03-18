@@ -332,7 +332,8 @@
                 codeium-lsp = codeium-nvim.packages.${system}.codeium-lsp;
                 coq-lsp = coq-lsp.packages.${system}.default;
                 nvim-master = neovim.packages.${system}.neovim;
-                vscoqlsp = vscoq.packages.${system}.vscoq-language-server;
+                # this is just what I have installed right now...
+                vscoqlsp = vscoq.packages.${system}.vscoq-language-server-coq-8-18;
                 # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
                 #     buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
                 #     });

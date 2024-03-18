@@ -180,29 +180,6 @@
         "type": "github"
       }
     },
-    "coq-8_18": {
-      "inputs": {
-        "flake-utils": "flake-utils_8",
-        "nixpkgs": [
-          "vscoq",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1694096282,
-        "narHash": "sha256-WhiBs4nzPHQ0R24xAdM49kmxSCPOxiOVMA1iiMYunz4=",
-        "owner": "coq",
-        "repo": "coq",
-        "rev": "f022d5d194cb42c2321ea91cecbcce703a9bcad3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "coq",
-        "ref": "V8.18.0",
-        "repo": "coq",
-        "type": "github"
-      }
-    },
     "coq-lsp": {
       "inputs": {
         "coq-serapi": "coq-serapi",
@@ -242,6 +219,29 @@
       "original": {
         "owner": "tomtomjhj",
         "repo": "coq-lsp.nvim",
+        "type": "github"
+      }
+    },
+    "coq-master": {
+      "inputs": {
+        "flake-utils": "flake-utils_8",
+        "nixpkgs": [
+          "vscoq",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1709296330,
+        "narHash": "sha256-kmZ8Uk8jpzjOd67aAPp3C+vU2oNaBw9pr7+Uixcgg94=",
+        "owner": "coq",
+        "repo": "coq",
+        "rev": "8152d125abb0fb7e8cbecf4bd6cd51d8d3e70d78",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coq",
+        "repo": "coq",
+        "rev": "8152d125abb0fb7e8cbecf4bd6cd51d8d3e70d78",
         "type": "github"
       }
     },
@@ -523,11 +523,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1689068808,
-        "narHash": "sha256-6ixXo3wt24N/melDWjq70UuHQLxGV8jZvooRanIHXw0=",
+        "lastModified": 1709126324,
+        "narHash": "sha256-q6EQdSeUZOG26WelxqkmR7kArjgWCdw5sfJVHPH/7j8=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "919d646de7be200f3bf08cb76ae1f09402b6f9b4",
+        "rev": "d465f4819400de7c8d874d50b982301f28a84605",
         "type": "github"
       },
       "original": {
@@ -911,11 +911,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1705842563,
-        "narHash": "sha256-4V5VPERbWB7+62oqSFozzOQceRDsnXCUv+auvUdteJY=",
+        "lastModified": 1710782759,
+        "narHash": "sha256-jIBPTbzxZC2zJqX1g2MmaIISpmOP3oi9ADOC5LhvC1Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "43e4d9e2eb5124b9b4920e0ed6372d5c66c66670",
+        "rev": "c62cb2fc875379c8c0e680cf818368828328eda9",
         "type": "github"
       },
       "original": {
@@ -926,11 +926,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1692494774,
-        "narHash": "sha256-noGVoOTyZ2Kr5OFglzKYOX48cx3hggdCPbXrYMG2FDw=",
+        "lastModified": 1709780214,
+        "narHash": "sha256-p4iDKdveHMhfGAlpxmkCtfQO3WRzmlD11aIcThwPqhk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3476a10478587dec90acb14ec6bde0966c545cc0",
+        "rev": "f945939fd679284d736112d3d5410eb867f3b31c",
         "type": "github"
       },
       "original": {
@@ -1554,16 +1554,16 @@
     },
     "vscoq": {
       "inputs": {
-        "coq-8_18": "coq-8_18",
+        "coq-master": "coq-master",
         "flake-utils": "flake-utils_9",
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1701447720,
-        "narHash": "sha256-VXhHCP6Ni5/OcsgoI1EbJfYCpXzwkuR8kbbKrl6dfjU=",
+        "lastModified": 1710750993,
+        "narHash": "sha256-2khtMEXjsNMiahxmazFyKYEUj1TRKhSwQO9WiUCgnok=",
         "owner": "coq-community",
         "repo": "vscoq",
-        "rev": "d4a702e676f2d17952e82df27962736d10810c37",
+        "rev": "19daf9d87b8ef76fbb281fad05919107359b42e6",
         "type": "github"
       },
       "original": {
@@ -1575,11 +1575,11 @@
     "vscoq-nvim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1702025258,
-        "narHash": "sha256-0ozz2vxmuEym/pR6AftgIZBt4fT4qJxEpngtZXqXT30=",
+        "lastModified": 1709132022,
+        "narHash": "sha256-7lJczY8sTwTMAvIlt7ikaWQGbhBJQmE9MEKBBMv0CMM=",
         "owner": "tomtomjhj",
         "repo": "vscoq.nvim",
-        "rev": "0dee175a75153fc6057605c90749e0d6eb131cd4",
+        "rev": "03b62d6c804045bf78bf34519349cc0b36b89f42",
         "type": "github"
       },
       "original": {
