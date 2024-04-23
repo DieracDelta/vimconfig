@@ -69,6 +69,8 @@ setupCodeium
 
     nvim-dap-ui
 
+    vimPlugins.nvim-nio
+
     cmp-dap
 
     node-type-nvim
