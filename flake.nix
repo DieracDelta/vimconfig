@@ -271,7 +271,7 @@
     #   flake = false;
     # };
     neovim = {
-      url = "github:neovim/neovim?dir=contrib&rev=e32af31ee89c6a251e8d551a044c7876b9514579";
+      url = "github:neovim/neovim?dir=contrib&rev=27fb62988e922c2739035f477f93cc052a4fee1e";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
