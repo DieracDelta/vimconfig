@@ -29,6 +29,9 @@ with dsl; {
   };
 
   vim.o = {
+    tabstop = 2;
+    shiftwidth = 2;
+    softtabstop = 2;
     showcmd = true;
     showmatch = true;
     ignorecase = true;
@@ -56,7 +59,6 @@ with dsl; {
     scrolloff = 3;
     sidescrolloff = 5;
     listchars = "tab:→→,trail:●,nbsp:○";
-    clipboard = "unnamed,unnamedplus";
     formatoptions = "tcqj";
     encoding = "utf-8";
     fileencoding = "utf-8";
@@ -110,7 +112,7 @@ with dsl; {
         "<cmd>lua vim.diagnostic.goto_prev()<CR>"
         "prev diag"
       ];
-      "mb" = [ ":VimtexCompile<CR>" "build latex buffer" ];
+      "mb" = [ ":TypstWatch<CR>" "build typst buffer" ];
       "f" = [ "<cmd>lua vim.lsp.buf.formatting()<CR>" "Format buffer" ];
       "bb" = [ "<cmd>Telescope buffers<cr>" "Get buffer list" ];
       "fb" = [ "<cmd>Telescope file_browser<cr>" "Get buffer list" ];
@@ -300,6 +302,20 @@ with dsl; {
         adapter = require('rustaceanvim.config').get_codelldb_adapter('/nix/store/cvr0sbpfm9fsscpyrxg4025dq1wvask5-vscode-extension-vadimcn-vscode-lldb-1.8.1/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb', '/nix/store/cvr0sbpfm9fsscpyrxg4025dq1wvask5-vscode-extension-vadimcn-vscode-lldb-1.8.1/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.dylib'),
       },
     }
+
+
+  -- Flag to check if clipboard has been set
+  local clipboard_set = false
+
+  -- Autocmd to set clipboard to use the system clipboard on first file open
+  vim.api.nvim_create_autocmd("BufRead", {
+      callback = function()
+          if not clipboard_set then
+              vim.opt.clipboard:append("unnamedplus")
+              clipboard_set = true
+          end
+      end
+  })
 
   '';
 

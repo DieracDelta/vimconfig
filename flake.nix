@@ -39,7 +39,7 @@
       url = "github:kaarmu/typst.vim";
       flake = false;
     };
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
@@ -270,10 +270,10 @@
     #   url = "github:roobert/statusline-action-hints.nvim";
     #   flake = false;
     # };
-    neovim = {
-      url = "github:neovim/neovim?dir=contrib&rev=27fb62988e922c2739035f477f93cc052a4fee1e";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # neovim = {
+    #   url = "github:neovim/neovim?dir=contrib&rev=27fb62988e922c2739035f477f93cc052a4fee1e";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     floating-input-src = {
       url = "github:liangxianzhe/floating-input.nvim";
@@ -317,7 +317,7 @@
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, neovim, /* sg-nvim-src, */ codeium-nvim, vscoq, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, /* neovim, */ /* sg-nvim-src, */ codeium-nvim, vscoq, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         unappliedPkgs = (neovimArgs: import nixpkgs {
@@ -331,7 +331,7 @@
                 codeium-nvim = codeium-nvim.packages.${system}.vimPlugins.codeium-nvim;
                 codeium-lsp = codeium-nvim.packages.${system}.codeium-lsp;
                 coq-lsp = coq-lsp.packages.${system}.default;
-                nvim-master = neovim.packages.${system}.neovim;
+                # nvim-master = neovim.packages.${system}.neovim;
                 # this is just what I have installed right now...
                 vscoqlsp = vscoq.packages.${system}.vscoq-language-server-coq-8-18;
                 # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
@@ -348,7 +348,7 @@
             #  # Build with NodeJS
               withNodeJs = true;
               withPython3 = true;
-              package = pkgs.nvim-master;
+              # package = pkgs.nvim-master;
                   # --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
               extraMakeWrapperArgs = ''
                   --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.coq-lsp pkgs.vscoqlsp ]}
