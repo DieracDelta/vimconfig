@@ -93,6 +93,7 @@ with dsl; {
 
       "yg" = [ "<cmd> GitLink<CR>" "Link to git url"];
       "yb" = [ "<cmd> GitLink blame<CR>" "Link to git blame"];
+      "z" = [ "<cmd>lua require('yazi').yazi()<CR>" "Link to git blame"];
       "k" = [ "<cmd>lua vim.lsp.buf.type_definition()<CR>" "Get type definition" ];
       "rn" = [ "<cmd>lua vim.lsp.buf.rename()<CR>" "Rename function/variable" ];
       "ca" = [ "<cmd>lua vim.lsp.buf.code_action()<CR>" "Perform code action" ];

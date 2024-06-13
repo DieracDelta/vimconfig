@@ -10,6 +10,8 @@ with dsl; {
     telescope-dap-nvim
     # dapzzzz
     telescope-dapzzzz
+
+    yazi-nvim
   ];
 
   lua = ''

@@ -314,6 +314,10 @@
     #   url = "github:sourcegraph/sg.nvim";
     #   # inputs.pre-commit-nix.follows = "nixpkgs";
     # };
+    yazi-nvim-src = {
+      url = "github:mikavilpas/yazi.nvim";
+      flake = false;
+    };
 
   };
 

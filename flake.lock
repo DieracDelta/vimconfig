@@ -1186,7 +1186,8 @@
         "vscoq": "vscoq",
         "vscoq-nvim-src": "vscoq-nvim-src",
         "which-key-src": "which-key-src",
-        "wilder-nvim-src": "wilder-nvim-src"
+        "wilder-nvim-src": "wilder-nvim-src",
+        "yazi-nvim-src": "yazi-nvim-src"
       }
     },
     "rust-overlay": {
@@ -1579,6 +1580,22 @@
       "original": {
         "owner": "gelguy",
         "repo": "wilder.nvim",
+        "type": "github"
+      }
+    },
+    "yazi-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718081255,
+        "narHash": "sha256-gKz84FTx3WvNw/P/GMVjp30hByL1+/nCaQHFngIvl3U=",
+        "owner": "mikavilpas",
+        "repo": "yazi.nvim",
+        "rev": "d6575eda7711d8743eeac6bc5304b60934723e54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikavilpas",
+        "repo": "yazi.nvim",
         "type": "github"
       }
     }
