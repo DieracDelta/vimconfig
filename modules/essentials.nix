@@ -15,6 +15,7 @@ with dsl; {
 
 
   vim.g = {
+    rustfmt_autosave = true;
     diagnostics_visible = true;
     inlay_hints_visible = true;
     # perl bad

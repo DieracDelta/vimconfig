@@ -13,6 +13,8 @@ pkgs.lib.mkMerge [
 setupCodeium
 {
   plugins = with pkgs; [
+    vimPlugins.rust-vim
+    vimPlugins.image-nvim
     vimPlugins.typescript-tools-nvim
     typst-vim
     vimPlugins.vim-ormolu
@@ -396,6 +398,7 @@ setupCodeium
         tsserver_path = "./node_modules/typescript/lib/",
       }
       require('ferris').setup({})
+      require('image').setup({})
    '';
 
   # todo these are all globals...
@@ -421,6 +424,9 @@ setupCodeium
     autocmd BufWritePre *.rs let b:cursor_save = getpos(".")
     autocmd BufWritePost *.rs call setpos('.', b:cursor_save)
     autocmd BufWritePre *.rs call RustfmtFormat()
+
+    let g:typst_cmd = 'typst'
+    let g:typst_pdf_viewer = 'zathura'
 
   '';
 

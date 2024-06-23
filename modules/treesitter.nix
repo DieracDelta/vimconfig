@@ -18,7 +18,7 @@ with dsl; {
     # highlighted parens
     vimPlugins.rainbow-delimiters-nvim
     # toggle btwn all the things with %
-    nvim-matchup
+    # nvim-matchup
     # highlight other occurrences of a phrase
     vim-illuminate
     markid
@@ -189,7 +189,7 @@ with dsl; {
       };
     };
     # TODO treesitter issue, wait until better ts
-    matchup.enable = true;
+    # matchup.enable = true;
     autotag.enable = true;
   };
 
