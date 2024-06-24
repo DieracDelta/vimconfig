@@ -39,7 +39,7 @@
       url = "github:kaarmu/typst.vim";
       flake = false;
     };
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
@@ -266,15 +266,6 @@
       flake = false;
     };
 
-    # statusline-action-hints-src = {
-    #   url = "github:roobert/statusline-action-hints.nvim";
-    #   flake = false;
-    # };
-    # neovim = {
-    #   url = "github:neovim/neovim?dir=contrib&rev=e32af31ee89c6a251e8d551a044c7876b9514579";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     floating-input-src = {
       url = "github:liangxianzhe/floating-input.nvim";
       flake = false;
@@ -314,10 +305,14 @@
     #   url = "github:sourcegraph/sg.nvim";
     #   # inputs.pre-commit-nix.follows = "nixpkgs";
     # };
+    yazi-nvim-src = {
+      url = "github:mikavilpas/yazi.nvim";
+      flake = false;
+    };
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, /* sg-nvim-src, */ codeium-nvim, vscoq, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, codeium-nvim, vscoq, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         unappliedPkgs = (neovimArgs: import nixpkgs {

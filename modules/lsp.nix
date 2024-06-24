@@ -45,7 +45,7 @@ setupCodeium
     # for updating rust crates
     vimPlugins.crates-nvim
     # texx
-    vimPlugins.vimtex
+    # vimPlugins.vimtex
     # for showing lsp progress
     fidget
     # for diagnostics/quickfix window
@@ -71,6 +71,8 @@ setupCodeium
     nvim-dap-virtual-text
 
     nvim-dap-ui
+
+    vimPlugins.nvim-nio
 
     cmp-dap
 
@@ -404,17 +406,18 @@ setupCodeium
 
   # todo these are all globals...
   # move to vim.g
+
+    # let g:tex_flavor='latex'
+    # let g:vimtex_view_method='zathura'
+    # let g:vimtex_quickfix_mode=0
+    # set conceallevel=1
+    # let g:tex_conceal='abdmg'
+    # let g:vimtex_compiler_latexmk = { 'options' : [ 'notes.tex', '-shell-escape', '-interaction=nonstopmode' ] }
+    # let g:vimtex_complete_enabled = 1
+    # let g:vimtex_complete_close_braces = 1
+    # let g:vimtex_complete_ignore_case = 1
+    # let g:vimtex_complete_smart_case = 1
   vimscript = ''
-    let g:tex_flavor='latex'
-    let g:vimtex_view_method='zathura'
-    let g:vimtex_quickfix_mode=0
-    set conceallevel=1
-    let g:tex_conceal='abdmg'
-    let g:vimtex_compiler_latexmk = { 'options' : [ 'notes.tex', '-shell-escape', '-interaction=nonstopmode' ] }
-    let g:vimtex_complete_enabled = 1
-    let g:vimtex_complete_close_braces = 1
-    let g:vimtex_complete_ignore_case = 1
-    let g:vimtex_complete_smart_case = 1
 
 
     let g:vsnip_snippet_dir='~/.vsnip/'

@@ -175,6 +175,7 @@ with inputs; {
 
   gitlinker-nvim = plugin "gitlinker-nvim" gitlinker-nvim-src;
 
+  yazi-nvim = plugin "yazi-nvim" yazi-nvim-src;
   # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }
