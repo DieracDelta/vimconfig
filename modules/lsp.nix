@@ -13,6 +13,7 @@ pkgs.lib.mkMerge [
 setupCodeium
 {
   plugins = with pkgs; [
+    vimPlugins.nvim-nio
     vimPlugins.rust-vim
     vimPlugins.image-nvim
     vimPlugins.typescript-tools-nvim
