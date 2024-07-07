@@ -313,6 +313,22 @@
         "type": "github"
       }
     },
+    "fish-lsp-nixpkgs": {
+      "locked": {
+        "lastModified": 1720127480,
+        "narHash": "sha256-EqOnpUjfqo2LQMHJy0VjYO7xRDyKexe0Afd+FVfcz8I=",
+        "owner": "gungun974",
+        "repo": "nixpkgs",
+        "rev": "64ab696dbd12c54d2a5cee58113ed4105f9b19bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gungun974",
+        "ref": "fish-lsp",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -1125,6 +1141,7 @@
         "dracula-nvim": "dracula-nvim",
         "ferris-nvim-src": "ferris-nvim-src",
         "fidget-src": "fidget-src",
+        "fish-lsp-nixpkgs": "fish-lsp-nixpkgs",
         "flake-utils": "flake-utils_4",
         "floating-input-src": "floating-input-src",
         "gitlinker-nvim-src": "gitlinker-nvim-src",

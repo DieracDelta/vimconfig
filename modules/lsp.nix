@@ -402,6 +402,7 @@ setupCodeium
       }
       require('ferris').setup({})
       require('image').setup({})
+      require'lspconfig'.fish_lsp.setup{ cmd_env = { fish_lsp_logfile = "/tmp/fish_lsp_logs.txt" } }
    '';
 
   # todo these are all globals...

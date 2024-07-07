@@ -309,10 +309,14 @@
       url = "github:mikavilpas/yazi.nvim";
       flake = false;
     };
+    fish-lsp-nixpkgs = {
+      url = "github:gungun974/nixpkgs/fish-lsp";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, codeium-nvim, vscoq, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, codeium-nvim, vscoq, fish-lsp-nixpkgs, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         unappliedPkgs = (neovimArgs: import nixpkgs {
@@ -329,6 +333,7 @@
                 # nvim-master = neovim.packages.${system}.neovim;
                 # this is just what I have installed right now...
                 vscoqlsp = vscoq.packages.${system}.vscoq-language-server-coq-8-18;
+                fish-lsp = fish-lsp-nixpkgs.legacyPackages.${system}.fish-lsp;
                 # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
                 #     buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
                 #     });
@@ -346,7 +351,7 @@
               # package = pkgs.nvim-master;
                   # --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
               extraMakeWrapperArgs = ''
-                  --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.coq-lsp pkgs.vscoqlsp ]}
+                  --suffix PATH : ${pkgs.lib.makeBinPath [ /* pkgs.coq-lsp pkgs.vscoqlsp */ pkgs.fish-lsp ]}
               '';
               imports = [
                 ./modules/essentials.nix
