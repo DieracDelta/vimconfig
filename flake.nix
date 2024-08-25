@@ -1,7 +1,6 @@
 {
-  description = "My Personal Vim config";
+  description = "Neovim config";
 
-  # Input source for our derivation
   inputs = {
     rustaceanvim-src = {
       url = "github:mrcjkb/rustaceanvim";
@@ -17,24 +16,10 @@
       flake = false;
     };
 
-    # typst-conceal-src = {
-    #   url = "github:MrPicklePinosaur/typst-conceal";
-    #   flake = false;
-    # };
-
     molten-nvim-src = {
       url = "github:benlubas/molten-nvim";
       flake = false;
     };
-    vscoq = {
-      url = "github:coq-community/vscoq";
-      flake = true;
-    };
-    vscoq-nvim-src = {
-      url = "github:tomtomjhj/vscoq.nvim";
-      flake = false;
-    };
-
     typst-vim-src = {
       url = "github:kaarmu/typst.vim";
       flake = false;
@@ -46,15 +31,6 @@
     vim-circom-syntax-src = {
       url = "github:iden3/vim-circom-syntax";
       flake = false;
-    };
-
-    coq-lsp-nvim-src = {
-      url = "github:tomtomjhj/coq-lsp.nvim";
-      flake = false;
-    };
-
-    lldb-nix-fix = {
-      url = "github:mstone/nixpkgs?rev=fa70e7499b08524a4a02e7ce9e39847b9d3c95df";
     };
 
     vim-illuminate-src = {
@@ -74,11 +50,6 @@
 
     nil = {
       url = "github:oxalica/nil";
-    };
-
-    nix2vim = {
-      url = "github:gytis-ivaskevicius/nix2vim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     plenary-nvim-src = {
@@ -221,13 +192,6 @@
     #   flake = false;
     # };
 
-    coq-lsp = {
-      type = "git";
-      url = "https://github.com/ejgallego/coq-lsp/";
-      ref = "main";
-      submodules = true;
-    };
-
     nvim-dap-src = {
       url = "github:mfussenegger/nvim-dap";
       flake = false;
@@ -297,97 +261,140 @@
       flake = false;
     };
 
-    # sg-nvim-src = {
-    #   url = "github:sourcegraph/sg.nvim";
-    #   # inputs.pre-commit-nix.follows = "nixpkgs";
-    # };
     yazi-nvim-src = {
       url = "github:mikavilpas/yazi.nvim";
       flake = false;
     };
-    fish-lsp-nixpkgs = {
-      url = "github:gungun974/nixpkgs/fish-lsp";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, vscoq, fish-lsp-nixpkgs, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        unappliedPkgs = (neovimArgs: import nixpkgs {
+        pkgs = (import nixpkgs {
           inherit system;
           overlays = [
             (import ./plugins.nix inputs)
-            nix2vim.overlay
-            (prev: final:
-              {
-                inherit neovimArgs;
-                coq-lsp = coq-lsp.packages.${system}.default;
-                # nvim-master = neovim.packages.${system}.neovim;
-                # this is just what I have installed right now...
-                vscoqlsp = vscoq.packages.${system}.vscoq-language-server-coq-8-18;
-                fish-lsp = fish-lsp-nixpkgs.legacyPackages.${system}.fish-lsp;
-                # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
-                #     buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
-                #     });
-              }
-            )
+            (prev: final: { })
           ];
         });
-        neovimConfig = (neovimArgs:
-          let pkgs = (unappliedPkgs neovimArgs);
-          in
-            pkgs.neovimBuilder {
-            #  # Build with NodeJS
-              withNodeJs = true;
-              withPython3 = true;
-              # package = pkgs.nvim-master;
-                  # --suffix PATH : ${pkgs.lib.makeBinPath [ pkgs.sg ]} --suffix LUA_CPATH : ';${pkgs.sg}/lib/libsg_nvim.dylib;${pkgs.sg}/lib/libsg_nvim.so;'
-              extraMakeWrapperArgs = ''
-                  --suffix PATH : ${pkgs.lib.makeBinPath [ /* pkgs.coq-lsp pkgs.vscoqlsp */ pkgs.fish-lsp ]}
-              '';
-              imports = [
-                ./modules/essentials.nix
-                ./modules/lsp.nix
-                ./modules/aesthetics.nix
-                ./modules/telescope.nix
-                ./modules/misc.nix
-                ./modules/treesitter.nix
-                ./modules/git.nix
-                ./modules/jupyter.nix
-                # ./modules/wilder.nix
-                #
-                #
-                # ./modules/agda.nix
-                ./modules/autopairs.nix
-                # ./modules/trailblazer.nix
-                ./modules/github.nix
-                ./modules/coq.nix
+        pluginList = with pkgs; [
+          # essentials
+          which-key
 
-                # ./modules/sg.nix
+          # aesthetics
+          gruvbox-nvim
+          vimPlugins.lualine-nvim
+          vimPlugins.tabline-nvim
+          vimPlugins.nvim-web-devicons
 
-                # ./modules/leap.nix
-                # TODO uncomment when
-                # https://github.com/Olical/conjure/issues/401
-                # this will be quite useful
-                # ./modules/repl.nix
-              ];
-            }
-        );
+          # telescope
+          telescope-nvim
+          vimPlugins.telescope-file-browser-nvim
+          telescope-ui-select
+          yazi-nvim
+
+          # github
+          gitlinker-nvim
+
+          # misc
+          vimPlugins.surround-nvim
+          vimPlugins.undotree
+          parinfer-rust-nvim
+          colorizer
+
+          # git
+          vimPlugins.neogit
+          blamer-nvim
+          vimPlugins.gitsigns-nvim
+
+          # autopairs
+          nvim-autopairs
+
+          # lsp
+          vimPlugins.nvim-nio # async-io
+          vimPlugins.rust-vim # for formatting
+          vimPlugins.image-nvim
+          vimPlugins.typescript-tools-nvim
+          typst-vim
+          vimPlugins.vim-ormolu # haskell
+          vimPlugins.haskell-tools-nvim # haskell
+          cmp-nvim-lsp # completion
+          nvim-cmp # completion
+          vimPlugins.cmp-vsnip # completion
+          cmp-buffer # completion
+          vimPlugins.lsp_signature-nvim
+          vimPlugins.lspkind-nvim
+          lsp-config
+          plenary-nvim
+          vimPlugins.popup-nvim
+          vimPlugins.vim-vsnip
+          vimPlugins.vim-vsnip-integ
+          vimPlugins.friendly-snippets
+          ferris-nvim
+          rustaceanvim
+          vimPlugins.crates-nvim
+          fidget
+          vimPlugins.trouble-nvim
+          copilot-lua
+          copilot-cmp
+          node-type-nvim
+          floating-input
+
+          # treesitter
+          nvim-async
+          nvim-ufo
+          comment-nvim
+          vimPlugins.nvim-treesitter-context
+          vimPlugins.nvim-treesitter-textobjects
+          ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
+            src = pkgs.nvim-treesitter-src;
+          }) ).withAllGrammars)
+          vimPlugins.nvim-ts-autotag
+          vimPlugins.rainbow-delimiters-nvim
+          vim-illuminate
+          markid
+          ts-node-action
+
+        ];
+        luaModules =  [
+          "essentials"
+          "aesthetics"
+          "telescope"
+          "github"
+          "misc"
+          "treesitter"
+          "git"
+          "autopairs"
+          "lsp"
+        ];
+        luaRequire = module: builtins.readFile (builtins.toString ./lua_modules + "/${module}.lua");
+        pluginAttrSet = map (x: { plugin = x; }) pluginList;
+        orig_config = pkgs.neovimUtils.makeNeovimConfig {
+          withNodeJs = true;
+          withRuby = true;
+          withPython3 = true;
+          plugins = pluginAttrSet;
+        };
+        config = orig_config
+        // {
+          luaRcContent =
+            builtins.concatStringsSep "\n" (map luaRequire luaModules)
+          ;
+          wrapperArgs = ["--suffix" "PATH" ":" "${pkgs.lib.makeBinPath /* great place for pipe operator */ (with pkgs;[ ripgrep git terraform-ls lua-language-server clang-tools myRSetup nodePackages.vscode-json-languageserver])}"];
+        };
+        myNeovim =
+          pkgs.wrapNeovimUnstable
+            (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
+              buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
+            }))
+            config;
       in
       {
-        # The package built by `nix build .`
-        defaultPackage = neovimConfig {
-          makeOffline = false;
-        };
-        # The app run by `nix run .`
+        defaultPackage = myNeovim;
         apps.defaultApp = {
           type = "app";
-          program = "${neovimConfig}/bin/nvim";
+          program = "${myNeovim}/bin/nvim";
         };
-
-        packages.neovimFull = neovimConfig { makeOffline = false; };
-        packages.neovimOffline = neovimConfig { makeOffline = true; };
+        packages.neovim = myNeovim;
       });
 }

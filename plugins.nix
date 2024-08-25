@@ -7,43 +7,6 @@ let
   };
 in
 with inputs; {
-  #
-  # sg = sg-nvim-src.packages.${prev.system}.default.overrideAttrs (oldAttrs: {
-  #   buildInputs = oldAttrs.buildInputs ++ (if prev.stdenv.isDarwin then [ prev.darwin.apple_sdk.frameworks.Security ] else []);
-  # });
-
-  # codeium-lsp = with prev;
-  #   stdenv.mkDerivation {
-  #     pname = "codeium-lsp";
-  #     version = "v1.2.36";
-  #
-  #
-  #     src =
-  #     if prev.stdenv.isDarwin then
-  #     fetchurl {
-  #       url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.36/language_server_macos_arm";
-  #       sha256 = "sha256-9rEd/87gjNMbgOh2luP68Kd6+20zuA3O83Ma42rmd5Y=";
-  #     }
-  #     else
-  #     fetchurl {
-  #       url = "https://github.com/Exafunction/codeium/releases/download/language-server-v1.2.36/language_server_linux_x64";
-  #       sha256 = "sha256-YzQV5w/p0X+KHUU6sL3Djc2En/3pex5Iht7Er7U4UHY=";
-  #     };
-  #
-  #     nativeBuildInputs = [
-  #       stdenv.cc.cc
-  #     ] ++ (if !prev.stdenv.isDarwin then [autoPatchelfHook] else []);
-  #
-  #     installPhase = ''
-  #       mkdir -p $out/bin
-  #       install -m755 $src $out/bin/codeium-lsp
-  #     '';
-  #
-  #     phases = ["installPhase" "fixupPhase"];
-  #
-  #   }
-  # ;
-
   terraform-ls = with prev;
     (buildGoModule rec {
       pname = "terraform-ls";
@@ -80,8 +43,6 @@ with inputs; {
     });
 
   nil = inputs.nil.packages.${prev.system}.nil;
-
-  cornelis-vim = inputs.cornelis.packages.${prev.system}.cornelis-vim;
 
   telescope-nvim = (withSrc prev.vimPlugins.telescope-nvim inputs.telescope-src);
   cmp-buffer = (withSrc prev.vimPlugins.cmp-buffer inputs.cmp-buffer);
@@ -130,8 +91,6 @@ with inputs; {
 
   nvim-dap = plugin "nvim-dap" nvim-dap-src;
 
-  code-lldb = lldb-nix-fix.legacyPackages.${prev.system}.vscode-extensions.vadimcn.vscode-lldb;
-
   nvim-dap-virtual-text = plugin "nvim-dap-virtual-text" nvim-dap-virtual-text-src;
 
   nvim-dap-ui = plugin "nvim-dap-ui" nvim-dap-ui-src;
@@ -154,16 +113,11 @@ with inputs; {
 
   nvim-treesitter = plugin "nvim-treesitter" nvim-treesitter-src;
 
-  # sg-nvim = plugin "sg-nvim" sg-nvim-src;
-
   nvim-matchup = plugin "nvim-matchup" nvim-matchup-src;
 
-  coq-lsp-nvim = plugin "coq-lsp-nvim" coq-lsp-nvim-src;
   typst-vim = plugin "typst-vim" typst-vim-src;
 
   vim-circom-syntax = plugin "vim-circom-syntax" vim-circom-syntax-src;
-
-  vscoq-nvim = plugin "vscoq-nvim" vscoq-nvim-src;
 
   molten-nvim = plugin "molten-nvim" molten-nvim-src;
 
@@ -174,6 +128,5 @@ with inputs; {
   gitlinker-nvim = plugin "gitlinker-nvim" gitlinker-nvim-src;
 
   yazi-nvim = plugin "yazi-nvim" yazi-nvim-src;
-  # statusline-action-hints = plugin "statusline-action-hints" statusline-action-hints-src;
 
 }
