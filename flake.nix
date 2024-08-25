@@ -380,7 +380,7 @@
           luaRcContent =
             builtins.concatStringsSep "\n" (map luaRequire luaModules)
           ;
-          wrapperArgs = ["--suffix" "PATH" ":" "${pkgs.lib.makeBinPath /* great place for pipe operator */ (with pkgs;[ ripgrep git terraform-ls lua-language-server clang-tools myRSetup nodePackages.vscode-json-languageserver])}"];
+          wrapperArgs = ["--suffix" "PATH" ":" "${pkgs.lib.makeBinPath /* great place for pipe operator */ (with pkgs;[ ripgrep git terraform-ls lua-language-server clang-tools myRSetup nodejs nodePackages.vscode-json-languageserver])}"];
         };
         myNeovim =
           pkgs.wrapNeovimUnstable

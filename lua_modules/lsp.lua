@@ -3,6 +3,7 @@ require('floating-input').setup({})
 require('copilot').setup({
   suggestion = { enable = true, },
   panel = { enabled = true, },
+  copilot_node_command = "node",
 })
 require('copilot_cmp').setup({
   method = "getCompletionsCycling",
