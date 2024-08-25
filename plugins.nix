@@ -118,8 +118,6 @@ with inputs; {
   copilot-cmp = plugin "copilot-cmp" copilot-cmp-src;
   copilot-vim = plugin "copilot-vim" copilot-vim-src;
 
-  codeium-nvim = plugin "codeium-nvim" codeium-nvim-src;
-
   neural = plugin "neural" neural-src;
 
   nui-nvim = plugin "nui-nvim" nui-nvim-src;

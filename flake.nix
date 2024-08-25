@@ -200,10 +200,6 @@
     #   flake = false;
     # };
     #
-    codeium-nvim = {
-      url = "github:DieracDelta/codeium.nvim/jr/actually_works";
-      flake = true;
-    };
 
     neural-src = {
       url = "github:dense-analysis/neural";
@@ -316,7 +312,7 @@
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, codeium-nvim, vscoq, fish-lsp-nixpkgs, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix2vim, coq-lsp, vscoq, fish-lsp-nixpkgs, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         unappliedPkgs = (neovimArgs: import nixpkgs {
@@ -327,8 +323,6 @@
             (prev: final:
               {
                 inherit neovimArgs;
-                codeium-nvim = codeium-nvim.packages.${system}.vimPlugins.codeium-nvim;
-                codeium-lsp = codeium-nvim.packages.${system}.codeium-lsp;
                 coq-lsp = coq-lsp.packages.${system}.default;
                 # nvim-master = neovim.packages.${system}.neovim;
                 # this is just what I have installed right now...

@@ -2,11 +2,6 @@
 with dsl;
 let setupCodeium = (if !pkgs.neovimArgs.makeOffline then
 {
-  # setup.codeium = {
-    # tools = {
-    #   language_server = builtins.trace "FUUU" "${pkgs.codeium-lsp}/bin/codeium-lsp";
-    # };
-  # };
 } else builtins.trace "NOOO" {});
 in
 pkgs.lib.mkMerge [
@@ -61,8 +56,6 @@ setupCodeium
     # neural
     nui-nvim
     # significant-nvim
-
-    codeium-nvim
 
     # chatgpt-nvim
 
@@ -258,7 +251,6 @@ setupCodeium
     };
     sources = [
       { name = "copilot"; }
-      # { name = "codeium"; }
       { name = "nvim_lsp"; }
       { name = "vsnip"; }
       { name = "buffer"; }
