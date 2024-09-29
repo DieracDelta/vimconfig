@@ -75,6 +75,8 @@ vim.api.nvim_set_keymap('n', 'k', 'gk', {}) -- show docs. TODO move to lsp file
 
 -- Flag to check if clipboard has been set
 local clipboard_set = false
+vim.opt.clipboard:append("unnamedplus")
+clipboard_set = true
 
 -- Autocmd to set clipboard to use the system clipboard on first file open
 vim.api.nvim_create_autocmd("BufRead", {

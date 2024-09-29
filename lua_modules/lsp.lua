@@ -58,6 +58,21 @@ require('lspconfig').lua_ls.setup({
   },
 })
 
+-- latex config
+require('lspconfig').texlab.setup({
+  cmd = {"texlab"},
+})
+
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtex_compiler_method = 'tectonic'
+
+vim.g.vimtex_log_ignore = {
+	'Underfull',
+	'Overfull',
+	'specifier changed to',
+	'Token not allowed in a PDF string',
+}
+
 require('lspconfig').clangd.setup({
   cmd = {"clangd"}
 })

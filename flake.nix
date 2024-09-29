@@ -311,6 +311,7 @@
           nvim-autopairs
 
           # lsp
+          vimPlugins.vimtex
           vimPlugins.nvim-nio # async-io
           vimPlugins.rust-vim # for formatting
           vimPlugins.image-nvim
@@ -380,7 +381,7 @@
           luaRcContent =
             builtins.concatStringsSep "\n" (map luaRequire luaModules)
           ;
-          wrapperArgs = ["--suffix" "PATH" ":" "${pkgs.lib.makeBinPath /* great place for pipe operator */ (with pkgs;[ ripgrep git terraform-ls lua-language-server clang-tools myRSetup nodePackages.vscode-json-languageserver])}"];
+          wrapperArgs = ["--suffix" "PATH" ":" "${pkgs.lib.makeBinPath /* great place for pipe operator */ (with pkgs;[ ripgrep git terraform-ls lua-language-server clang-tools myRSetup nodePackages.vscode-json-languageserver tectonic texlab zathura])}"];
         };
         myNeovim =
           pkgs.wrapNeovimUnstable
