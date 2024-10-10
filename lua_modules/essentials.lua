@@ -86,6 +86,18 @@ vim.api.nvim_create_autocmd("BufRead", {
   end
 })
 
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
+
 -- Function to clean trailing spaces on save
 local function clean_extra_spaces()
     local save_cursor = vim.fn.getpos(".")
