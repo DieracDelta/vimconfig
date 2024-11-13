@@ -173,7 +173,7 @@ vim.api.nvim_set_keymap('n', '<leader>k', '<cmd>vim.lsp.buf.type_definition()<cr
 vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua lsp.buf.rename()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>vim.diagnostic.open_float()<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>mb', '<cmd>TypstWatch<cr>', {})
