@@ -796,6 +796,7 @@
         "quick-scope-src": "quick-scope-src",
         "rustaceanvim-src": "rustaceanvim-src",
         "significant-nvim-src": "significant-nvim-src",
+        "smear-cursor-nvim-src": "smear-cursor-nvim-src",
         "telescope-dap-nvim-src": "telescope-dap-nvim-src",
         "telescope-dapzzzz-src": "telescope-dapzzzz-src",
         "telescope-src": "telescope-src",
@@ -860,6 +861,22 @@
       "original": {
         "owner": "elpiloto",
         "repo": "significant.nvim",
+        "type": "github"
+      }
+    },
+    "smear-cursor-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733266627,
+        "narHash": "sha256-kMZjtFkV79JwbxXhQyi3GBYeN425IpE+oAzTo1dYWrc=",
+        "owner": "sphamba",
+        "repo": "smear-cursor.nvim",
+        "rev": "29a2c0e2f9ab95a97275f9c1adf39f3e77080282",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sphamba",
+        "repo": "smear-cursor.nvim",
         "type": "github"
       }
     },

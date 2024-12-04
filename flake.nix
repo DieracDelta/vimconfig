@@ -2,6 +2,11 @@
   description = "Neovim config";
 
   inputs = {
+
+    smear-cursor-nvim-src = {
+      url = "github:sphamba/smear-cursor.nvim";
+      flake = false;
+    };
     rustaceanvim-src = {
       url = "github:mrcjkb/rustaceanvim";
       flake = false;
@@ -354,6 +359,7 @@
           vim-illuminate
           markid
           ts-node-action
+          smear-cursor-nvim
 
         ];
         luaModules =  [

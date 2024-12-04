@@ -129,4 +129,6 @@ with inputs; {
 
   yazi-nvim = plugin "yazi-nvim" yazi-nvim-src;
 
+  smear-cursor-nvim = plugin "smear-cursor-nvim" smear-cursor-nvim-src;
+
 }
