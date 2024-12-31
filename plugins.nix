@@ -131,4 +131,6 @@ with inputs; {
 
   smear-cursor-nvim = plugin "smear-cursor-nvim" smear-cursor-nvim-src;
 
+  ghostty-nvim = plugin "ghostty-nvim" ghostty-nvim-src;
+
 }

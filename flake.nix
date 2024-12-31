@@ -2,7 +2,10 @@
   description = "Neovim config";
 
   inputs = {
-
+    ghostty-nvim-src = {
+      url = "github:isak102/ghostty.nvim";
+      flake = false;
+    };
     smear-cursor-nvim-src = {
       url = "github:sphamba/smear-cursor.nvim";
       flake = false;
@@ -360,6 +363,7 @@
           markid
           ts-node-action
           smear-cursor-nvim
+          ghostty-nvim
 
         ];
         luaModules =  [

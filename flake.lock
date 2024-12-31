@@ -315,6 +315,22 @@
         "type": "github"
       }
     },
+    "ghostty-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735584488,
+        "narHash": "sha256-weB+g6nKQ1fQVOVKnhwgmRhU4/j4cI0HCB28UWcu/mo=",
+        "owner": "isak102",
+        "repo": "ghostty.nvim",
+        "rev": "78b524cacd31069e93b7d082fbd0ae616ae7abc3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "isak102",
+        "repo": "ghostty.nvim",
+        "type": "github"
+      }
+    },
     "gitlinker-nvim-src": {
       "flake": false,
       "locked": {
@@ -769,6 +785,7 @@
         "fidget-src": "fidget-src",
         "flake-utils": "flake-utils_2",
         "floating-input-src": "floating-input-src",
+        "ghostty-nvim-src": "ghostty-nvim-src",
         "gitlinker-nvim-src": "gitlinker-nvim-src",
         "gruvbox-nvim-src": "gruvbox-nvim-src",
         "guess-indent-src": "guess-indent-src",
