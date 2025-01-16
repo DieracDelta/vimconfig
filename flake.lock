@@ -459,6 +459,22 @@
         "type": "github"
       }
     },
+    "neovim-nightly": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736924666,
+        "narHash": "sha256-1Mnw9hNMmsnfZuNbeTgmRev99vLZ9FsgrfCChjwnzSk=",
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
+        "rev": "7e61ee6d94536d30888c2fbeb1e9d53f4aa3f8b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
+        "type": "github"
+      }
+    },
     "neural-src": {
       "flake": false,
       "locked": {
@@ -794,6 +810,7 @@
         "markid-src": "markid-src",
         "molten-nvim-src": "molten-nvim-src",
         "neogen-src": "neogen-src",
+        "neovim-nightly": "neovim-nightly",
         "neural-src": "neural-src",
         "nil": "nil",
         "nixpkgs": "nixpkgs_3",
