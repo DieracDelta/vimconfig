@@ -2,8 +2,18 @@
   description = "Neovim config";
 
   inputs = {
+
     coqtail-src = {
       url = "github:whonore/Coqtail";
+      flake = false;
+    };
+
+    neovim-nightly = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      flake = false;
+    };
+    ghostty-nvim-src = {
+      url = "github:isak102/ghostty.nvim";
       flake = false;
     };
 
@@ -281,14 +291,29 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, neovim-nightly, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = (import nixpkgs {
           inherit system;
           overlays = [
             (import ./plugins.nix inputs)
-            (prev: final: { })
+            (prev: final: {
+              # credit: gerg/mnw
+              neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
+                inherit (final) lib pkgs;
+                neovim-src =
+                  let
+                    lock = final.lib.importJSON "${neovim-nightly}/flake.lock";
+                    nodeName = lock.nodes.root.inputs.neovim-src;
+                    input = lock.nodes.${nodeName}.locked;
+                  in
+                  pkgs.fetchFromGitHub {
+                    inherit (input) owner repo rev;
+                    hash = input.narHash;
+                  };
+              };
+            })
           ];
         });
         pluginList = with pkgs; [
@@ -373,6 +398,7 @@
           markid
           ts-node-action
           smear-cursor-nvim
+          ghostty-nvim
 
         ];
         luaModules =  [
@@ -403,7 +429,7 @@
         };
         myNeovim =
           pkgs.wrapNeovimUnstable
-            (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
+            (pkgs.neovim.overrideAttrs (oldAttrs: {
               buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
             }))
             config;

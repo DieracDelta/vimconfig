@@ -125,3 +125,4 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 
+vim.api.nvim_set_keymap('n', '<leader>fy', [[:let @+ = expand('%:p')<CR>]], { noremap = true, silent = true })

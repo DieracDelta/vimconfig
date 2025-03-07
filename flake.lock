@@ -347,6 +347,22 @@
         "type": "github"
       }
     },
+    "ghostty-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735584488,
+        "narHash": "sha256-weB+g6nKQ1fQVOVKnhwgmRhU4/j4cI0HCB28UWcu/mo=",
+        "owner": "isak102",
+        "repo": "ghostty.nvim",
+        "rev": "78b524cacd31069e93b7d082fbd0ae616ae7abc3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "isak102",
+        "repo": "ghostty.nvim",
+        "type": "github"
+      }
+    },
     "gitlinker-nvim-src": {
       "flake": false,
       "locked": {
@@ -472,6 +488,22 @@
       "original": {
         "owner": "danymat",
         "repo": "neogen",
+        "type": "github"
+      }
+    },
+    "neovim-nightly": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737100517,
+        "narHash": "sha256-NWsz/64rMc4B7374QhoMFb3O/tLr3e1FBouIgxHioaQ=",
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
+        "rev": "7d67e712dff97cca8e6eff015af8fbddab332062",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
         "type": "github"
       }
     },
@@ -803,6 +835,7 @@
         "fidget-src": "fidget-src",
         "flake-utils": "flake-utils_2",
         "floating-input-src": "floating-input-src",
+        "ghostty-nvim-src": "ghostty-nvim-src",
         "gitlinker-nvim-src": "gitlinker-nvim-src",
         "gruvbox-nvim-src": "gruvbox-nvim-src",
         "guess-indent-src": "guess-indent-src",
@@ -811,6 +844,7 @@
         "markid-src": "markid-src",
         "molten-nvim-src": "molten-nvim-src",
         "neogen-src": "neogen-src",
+        "neovim-nightly": "neovim-nightly",
         "neural-src": "neural-src",
         "nil": "nil",
         "nixpkgs": "nixpkgs_3",
