@@ -160,6 +160,38 @@
         "type": "github"
       }
     },
+    "coq-lsp-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730137168,
+        "narHash": "sha256-eceyZc9nIbpe1G/kzU3Y61ut+RKfYXI78zALxN4Un+4=",
+        "owner": "tomtomjhj",
+        "repo": "coq-lsp.nvim",
+        "rev": "6135ed25fc2a1b4b1b6451ed206dc38b493ff1a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomtomjhj",
+        "repo": "coq-lsp.nvim",
+        "type": "github"
+      }
+    },
+    "coqtail-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740352625,
+        "narHash": "sha256-ItbGhzOBNwANWnL+Sc5XAxUOWWNwof88YwtDAHd3cYs=",
+        "owner": "whonore",
+        "repo": "Coqtail",
+        "rev": "77ff3fa0b0eb0453ca52467c53004330f010e3f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "whonore",
+        "repo": "Coqtail",
+        "type": "github"
+      }
+    },
     "cornelis": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -763,6 +795,8 @@
         "conjure-src": "conjure-src",
         "copilot-cmp-src": "copilot-cmp-src",
         "copilot-lua-src": "copilot-lua-src",
+        "coq-lsp-nvim-src": "coq-lsp-nvim-src",
+        "coqtail-src": "coqtail-src",
         "cornelis": "cornelis",
         "dracula-nvim": "dracula-nvim",
         "ferris-nvim-src": "ferris-nvim-src",

@@ -2,6 +2,10 @@
   description = "Neovim config";
 
   inputs = {
+    coqtail-src = {
+      url = "github:whonore/Coqtail";
+      flake = false;
+    };
 
     smear-cursor-nvim-src = {
       url = "github:sphamba/smear-cursor.nvim";
@@ -222,6 +226,11 @@
       flake = false;
     };
 
+    coq-lsp-nvim-src = {
+      url = "github:tomtomjhj/coq-lsp.nvim";
+      flake = false;
+    };
+
     # coq-lsp = {
     #   url = "github:r-muhairi/coq-lsp?ref=48bfb06558816861ca049b771b93f761e5e27fba&submodules=1";
     #   flake = true;
@@ -316,6 +325,10 @@
           nvim-autopairs
 
           # lsp
+          coqtail
+          coq-lsp-nvim
+
+
           vimPlugins.nvim-nio # async-io
           vimPlugins.rust-vim # for formatting
           vimPlugins.image-nvim

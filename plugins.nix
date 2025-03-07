@@ -131,4 +131,8 @@ with inputs; {
 
   smear-cursor-nvim = plugin "smear-cursor-nvim" smear-cursor-nvim-src;
 
+  coq-lsp-nvim = plugin "coq-lsp-nvim" coq-lsp-nvim-src;
+
+  coqtail = plugin "coqtail" coqtail-src;
+
 }
