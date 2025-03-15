@@ -70,6 +70,10 @@ vim.api.nvim_set_keymap('n', '<leader>wl', '<cmd>wincmd l<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>wj', '<cmd>wincmd j<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>wk', '<cmd>wincmd k<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>wh', '<cmd>wincmd h<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>wL', '<cmd>wincmd x<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>wJ', '<cmd>wincmd J<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>wK', '<cmd>wincmd K<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>wH', '<cmd>wincmd H<cr>', {})
 
 vim.api.nvim_set_keymap('n', 'k', 'gk', {}) -- show docs. TODO move to lsp file
 
