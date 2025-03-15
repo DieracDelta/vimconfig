@@ -266,7 +266,9 @@ vim.api.nvim_set_keymap('n', '<leader>', '<cmd><cr>', {})
 
 vim.g.loaded_coqtail = 1
 vim.g["coqtail#supported"] = 0
-require'coq-lsp'.setup(
+require'coq-lsp'.setup()
 
+require'lspconfig'.ocamllsp.setup{
+  cmd = { 'ocamllsp', '--fallback-read-dot-merlin' },
 
-)
+}
