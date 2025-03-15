@@ -8,6 +8,11 @@
       flake = false;
     };
 
+    neovim-nightly-linux = {
+      url = "github:DieracDelta/neovim-nightly-overlay";
+      flake = false;
+    };
+
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       flake = false;
@@ -43,7 +48,7 @@
       url = "github:kaarmu/typst.vim";
       flake = false;
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/24.11";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
@@ -98,18 +103,18 @@
       url = "github:ellisonleao/gruvbox.nvim";
       flake = false;
     };
-    nvim-cmp = {
-      url = "github:hrsh7th/nvim-cmp";
-      flake = false;
-    };
-    cmp-nvim-lsp = {
-      url = "github:hrsh7th/cmp-nvim-lsp";
-      flake = false;
-    };
-    cmp-buffer = {
-      url = "github:hrsh7th/cmp-buffer";
-      flake = false;
-    };
+    # nvim-cmp = {
+    #   url = "github:hrsh7th/nvim-cmp";
+    #   flake = false;
+    # };
+    # cmp-nvim-lsp = {
+    #   url = "github:hrsh7th/cmp-nvim-lsp";
+    #   flake = false;
+    # };
+    # cmp-buffer = {
+    #   url = "github:hrsh7th/cmp-buffer";
+    #   flake = false;
+    # };
     comment-nvim-src = {
       url = "github:numToStr/Comment.nvim";
       flake = false;
@@ -180,10 +185,10 @@
       flake = false;
     };
 
-    copilot-cmp-src = {
-      url = "github:zbirenbaum/copilot-cmp";
-      flake = false;
-    };
+    # copilot-cmp-src = {
+    #   url = "github:zbirenbaum/copilot-cmp";
+    #   flake = false;
+    # };
 
     # copilot-vim-src = {
     #   url = "github:github/copilot.vim";
@@ -231,10 +236,10 @@
       flake = false;
     };
 
-    cmp-dap-src = {
-      url = "github:rcarriga/cmp-dap";
-      flake = false;
-    };
+    # cmp-dap-src = {
+    #   url = "github:rcarriga/cmp-dap";
+    #   flake = false;
+    # };
 
     coq-lsp-nvim-src = {
       url = "github:tomtomjhj/coq-lsp.nvim";
@@ -291,31 +296,82 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, neovim-nightly, ... }:
+  outputs = inputs@{ self, flake-utils, nixpkgs, neovim-nightly, neovim-nightly-linux, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = (import nixpkgs {
-          inherit system;
-          overlays = [
-            (import ./plugins.nix inputs)
-            (prev: final: {
-              # credit: gerg/mnw
-              neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
-                inherit (final) lib pkgs;
-                neovim-src =
-                  let
-                    lock = final.lib.importJSON "${neovim-nightly}/flake.lock";
-                    nodeName = lock.nodes.root.inputs.neovim-src;
-                    input = lock.nodes.${nodeName}.locked;
-                  in
-                  pkgs.fetchFromGitHub {
-                    inherit (input) owner repo rev;
-                    hash = input.narHash;
+        pkgs =
+          if system != "x86_64-linux" then
+            (import nixpkgs {
+              inherit system;
+              overlays = [
+                (import ./plugins.nix inputs)
+                (prev: final: {
+                  # credit: gerg/mnw
+                  neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
+                    inherit (final) lib pkgs;
+                    neovim-src =
+                      let
+                        lock = final.lib.importJSON "${neovim-nightly}/flake.lock";
+                        nodeName = lock.nodes.root.inputs.neovim-src;
+                        input = lock.nodes.${nodeName}.locked;
+                      in
+                      pkgs.fetchFromGitHub {
+                        inherit (input) owner repo rev;
+                        hash = input.narHash;
+                      };
                   };
-              };
+                })
+              ];
             })
-          ];
-        });
+          else
+            (import nixpkgs {
+              # localSystem = system;
+
+              localSystem = {
+                inherit system;
+                gcc.arch = "znver3";
+                gcc.mtune = "znver3";
+              };
+              crossSystem = {
+                inherit system;
+                gcc.arch = "znver3";
+                gcc.mtune = "znver3";
+              };
+              overlays = [
+                (import ./plugins.nix inputs)
+                (prev: final: {
+                  p11-kit = final.p11-kit.overrideAttrs (oldAttrs: {
+                    doCheck = false;
+                  });
+                  mailutils = final.mailutils.overrideAttrs (oldAttrs: {
+                    doCheck = false;
+                  });
+                  bear = final.bear.overrideAttrs (oldAttrs: {
+                    doCheck = false;
+                  });
+                  starship = final.starship.overrideAttrs (oldAttrs: {
+                    doCheck = false;
+                  });
+
+                })
+                (prev: final: {
+                  # credit: gerg/mnw
+                  neovim = import "${neovim-nightly-linux}/flake/packages/neovim.nix" {
+                    inherit (final) lib pkgs;
+                    neovim-src =
+                      let
+                        lock = final.lib.importJSON "${neovim-nightly-linux}/flake.lock";
+                        nodeName = lock.nodes.root.inputs.neovim-src;
+                        input = lock.nodes.${nodeName}.locked;
+                      in
+                      pkgs.fetchFromGitHub {
+                        inherit (input) owner repo rev;
+                        hash = input.narHash;
+                      };
+                  };
+                })
+              ];
+            });
         pluginList = with pkgs; [
           # essentials
           which-key
@@ -361,25 +417,27 @@
           typst-vim
           vimPlugins.vim-ormolu # haskell
           vimPlugins.haskell-tools-nvim # haskell
-          cmp-nvim-lsp # completion
-          nvim-cmp # completion
-          vimPlugins.cmp-vsnip # completion
-          cmp-buffer # completion
+          vimPlugins.coq_nvim
+          # vimPlugins.coq-thirdparty
+          # cmp-nvim-lsp # completion
+          # nvim-cmp # completion
+          # vimPlugins.cmp-vsnip # completion
+          # cmp-buffer # completion
           vimPlugins.lsp_signature-nvim
           vimPlugins.lspkind-nvim
           lsp-config
           plenary-nvim
           vimPlugins.popup-nvim
-          vimPlugins.vim-vsnip
-          vimPlugins.vim-vsnip-integ
-          vimPlugins.friendly-snippets
+          # vimPlugins.vim-vsnip
+          # vimPlugins.vim-vsnip-integ
+           # vimPlugins.friendly-snippets
           ferris-nvim
           rustaceanvim
           vimPlugins.crates-nvim
           fidget
           vimPlugins.trouble-nvim
           copilot-lua
-          copilot-cmp
+          # copilot-cmp
           node-type-nvim
           floating-input
 

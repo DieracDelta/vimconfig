@@ -5,12 +5,22 @@ require('copilot').setup({
   panel = { enabled = true, },
   copilot_node_command = "node",
 })
-require('copilot_cmp').setup({
-  method = "getCompletionsCycling",
-  formatters = {
-    insert_text = require("copilot_cmp.format").remove_existing,
-  },
-})
+vim.g.coq_settings = {
+  auto_start = "shut-up",
+  keymap =
+  { recommended = false,},
+}
+require('coq')
+-- require("coq_3p")({
+--   { src = "nvimlua", short_name = "nLUA" },
+--   { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
+-- })
+-- require('copilot_cmp').setup({
+--   method = "getCompletionsCycling",
+--   formatters = {
+--     insert_text = require("copilot_cmp.format").remove_existing,
+--   },
+-- })
 require('fidget').setup({})
 require('crates').setup({
   text = {
@@ -78,48 +88,48 @@ require('lsp_signature').setup({
   handler_opts = {border = "single"},
 })
 
-require('cmp').setup({
-  mapping = {
-    ['<C-n>'] = require('cmp').mapping.select_next_item({ behavior = require('cmp').SelectBehavior.Insert }),
-    ['<C-p>'] = require('cmp').mapping.select_prev_item({ behavior = require('cmp').SelectBehavior.Insert }),
-    ['<Down>'] = require('cmp').mapping.select_next_item({ behavior = require('cmp').SelectBehavior.Select }),
-    ['<Up>'] = require('cmp').mapping.select_prev_item({ behavior = require('cmp').SelectBehavior.Select }),
-    ['<C-d>'] = require('cmp').mapping.scroll_docs(-4),
-    ['<C-f>'] = require('cmp').mapping.scroll_docs(4),
-    ['<C-Space>'] = require('cmp').mapping.complete(),
-    ['<C-e>'] = require('cmp').mapping.close(),
-    ['<CR>'] = require('cmp').mapping.confirm({ behavior = require('cmp').ConfirmBehavior.Replace, select = true, }),
-  },
-  sources = {
-    { name = "copilot", },
-    { name = "nvim_lsp", },
-    { name = "vsnip", },
-    { name = "buffer", },
-    { name = "crates", },
-  },
-  snippet = {expand = function(args) vim.fn['vsnip#anonymous'](args.body) end},
-  -- formatting = {
-  --   format = {
-  --     require('lspkind').cmp_format({
-  --       mode = "symbol",
-  --       maxwidth = 50,
-  --       ellipsis_char = '...',
-  --       symbol_map = { Suggestion = ""},
-  --     })
-  --   }
-  -- },
-  -- enabled =
-  -- function()
-  --   return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-  -- end,
-})
+-- require('cmp').setup({
+--   mapping = {
+--     ['<C-n>'] = require('cmp').mapping.select_next_item({ behavior = require('cmp').SelectBehavior.Insert }),
+--     ['<C-p>'] = require('cmp').mapping.select_prev_item({ behavior = require('cmp').SelectBehavior.Insert }),
+--     ['<Down>'] = require('cmp').mapping.select_next_item({ behavior = require('cmp').SelectBehavior.Select }),
+--     ['<Up>'] = require('cmp').mapping.select_prev_item({ behavior = require('cmp').SelectBehavior.Select }),
+--     ['<C-d>'] = require('cmp').mapping.scroll_docs(-4),
+--     ['<C-f>'] = require('cmp').mapping.scroll_docs(4),
+--     ['<C-Space>'] = require('cmp').mapping.complete(),
+--     ['<C-e>'] = require('cmp').mapping.close(),
+--     ['<CR>'] = require('cmp').mapping.confirm({ behavior = require('cmp').ConfirmBehavior.Replace, select = true, }),
+--   },
+--   sources = {
+--     { name = "copilot", },
+--     { name = "nvim_lsp", },
+--     { name = "vsnip", },
+--     { name = "buffer", },
+--     { name = "crates", },
+--   },
+--   snippet = {expand = function(args) vim.fn['vsnip#anonymous'](args.body) end},
+--   -- formatting = {
+--   --   format = {
+--   --     require('lspkind').cmp_format({
+--   --       mode = "symbol",
+--   --       maxwidth = 50,
+--   --       ellipsis_char = '...',
+--   --       symbol_map = { Suggestion = ""},
+--   --     })
+--   --   }
+--   -- },
+--   -- enabled =
+--   -- function()
+--   --   return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+--   -- end,
+-- })
 
-vim.api.nvim_set_keymap("i", "<Tab>", "vsnip#available(1)  ? '<Plug>(vsnip-jump-next)': '<Tab>'", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "vsnip#available(1)  ? '<Plug>(vsnip-jump-next)': '<Tab>'", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "vsnip#available(-1)  ? '<Plug>(vsnip-jump-prev)': '<S-Tab>'", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "vsnip#available(-1)  ? '<Plug>(vsnip-jump-prev)': '<S-Tab>'", {expr = true})
-vim.api.nvim_set_keymap("i", "<C-j>", "vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'", {expr = true})
-vim.api.nvim_set_keymap("s", "<C-j>", "vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'", {expr = true})
+-- vim.api.nvim_set_keymap("i", "<Tab>", "vsnip#available(1)  ? '<Plug>(vsnip-jump-next)': '<Tab>'", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<Tab>", "vsnip#available(1)  ? '<Plug>(vsnip-jump-next)': '<Tab>'", {expr = true})
+-- vim.api.nvim_set_keymap("i", "<S-Tab>", "vsnip#available(-1)  ? '<Plug>(vsnip-jump-prev)': '<S-Tab>'", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<S-Tab>", "vsnip#available(-1)  ? '<Plug>(vsnip-jump-prev)': '<S-Tab>'", {expr = true})
+-- vim.api.nvim_set_keymap("i", "<C-j>", "vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<C-j>", "vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'", {expr = true})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
