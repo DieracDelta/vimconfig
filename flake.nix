@@ -49,7 +49,7 @@
       flake = false;
     };
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
@@ -333,7 +333,7 @@
                 }; in
             # (import pkgs {
             (import nixpkgs {
-              # config.replaceStdenv = { pkgs }: (pkgs.clangStdenv);
+              config.replaceStdenv = { pkgs }: (pkgs.clangStdenv);
 
               # stdenv = super.withCFlags [ "-flto" "-funroll-loops" "-O3" "-enable-rice" "-omg-optimize" "-teach-me-unix"] super.stdenv;
               # localSystem = system;
