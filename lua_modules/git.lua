@@ -1,4 +1,4 @@
-vim.g.blamer_enabled = 1
+vim.g.blamer_enabled = 0
 require('gitsigns').setup({})
 require('neogit').setup({
   signs = {

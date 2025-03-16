@@ -61,8 +61,8 @@ vim.api.nvim_set_keymap('n', 'k', 'gk', {}) -- wrapped up
 vim.api.nvim_set_keymap('n', '<leader>ws', '<cmd>sp<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>wv', '<cmd>vs<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>bd', '<cmd>q<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>bn', '<cmd>bnext<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>bp', '<cmd>bprev<cr>', {})
+-- vim.api.nvim_set_keymap('n', '<leader>bn', '<cmd>bnext<cr>', {})
+-- vim.api.nvim_set_keymap('n', '<leader>bp', '<cmd>bprev<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>bN', '<cmd>tabedit<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>bD', '<cmd>Bclose!<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>wd', '<cmd>q<cr>', {})
@@ -130,3 +130,67 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 
 vim.api.nvim_set_keymap('n', '<leader>fy', [[:let @+ = expand('%:p')<CR>]], { noremap = true, silent = true })
+
+function filtered_bufnav(direction)
+  -- Get all listed buffers as a table of info.
+  local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+  local cur = vim.api.nvim_get_current_buf()
+  local start_index = nil
+
+  -- Find the index of the current buffer.
+  for i, buf in ipairs(bufs) do
+    if buf.bufnr == cur then
+      start_index = i
+      break
+    end
+  end
+
+  if not start_index then
+    print("Current buffer not found!")
+    return
+  end
+
+  local count = #bufs
+  local target_buf = nil
+
+  for i = 1, count do
+    local idx
+    if direction == 1 then
+      idx = ((start_index + i - 1) % count) + 1
+    elseif direction == -1 then
+      -- Lua modulo always returns a non-negative result.
+      idx = ((start_index - i - 1) % count) + 1
+    else
+      error("Invalid direction: " .. tostring(direction))
+    end
+
+    local buf = bufs[idx]
+    -- Filter out Coq panel buffers (assumes their name starts with "CoqInfoPanel:")
+    if not buf.name:match("CoqInfoPanel") then
+      target_buf = buf.bufnr
+      break
+    end
+  end
+
+  if target_buf then
+    vim.cmd("buffer " .. target_buf)
+  else
+    print("No non-Coq buffer found")
+  end
+end
+
+-- Map for bnext (direction = 1)
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>bn',
+  '<cmd>lua filtered_bufnav(1)<cr>',
+  { noremap = true, silent = true }
+)
+
+-- Map for bprev (direction = -1)
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>bp',
+  '<cmd>lua filtered_bufnav(-1)<cr>',
+  { noremap = true, silent = true }
+)

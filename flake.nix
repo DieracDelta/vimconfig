@@ -48,6 +48,7 @@
       url = "github:kaarmu/typst.vim";
       flake = false;
     };
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/24.11";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
@@ -242,7 +243,7 @@
     # };
 
     coq-lsp-nvim-src = {
-      url = "github:tomtomjhj/coq-lsp.nvim";
+      url = "path:///home/jrestivo/dev/coq-lsp.nvim";
       flake = false;
     };
 
@@ -324,7 +325,17 @@
               ];
             })
           else
+            let pkgs' = import nixpkgs { inherit system; };
+                pkgs'' = pkgs'.applyPatches {
+                  src = nixpkgs;
+                  name = "144748.patch";
+                  patches = [ ./144748.patch ];
+                }; in
+            # (import pkgs {
             (import nixpkgs {
+              # config.replaceStdenv = { pkgs }: (pkgs.clangStdenv);
+
+              # stdenv = super.withCFlags [ "-flto" "-funroll-loops" "-O3" "-enable-rice" "-omg-optimize" "-teach-me-unix"] super.stdenv;
               # localSystem = system;
 
               localSystem = {
@@ -339,21 +350,55 @@
               };
               overlays = [
                 (import ./plugins.nix inputs)
-                (prev: final: {
-                  p11-kit = final.p11-kit.overrideAttrs (oldAttrs: {
-                    doCheck = false;
-                  });
-                  mailutils = final.mailutils.overrideAttrs (oldAttrs: {
-                    doCheck = false;
-                  });
-                  bear = final.bear.overrideAttrs (oldAttrs: {
-                    doCheck = false;
-                  });
-                  starship = final.starship.overrideAttrs (oldAttrs: {
-                    doCheck = false;
-                  });
+                # (prev: final: {
+                #   stdenv = final.stdenvAdapters.withCFlags [] final.llvmPackages_latest.stdenv;
+                #   # stdenv = final.llvmPackages_latest.stdenv.override(old : {
+                #   #
+                #   # });
+                #
+                # })
+                #   stdenv = prev.llvmPackages_latest.stdenv.withCFlags
+                #   [
+                # # credit https://github.com/moni-dz/nixpkgs-f2k/blob/ca75dc2c9d41590ca29555cddfc86cf950432d5e/flake.nix#L237-L289
+                #     "-O3"
+                #     "-flto=auto"
+                #     "-ffat-lto-objects"
+                #     "-pipe"
+                #     "-ffloat-store"
+                #     "-fexcess-precision=fast"
+                #     "-ffast-math"
+                #     "-fno-rounding-math"
+                #     "-fno-signaling-nans"
+                #     "-fno-math-errno"
+                #     "-funsafe-math-optimizations"
+                #     "-fassociative-math"
+                #     "-freciprocal-math"
+                #     "-ffinite-math-only"
+                #     "-fno-signed-zeros"
+                #     "-fno-trapping-math"
+                #     "-frounding-math"
+                #     "-fsingle-precision-constant"
+                #     "-fcx-limited-range"
+                #     "-fcx-fortran-rules"
+                #
+                #   ]
+                #
+                #   prev.llvmPackages_latest.stdenv;
+                # (prev: final: {
+                #   p11-kit = final.p11-kit.overrideAttrs (oldAttrs: {
+                #     doCheck = false;
+                #   });
+                #   mailutils = final.mailutils.overrideAttrs (oldAttrs: {
+                #     doCheck = false;
+                #   });
+                #   bear = final.bear.overrideAttrs (oldAttrs: {
+                #     doCheck = false;
+                #   });
+                #   starship = final.starship.overrideAttrs (oldAttrs: {
+                #     doCheck = false;
+                #   });
 
-                })
+                # })
                 (prev: final: {
                   # credit: gerg/mnw
                   neovim = import "${neovim-nightly-linux}/flake/packages/neovim.nix" {

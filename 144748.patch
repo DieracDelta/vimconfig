@@ -1,0 +1,35 @@
+diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
+index f3c331d76a5f..c7caf510eda2 100644
+--- a/pkgs/top-level/all-packages.nix
++++ b/pkgs/top-level/all-packages.nix
+@@ -575,14 +575,18 @@ with pkgs;
+         openssl = buildPackages.openssl.override {
+           fetchurl = stdenv.fetchurlBoot;
+           buildPackages = {
+-            coreutils = buildPackages.coreutils.override {
++            coreutils = (buildPackages.coreutils.override rec {
+               fetchurl = stdenv.fetchurlBoot;
+               inherit perl;
+               xz = buildPackages.xz.override { fetchurl = stdenv.fetchurlBoot; };
+               gmpSupport = false;
+               aclSupport = false;
+               attrSupport = false;
+-            };
++              autoreconfHook = null;
++              texinfo = null;
++            }).overrideAttrs (_: {
++              prebuild = "touch Makefile.in"; #avoid automake
++            });
+             inherit perl;
+           };
+           inherit perl;
+@@ -10088,6 +10092,9 @@ with pkgs;
+     perl = buildPackages.perl.override {
+       enableCrypt = false;
+       fetchurl = stdenv.fetchurlBoot;
++      zlib = buildPackages.zlib.override {
++        fetchurl = stdenv.fetchurlBoot;
++      };
+     };
+   };
+   libxcrypt-legacy = libxcrypt.override { enableHashes = "all"; };
