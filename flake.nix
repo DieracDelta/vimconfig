@@ -443,6 +443,10 @@
         # plugin, config file
         lazyPluginList = with pkgs; [
           [rustaceanvim "rustaceanvim"]
+          [vimPlugins.haskell-tools-nvim "haskell-tools-nvim"]
+          [ferris-nvim "ferris"]
+          [parinfer-rust-nvim "parinfer"]
+          # [vim-ormolu "vim-ormolu"]
 
         ];
         requiredPluginList = with pkgs; [
@@ -472,7 +476,6 @@
           # misc
           vimPlugins.surround-nvim
           vimPlugins.undotree
-          parinfer-rust-nvim
           colorizer
 
           # git
@@ -493,14 +496,12 @@
           vimPlugins.typescript-tools-nvim
           typst-vim
           vimPlugins.vim-ormolu # haskell
-          vimPlugins.haskell-tools-nvim # haskell
           vimPlugins.coq_nvim
           vimPlugins.lsp_signature-nvim
           vimPlugins.lspkind-nvim
           lsp-config
           plenary-nvim
           vimPlugins.popup-nvim
-          ferris-nvim
           vimPlugins.crates-nvim
           fidget
           vimPlugins.trouble-nvim

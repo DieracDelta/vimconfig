@@ -162,13 +162,10 @@ end
 
 vim.fn.setenv("CARGO_TARGET_DIR", "target_dirs/nix_ra")
 
-require('haskell-tools')
-require('telescope').load_extension('ht')
 require'lspconfig'.tinymist.setup{}
 require("typescript-tools").setup {
   tsserver_path = "./node_modules/typescript/lib/",
 }
-require('ferris').setup({})
 require('image').setup({})
 vim.g.typst_cmd = 'typst'
 vim.g.typst_pdf_viewer = 'zathura'
