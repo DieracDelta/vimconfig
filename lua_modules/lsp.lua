@@ -178,7 +178,7 @@ vim.api.nvim_set_keymap('n', 'K', '<cmd>lua show_documentation()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.signature_help()<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>S', '<cmd>lua vim.lsp.buf.signature_help()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>k', '<cmd>vim.lsp.buf.type_definition()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua lsp.buf.rename()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
@@ -282,3 +282,12 @@ require'lspconfig'.ocamllsp.setup{
   cmd = { 'ocamllsp', '--fallback-read-dot-merlin' },
 
 }
+
+local r = require("symbols.recipes")
+require("symbols").setup(r.DefaultFilters, r.AsciiSymbols, {
+  sidebar = { hide_cursor = false },
+  provider = { lsp = { timeout_ms = 10000} },
+  -- custom settings here
+  -- e.g. hide_cursor = false
+})
+vim.keymap.set("n", "<leader>s", "<cmd> SymbolsToggle<CR>")

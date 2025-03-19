@@ -138,4 +138,6 @@ with inputs; {
 
   ghostty-nvim = plugin "ghostty-nvim" ghostty-nvim-src;
 
+  symbols-nvim = plugin "symbols-nvim" symbols-nvim-src;
+
 }

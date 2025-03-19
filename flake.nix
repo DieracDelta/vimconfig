@@ -2,6 +2,10 @@
   description = "Neovim config";
 
   inputs = {
+    symbols-nvim-src = {
+      url = "github:oskarrrrrrr/symbols.nvim";
+      flake = false;
+    };
 
     coqtail-src = {
       url = "github:whonore/Coqtail";
@@ -243,7 +247,7 @@
     # };
 
     coq-lsp-nvim-src = {
-      url = "path:///home/jrestivo/dev/coq-lsp.nvim";
+      url = "github:DieracDelta/coq-lsp.nvim";
       flake = false;
     };
 
@@ -308,7 +312,7 @@
                 (import ./plugins.nix inputs)
                 (prev: final: {
                   # credit: gerg/mnw
-                  neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
+                  neovim = import "${neovim-nightly-linux}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
                     neovim-src =
                       let
@@ -333,7 +337,7 @@
                 }; in
             # (import pkgs {
             (import nixpkgs {
-              config.replaceStdenv = { pkgs }: (pkgs.clangStdenv);
+              # config.replaceStdenv = { pkgs }: (pkgs.clangStdenv);
 
               # stdenv = super.withCFlags [ "-flto" "-funroll-loops" "-O3" "-enable-rice" "-omg-optimize" "-teach-me-unix"] super.stdenv;
               # localSystem = system;
@@ -485,6 +489,8 @@
           # copilot-cmp
           node-type-nvim
           floating-input
+
+          symbols-nvim
 
           # treesitter
           nvim-async

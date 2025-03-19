@@ -99,14 +99,17 @@
     "coq-lsp-nvim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1742139614,
-        "narHash": "sha256-5MUsHf+hdZtMrXO8TwmooGXBFyIEaEJvzIIZuoxbgqY=",
-        "path": "/home/jrestivo/dev/coq-lsp.nvim",
-        "type": "path"
+        "lastModified": 1742139685,
+        "narHash": "sha256-xcedErb4NjkbMdADgTzpWQu465smc4XSp6kAYwTK+dk=",
+        "owner": "DieracDelta",
+        "repo": "coq-lsp.nvim",
+        "rev": "b41f89982c11bad9fc64fd0f01abb326016acc3d",
+        "type": "github"
       },
       "original": {
-        "path": "/home/jrestivo/dev/coq-lsp.nvim",
-        "type": "path"
+        "owner": "DieracDelta",
+        "repo": "coq-lsp.nvim",
+        "type": "github"
       }
     },
     "coqtail-src": {
@@ -794,6 +797,7 @@
         "rustaceanvim-src": "rustaceanvim-src",
         "significant-nvim-src": "significant-nvim-src",
         "smear-cursor-nvim-src": "smear-cursor-nvim-src",
+        "symbols-nvim-src": "symbols-nvim-src",
         "telescope-dap-nvim-src": "telescope-dap-nvim-src",
         "telescope-dapzzzz-src": "telescope-dapzzzz-src",
         "telescope-src": "telescope-src",
@@ -874,6 +878,22 @@
       "original": {
         "owner": "sphamba",
         "repo": "smear-cursor.nvim",
+        "type": "github"
+      }
+    },
+    "symbols-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742262219,
+        "narHash": "sha256-cGgPFPWdzAl5ETHCZ8OBnJocEcWuT14ksuYvK30Oh9M=",
+        "owner": "oskarrrrrrr",
+        "repo": "symbols.nvim",
+        "rev": "7fe968b13fe6c1f45f19d13d6b2caeb5c475e591",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oskarrrrrrr",
+        "repo": "symbols.nvim",
         "type": "github"
       }
     },
