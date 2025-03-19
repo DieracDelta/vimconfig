@@ -28,6 +28,4 @@ vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>UndotreeToggle<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>', '<cmd><cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>ai', '<cmd>AnsiEsc<cr>', {}) -- ansiesc. should go in misc
 
-require('smear_cursor').enabled = true
-
 require('ghostty').setup({})

@@ -2,6 +2,14 @@
   description = "Neovim config";
 
   inputs = {
+    lze-flk = {
+      url = "github:BirdeeHub/lze";
+    };
+
+    lzextras-flk = {
+      url = "github:BirdeeHub/lzextras";
+    };
+
     symbols-nvim-src = {
       url = "github:oskarrrrrrr/symbols.nvim";
       flake = false;
@@ -26,10 +34,6 @@
       flake = false;
     };
 
-    smear-cursor-nvim-src = {
-      url = "github:sphamba/smear-cursor.nvim";
-      flake = false;
-    };
     rustaceanvim-src = {
       url = "github:mrcjkb/rustaceanvim";
       flake = false;
@@ -308,6 +312,8 @@
       nixpkgs,
       neovim-nightly,
       neovim-nightly-linux,
+      lze-flk,
+      lzextras-flk,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -365,6 +371,8 @@
               };
               overlays = [
                 (import ./plugins.nix inputs)
+                lze-flk.overlays.default
+                lzextras-flk.overlays.default
                 # (prev: final: {
                 #   stdenv = final.stdenvAdapters.withCFlags [] final.llvmPackages_latest.stdenv;
                 #   # stdenv = final.llvmPackages_latest.stdenv.override(old : {
@@ -432,7 +440,17 @@
                 })
               ];
             });
-        pluginList = with pkgs; [
+        # plugin, config file
+        lazyPluginList = with pkgs; [
+          [rustaceanvim "rustaceanvim"]
+
+        ];
+        requiredPluginList = with pkgs; [
+          # lazy loading
+          vimPlugins.lze
+          vimPlugins.lzextras
+
+
           # essentials
           which-key
 
@@ -477,21 +495,12 @@
           vimPlugins.vim-ormolu # haskell
           vimPlugins.haskell-tools-nvim # haskell
           vimPlugins.coq_nvim
-          # vimPlugins.coq-thirdparty
-          # cmp-nvim-lsp # completion
-          # nvim-cmp # completion
-          # vimPlugins.cmp-vsnip # completion
-          # cmp-buffer # completion
           vimPlugins.lsp_signature-nvim
           vimPlugins.lspkind-nvim
           lsp-config
           plenary-nvim
           vimPlugins.popup-nvim
-          # vimPlugins.vim-vsnip
-          # vimPlugins.vim-vsnip-integ
-          # vimPlugins.friendly-snippets
           ferris-nvim
-          rustaceanvim
           vimPlugins.crates-nvim
           fidget
           vimPlugins.trouble-nvim
@@ -517,9 +526,7 @@
           vim-illuminate
           markid
           ts-node-action
-          smear-cursor-nvim
           ghostty-nvim
-
         ];
         luaModules = [
           "essentials"
@@ -532,16 +539,23 @@
           "autopairs"
           "lsp"
         ];
-        luaRequire = module: builtins.readFile (builtins.toString ./lua_modules + "/${module}.lua");
-        pluginAttrSet = map (x: { plugin = x; }) pluginList;
+        luaRequire = module: builtins.readFile (builtins.toString ./required_lua_modules + "/${module}.lua");
+        luaLazyRequire = x: builtins.readFile (builtins.toString ./lazy_lua_modules + "/${builtins.elemAt x 1}.lua");
+        requiredPluginAttrSet = map (x: { plugin = x; }) requiredPluginList;
+        lazyPluginAttrSet = map (l :
+          {
+            plugin = builtins.elemAt l 0;
+            optional = true;
+          }
+        ) lazyPluginList;
         orig_config = pkgs.neovimUtils.makeNeovimConfig {
           withNodeJs = true;
           withRuby = true;
           withPython3 = true;
-          plugins = pluginAttrSet;
+          plugins = requiredPluginAttrSet ++ lazyPluginAttrSet;
         };
         config = orig_config // {
-          luaRcContent = builtins.concatStringsSep "\n" (map luaRequire luaModules);
+          luaRcContent = builtins.concatStringsSep "\n" ((map luaRequire luaModules) ++ (map luaLazyRequire lazyPluginList));
           wrapperArgs = [
             "--suffix"
             "PATH"
