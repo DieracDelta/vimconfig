@@ -34,7 +34,7 @@
       url = "github:mrcjkb/rustaceanvim";
       flake = false;
     };
-     gitlinker-nvim-src = {
+    gitlinker-nvim-src = {
       url = "github:linrongbin16/gitlinker.nvim";
       flake = false;
     };
@@ -301,8 +301,17 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, neovim-nightly, neovim-nightly-linux, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    inputs@{
+      self,
+      flake-utils,
+      nixpkgs,
+      neovim-nightly,
+      neovim-nightly-linux,
+      ...
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs =
           if system != "x86_64-linux" then
@@ -329,12 +338,14 @@
               ];
             })
           else
-            let pkgs' = import nixpkgs { inherit system; };
-                pkgs'' = pkgs'.applyPatches {
-                  src = nixpkgs;
-                  name = "144748.patch";
-                  patches = [ ./144748.patch ];
-                }; in
+            let
+              pkgs' = import nixpkgs { inherit system; };
+              pkgs'' = pkgs'.applyPatches {
+                src = nixpkgs;
+                name = "144748.patch";
+                patches = [ ./144748.patch ];
+              };
+            in
             # (import pkgs {
             (import nixpkgs {
               # config.replaceStdenv = { pkgs }: (pkgs.clangStdenv);
@@ -458,7 +469,6 @@
           coqtail
           coq-lsp-nvim
 
-
           vimPlugins.nvim-nio # async-io
           vimPlugins.rust-vim # for formatting
           vimPlugins.image-nvim
@@ -479,7 +489,7 @@
           vimPlugins.popup-nvim
           # vimPlugins.vim-vsnip
           # vimPlugins.vim-vsnip-integ
-           # vimPlugins.friendly-snippets
+          # vimPlugins.friendly-snippets
           ferris-nvim
           rustaceanvim
           vimPlugins.crates-nvim
@@ -500,7 +510,8 @@
           vimPlugins.nvim-treesitter-textobjects
           ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
             src = pkgs.nvim-treesitter-src;
-          }) ).withAllGrammars)
+          })).withAllGrammars
+          )
           vimPlugins.nvim-ts-autotag
           vimPlugins.rainbow-delimiters-nvim
           vim-illuminate
@@ -510,7 +521,7 @@
           ghostty-nvim
 
         ];
-        luaModules =  [
+        luaModules = [
           "essentials"
           "aesthetics"
           "telescope"
@@ -529,19 +540,35 @@
           withPython3 = true;
           plugins = pluginAttrSet;
         };
-        config = orig_config
-        // {
-          luaRcContent =
-            builtins.concatStringsSep "\n" (map luaRequire luaModules)
-          ;
-          wrapperArgs = ["--suffix" "PATH" ":" "${pkgs.lib.makeBinPath /* great place for pipe operator */ (with pkgs;[ ripgrep git terraform-ls lua-language-server clang-tools myRSetup nodejs nodePackages.vscode-json-languageserver ripgrep fd nil])}"];
+        config = orig_config // {
+          luaRcContent = builtins.concatStringsSep "\n" (map luaRequire luaModules);
+          wrapperArgs = [
+            "--suffix"
+            "PATH"
+            ":"
+            "${pkgs.lib.makeBinPath # great place for pipe operator
+              (
+                with pkgs;
+                [
+                  ripgrep
+                  git
+                  terraform-ls
+                  lua-language-server
+                  clang-tools
+                  myRSetup
+                  nodejs
+                  nodePackages.vscode-json-languageserver
+                  ripgrep
+                  fd
+                  nil
+                ]
+              )
+            }"
+          ];
         };
-        myNeovim =
-          pkgs.wrapNeovimUnstable
-            (pkgs.neovim.overrideAttrs (oldAttrs: {
-              buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
-            }))
-            config;
+        myNeovim = pkgs.wrapNeovimUnstable (pkgs.neovim.overrideAttrs (oldAttrs: {
+          buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
+        })) config;
       in
       {
         defaultPackage = myNeovim;
@@ -550,5 +577,6 @@
           program = "${myNeovim}/bin/nvim";
         };
         packages.neovim = myNeovim;
-      });
+      }
+    );
 }

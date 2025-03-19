@@ -1,13 +1,21 @@
 inputs: final: prev:
 let
-  withSrc = pkg: src: pkg.overrideAttrs (_: { inherit src; });
-  plugin = pname: src: prev.vimUtils.buildVimPlugin {
-    inherit pname src;
-    version = "master";
-  };
+  withSrc =
+    pkg: src:
+    pkg.overrideAttrs (_: {
+      inherit src;
+    });
+  plugin =
+    pname: src:
+    prev.vimUtils.buildVimPlugin {
+      inherit pname src;
+      version = "master";
+    };
 in
-with inputs; {
-  terraform-ls = with prev;
+with inputs;
+{
+  terraform-ls =
+    with prev;
     (buildGoModule rec {
       pname = "terraform-ls";
       version = "0.27.0";
@@ -20,7 +28,12 @@ with inputs; {
       };
 
       vendorHash = "sha256-e/m/8h0gF+kux+pCUqZ7Pw0XlyJ5dL0Zyqb0nUlgfpc=";
-      ldflags = [ "-s" "-w" "-X main.version=v${version}" "-X main.prerelease=" ];
+      ldflags = [
+        "-s"
+        "-w"
+        "-X main.version=v${version}"
+        "-X main.prerelease="
+      ];
 
       # There's a mixture of tests that use networking and several that fail on aarch64
       doCheck = false;
@@ -38,7 +51,10 @@ with inputs; {
         homepage = "https://github.com/hashicorp/terraform-ls";
         changelog = "https://github.com/hashicorp/terraform-ls/blob/v${version}/CHANGELOG.md";
         license = licenses.mpl20;
-        maintainers = with maintainers; [ mbaillie jk ];
+        maintainers = with maintainers; [
+          mbaillie
+          jk
+        ];
       };
     });
 
@@ -87,7 +103,17 @@ with inputs; {
 
   # chatgpt-nvim = plugin "chatgpt-nvim" chatgpt-nvim-src;
 
-  myRSetup = ( prev.rWrapper.override{ packages = with prev.rPackages; [ /* vscDebugger */ ggplot2 dplyr xts languageserver ]; });
+  myRSetup = (
+    prev.rWrapper.override {
+      packages = with prev.rPackages; [
+        # vscDebugger
+        ggplot2
+        dplyr
+        xts
+        languageserver
+      ];
+    }
+  );
 
   nvim-dap = plugin "nvim-dap" nvim-dap-src;
 
@@ -130,7 +156,6 @@ with inputs; {
   yazi-nvim = plugin "yazi-nvim" yazi-nvim-src;
 
   smear-cursor-nvim = plugin "smear-cursor-nvim" smear-cursor-nvim-src;
-
 
   coq-lsp-nvim = plugin "coq-lsp-nvim" coq-lsp-nvim-src;
 
