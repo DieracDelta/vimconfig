@@ -282,6 +282,7 @@ require'lspconfig'.ocamllsp.setup{
   cmd = { 'ocamllsp', '--fallback-read-dot-merlin' },
 
 }
+require'lspconfig'.nil_ls.setup{}
 
 local r = require("symbols.recipes")
 require("symbols").setup(r.DefaultFilters, r.AsciiSymbols, {

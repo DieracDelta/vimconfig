@@ -1,3 +1,4 @@
+vim.loader.enable(true)
 vim.g.rustfmt_autosave = true
 vim.g.diagnostics_visible = true
 vim.g.inlay_hints_visible = true
