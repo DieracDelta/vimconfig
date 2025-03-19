@@ -446,6 +446,7 @@
           [vimPlugins.haskell-tools-nvim "haskell-tools-nvim"]
           [ferris-nvim "ferris"]
           [parinfer-rust-nvim "parinfer"]
+          [ghostty-nvim "ghostty"]
           # [vim-ormolu "vim-ormolu"]
 
         ];
@@ -527,7 +528,6 @@
           vim-illuminate
           markid
           ts-node-action
-          ghostty-nvim
         ];
         luaModules = [
           "essentials"
