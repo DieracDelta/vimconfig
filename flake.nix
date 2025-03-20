@@ -488,13 +488,10 @@
           nvim-autopairs
 
           # lsp
-          coqtail
-          coq-lsp-nvim
 
           vimPlugins.nvim-nio # async-io
           vimPlugins.rust-vim # for formatting
           vimPlugins.image-nvim
-          vimPlugins.typescript-tools-nvim
           typst-vim
           vimPlugins.vim-ormolu # haskell
           vimPlugins.coq_nvim
@@ -503,7 +500,7 @@
           lsp-config
           plenary-nvim
           vimPlugins.popup-nvim
-          vimPlugins.crates-nvim
+
           fidget
           vimPlugins.trouble-nvim
           copilot-lua
@@ -523,11 +520,20 @@
             src = pkgs.nvim-treesitter-src;
           })).withAllGrammars
           )
+
+          vimPlugins.telescope-zoxide
           vimPlugins.nvim-ts-autotag
           vimPlugins.rainbow-delimiters-nvim
           vim-illuminate
           markid
           ts-node-action
+
+          # TODO lazy load these
+          vimPlugins.typescript-tools-nvim
+          vimPlugins.crates-nvim
+          coqtail
+          coq-lsp-nvim
+
         ];
         luaModules = [
           "essentials"

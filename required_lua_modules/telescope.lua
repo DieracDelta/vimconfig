@@ -1,3 +1,4 @@
+local z_utils = require("telescope._extensions.zoxide.utils")
 require("telescope").setup {
   defaults = {
     file_ignore_patterns = { "node_modules", "target", "target_dirs" },
@@ -20,6 +21,24 @@ require("telescope").setup {
       require("telescope.themes").get_dropdown {
         -- even more opts
       }
+    },
+    zoxide = {
+      prompt_title = "[ Walking on the shoulders of TJ ]",
+      mappings = {
+        default = {
+          after_action = function(selection)
+            print("Update to (" .. selection.z_score .. ") " .. selection.path)
+          end
+        },
+        ["<leader>Z"] = {
+          before_action = function(selection) print("before C-s") end,
+          action = function(selection)
+            vim.cmd.edit(selection.path)
+          end
+        },
+        -- Opens the selected entry in a new split
+        ["<leader>Y"] = { action = z_utils.create_basic_command("split") },
+      },
     }
   }
 }
@@ -89,3 +108,6 @@ vim.api.nvim_set_keymap(
   '<cmd>lua coq_panels_picker()<cr>',
   { noremap = true, silent = true }
 )
+
+require("telescope").load_extension('zoxide')
+vim.keymap.set("n", "<leader>cd", require("telescope").extensions.zoxide.list)
