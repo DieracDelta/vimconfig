@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "avante-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742817246,
+        "narHash": "sha256-wDHfKD7057f+ITP8TftFp1Hf2EJwR9frlu8YTaSfiWw=",
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "rev": "25e9b1c1114a3b25940051c276747a53cf84d3d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "type": "github"
+      }
+    },
     "blamer-nvim-src": {
       "flake": false,
       "locked": {
@@ -1911,22 +1927,6 @@
         "type": "github"
       }
     },
-    "nui-nvim-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741233810,
-        "narHash": "sha256-BYTY2ezYuxsneAl/yQbwL1aQvVWKSsN3IVqzTlrBSEU=",
-        "owner": "muniftanjim",
-        "repo": "nui.nvim",
-        "rev": "8d3bce9764e627b62b07424e0df77f680d47ffdb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "muniftanjim",
-        "repo": "nui.nvim",
-        "type": "github"
-      }
-    },
     "nvim-async-src": {
       "flake": false,
       "locked": {
@@ -2145,6 +2145,7 @@
     },
     "root": {
       "inputs": {
+        "avante-nvim-src": "avante-nvim-src",
         "blamer-nvim-src": "blamer-nvim-src",
         "colorizer-src": "colorizer-src",
         "comment-nvim-src": "comment-nvim-src",
@@ -2176,7 +2177,6 @@
         "nil": "nil",
         "nixpkgs": "nixpkgs_15",
         "node-type-nvim-src": "node-type-nvim-src",
-        "nui-nvim-src": "nui-nvim-src",
         "nvim-async-src": "nvim-async-src",
         "nvim-autopairs-src": "nvim-autopairs-src",
         "nvim-dap-src": "nvim-dap-src",
