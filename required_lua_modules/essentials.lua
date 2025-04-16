@@ -1,5 +1,5 @@
 vim.loader.enable(true)
-vim.g.rustfmt_autosave = true
+vim.g.rustfmt_autosave = false
 vim.g.diagnostics_visible = true
 vim.g.inlay_hints_visible = true
 -- perl bad

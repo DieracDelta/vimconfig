@@ -2,6 +2,11 @@ require("lze").load {
   "rustaceanvim",
   ft = {"rust"},
   before = function()
+    require('lspconfig').rustowl = {
+      cmd = "rustowl",
+      filetypes = { "rust"},
+      root_markers = {".git", "Cargo.lock"},
+    }
     vim.g.rustaceanvim = {
       client = { server_capabilities = { inlayHintProvider = true } },
       tools = {

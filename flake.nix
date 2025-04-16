@@ -11,6 +11,10 @@
       url = "github:BirdeeHub/lze";
     };
 
+    rust-owl = {
+      url = "github:mrcjkb/rustowl-flake";
+    };
+
     lzextras-flk = {
       url = "github:BirdeeHub/lzextras";
     };
@@ -314,6 +318,7 @@
       neovim-nightly-linux,
       lze-flk,
       lzextras-flk,
+      rust-owl,
       avante-nvim-src,
       ...
     }:
@@ -421,6 +426,7 @@
                         nodeName = lock.nodes.root.inputs.neovim-src;
                         input = lock.nodes.${nodeName}.locked;
                       in
+                      builtins.trace input
                       pkgs.fetchFromGitHub {
                         inherit (input) owner repo rev;
                         hash = input.narHash;
@@ -515,10 +521,11 @@
                     inherit (final) lib pkgs;
                     neovim-src =
                       let
-                        lock = final.lib.importJSON "${neovim-nightly-linux}/flake.lock";
+                        lock = final.lib.importJSON "${neovim-nightly}/flake.lock";
                         nodeName = lock.nodes.root.inputs.neovim-src;
                         input = lock.nodes.${nodeName}.locked;
                       in
+                      builtins.trace input
                       pkgs.fetchFromGitHub {
                         inherit (input) owner repo rev;
                         hash = input.narHash;
@@ -570,9 +577,9 @@
           vimPlugins.nui-nvim
           vimPlugins.render-markdown-nvim
           vimPlugins.img-clip-nvim
-          avante-nvim
-          # prolly redunandt
-          avante-nvim-lib
+          # avante-nvim
+          # # prolly redunandt
+          # avante-nvim-lib
 
           # git
           vimPlugins.neogit
@@ -611,12 +618,16 @@
           comment-nvim
           vimPlugins.nvim-treesitter-context
           vimPlugins.nvim-treesitter-textobjects
-          ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
-            src = pkgs.nvim-treesitter-src;
-          })).withAllGrammars
-          )
+          vimPlugins.nvim-treesitter
+          # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
 
+          # ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
+          #   src = pkgs.nvim-treesitter-src;
+          # })).withAllGrammars)
+
+          # (builtins.trace (lib.filterAttrs (name: val: name != "comment") pkgs.vimPlugins.nvim-treesitter.grammarPlugins)
           vimPlugins.telescope-zoxide
+          # )
           vimPlugins.nvim-ts-autotag
           vimPlugins.rainbow-delimiters-nvim
           vim-illuminate
@@ -628,8 +639,12 @@
           vimPlugins.crates-nvim
           coqtail
           coq-lsp-nvim
+          rust-owl.packages.${system}.rustowl-nvim
 
-        ];
+        ] ++
+          (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
+          |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
+          |> builtins.attrValues);
         luaModules = [
           "essentials"
           "aesthetics"
@@ -640,7 +655,7 @@
           "git"
           "autopairs"
           "lsp"
-          "avante"
+          # "avante"
         ];
         luaRequire = module: builtins.readFile (builtins.toString ./required_lua_modules + "/${module}.lua");
         luaLazyRequire = x: builtins.readFile (builtins.toString ./lazy_lua_modules + "/${builtins.elemAt x 1}.lua");
@@ -678,6 +693,9 @@
                   ripgrep
                   fd
                   nil
+
+                  rust-owl.packages.${system}.rustowl
+
                 ]
               )
             }"
