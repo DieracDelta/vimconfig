@@ -645,9 +645,10 @@
           vimPlugins.crates-nvim
           coqtail
           coq-lsp-nvim
+        ] ++ lib.optional (system != "aarch64-darwin") [
           rust-owl.packages.${system}.rustowl-nvim
-
-        ] ++
+        ]
+        ++
           (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
           |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
           |> builtins.attrValues);
@@ -684,7 +685,7 @@
             "--suffix"
             "PATH"
             ":"
-            "${pkgs.lib.makeBinPath # great place for pipe operator
+            "${
               (
                 with pkgs;
                 [
@@ -700,10 +701,10 @@
                   fd
                   nil
 
+                ] ++ lib.optional (system != "aarch64-darwin") [
                   rust-owl.packages.${system}.rustowl
-
                 ]
-              )
+              ) |> pkgs.lib.makeBinPath
             }"
           ];
         };
