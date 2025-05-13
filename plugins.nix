@@ -163,4 +163,6 @@ with inputs;
 
   symbols-nvim = plugin "symbols-nvim" symbols-nvim-src;
 
+  colorful-winsep-nvim = plugin "colorful-winsep-nvim" colorful-winsep-nvim-src;
+
 }

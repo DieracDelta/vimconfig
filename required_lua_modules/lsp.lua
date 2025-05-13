@@ -177,7 +177,7 @@ vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<cr>
 vim.api.nvim_set_keymap('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>S', '<cmd>lua vim.lsp.buf.signature_help()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>k', '<cmd>vim.lsp.buf.type_definition()<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua lsp.buf.rename()<cr>', {})
+vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<cr>', {})
@@ -185,8 +185,6 @@ vim.api.nvim_set_keymap('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<
 vim.api.nvim_set_keymap('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>mb', '<cmd>TypstWatch<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', {})
-
-
 
 
 vim.g.inlay_hints_visible = true
@@ -249,6 +247,14 @@ require'lspconfig'.ocamllsp.setup{
   cmd = { 'ocamllsp', '--fallback-read-dot-merlin' },
 
 }
+
+vim.api.nvim_create_autocmd({"BufWritePost"}, {
+  pattern = {"*.ml","*.mli"},
+  callback = function()
+    vim.wo.foldenable = false
+  end,
+})
+
 require'lspconfig'.nil_ls.setup{}
 
 local r = require("symbols.recipes")

@@ -32,6 +32,22 @@
         "type": "github"
       }
     },
+    "colorful-winsep-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744337773,
+        "narHash": "sha256-3ZXbpUNZqLHaUWgb2wHnfQfcGkMpcRtAt8q7z0tmo1o=",
+        "owner": "nvim-zh",
+        "repo": "colorful-winsep.nvim",
+        "rev": "7bbe4e1353c0fe37c98bad2758aafc410280f6b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-zh",
+        "repo": "colorful-winsep.nvim",
+        "type": "github"
+      }
+    },
     "colorizer-src": {
       "flake": false,
       "locked": {
@@ -2276,6 +2292,7 @@
       "inputs": {
         "avante-nvim-src": "avante-nvim-src",
         "blamer-nvim-src": "blamer-nvim-src",
+        "colorful-winsep-nvim-src": "colorful-winsep-nvim-src",
         "colorizer-src": "colorizer-src",
         "comment-nvim-src": "comment-nvim-src",
         "conceal-src": "conceal-src",

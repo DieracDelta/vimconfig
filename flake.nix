@@ -2,6 +2,11 @@
   description = "Neovim config";
 
   inputs = {
+    colorful-winsep-nvim-src = {
+      url = "github:nvim-zh/colorful-winsep.nvim";
+      flake = false;
+    };
+
     avante-nvim-src = {
       url = "github:yetone/avante.nvim";
       flake = false;
@@ -548,6 +553,7 @@
           # lazy loading
           vimPlugins.lze
           vimPlugins.lzextras
+          colorful-winsep-nvim
 
 
           # essentials

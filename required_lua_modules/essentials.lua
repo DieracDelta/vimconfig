@@ -195,3 +195,4 @@ vim.api.nvim_set_keymap(
   '<cmd>lua filtered_bufnav(-1)<cr>',
   { noremap = true, silent = true }
 )
+

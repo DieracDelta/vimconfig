@@ -64,3 +64,5 @@ require('lualine').setup(
     },
   }
 )
+
+require('colorful-winsep').setup({only_line_seq = false})
