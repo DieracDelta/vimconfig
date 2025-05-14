@@ -32,6 +32,9 @@ local old_get = parsers.get_parser
 parsers.get_parser = function(bufnr, lang, opts)
   -- buf could be nil during startup; default to current
   bufnr = bufnr or vim.api.nvim_get_current_buf()
+  if lang == "typst" then
+    return nil
+  end
   if vim.api.nvim_buf_line_count(bufnr) > 3000 then
     return nil
   end

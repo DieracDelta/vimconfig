@@ -7,11 +7,6 @@
       flake = false;
     };
 
-    avante-nvim-src = {
-      url = "github:yetone/avante.nvim";
-      flake = false;
-    };
-
     lze-flk = {
       url = "github:BirdeeHub/lze";
     };
@@ -324,85 +319,11 @@
       lze-flk,
       lzextras-flk,
       rust-owl,
-      avante-nvim-src,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        avante-overlay = (prev: final: rec {
-          avante-nvim-lib = final.rustPlatform.buildRustPackage {
-            pname = "avante-nvim-lib";
-            version = "master";
-            src = avante-nvim-src;
-
-            cargoHash = "sha256-pmnMoNdaIR0i+4kwW3cf01vDQo39QakTCEG9AXA86ck=";
-
-            nativeBuildInputs = [
-              final.pkg-config
-            ];
-
-            buildInputs = [
-              final.openssl
-            ];
-
-            buildFeatures = [ "luajit" ];
-            useFetchCargoVendor = true;
-
-            checkFlags = [
-              # Disabled because they access the network.
-              "--skip=test_hf"
-              "--skip=test_public_url"
-              "--skip=test_roundtrip"
-            ];
-          };
-        avante-nvim = final.vimUtils.buildVimPlugin {
-          pname = "avante.nvim";
-          version = "master";
-          src = avante-nvim-src;
-
-          dependencies = with final.vimPlugins; [
-            dressing-nvim
-            nui-nvim
-            nvim-treesitter
-            plenary-nvim
-          ];
-
-          postInstall =
-            let
-              ext = final.stdenv.hostPlatform.extensions.sharedLibrary;
-            in
-            ''
-              echo "ROOT"
-              ls -a ${avante-nvim-lib}
-              echo "LIB"
-
-              ls -a ${avante-nvim-lib}/lib
-              mkdir -p $out/build
-              ln -s ${avante-nvim-lib}/lib/libavante_repo_map${ext} $out/build/avante_repo_map${ext}
-              ln -s ${avante-nvim-lib}/lib/libavante_templates${ext} $out/build/avante_templates${ext}
-              ln -s ${avante-nvim-lib}/lib/libavante_tokenizers${ext} $out/build/avante_tokenizers${ext}
-              ln -s ${avante-nvim-lib}/lib/libavante_html2md${ext} $out/build/avante_html2md${ext}
-              ln -s ${avante-nvim-lib}/lib/libhtml2md${ext} $out/build/html2md${ext}
-            '';
-
-          passthru = {
-            updateScript = final.nix-update-script {
-              attrPath = "vimPlugins.avante-nvim.avante-nvim-lib";
-            };
-
-            # needed for the update script
-            avante-nvim-lib = final.avante-nvim-lib;
-          };
-
-          nvimSkipModule = [
-            # Requires setup with corresponding provider
-            "avante.providers.azure"
-            "avante.providers.copilot"
-          ];
-          };
-
-        });
         pkgs =
           if system != "x86_64-linux" then
             (import nixpkgs {
@@ -417,13 +338,12 @@
                 gcc.mtune = "-march=apple-m1";
               };
               overlays = [
-                avante-overlay
                 (import ./plugins.nix inputs)
                 lze-flk.overlays.default
                 lzextras-flk.overlays.default
                 (prev: final: {
                   # credit: gerg/mnw
-                  neovim = import "${neovim-nightly-linux}/flake/packages/neovim.nix" {
+                  neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
                     neovim-src =
                       let
@@ -467,7 +387,6 @@
                 gcc.mtune = "znver3";
               };
               overlays = [
-                avante-overlay
                 (import ./plugins.nix inputs)
                 lze-flk.overlays.default
                 lzextras-flk.overlays.default
@@ -522,7 +441,7 @@
                 # })
                 (prev: final: {
                   # credit: gerg/mnw
-                  neovim = import "${neovim-nightly-linux}/flake/packages/neovim.nix" {
+                  neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
                     neovim-src =
                       let
@@ -583,10 +502,6 @@
           vimPlugins.nui-nvim
           vimPlugins.render-markdown-nvim
           vimPlugins.img-clip-nvim
-          # avante-nvim
-          # # prolly redunandt
-          # avante-nvim-lib
-
           # git
           vimPlugins.neogit
           blamer-nvim
@@ -645,9 +560,10 @@
           vimPlugins.crates-nvim
           coqtail
           coq-lsp-nvim
-        ] ++ lib.optional (system != "aarch64-darwin") [
-          rust-owl.packages.${system}.rustowl-nvim
         ]
+        # ++ lib.optional (system != "aarch64-darwin") [
+        #   rust-owl.packages.${system}.rustowl-nvim
+        # ]
         ++
           (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
           |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
@@ -701,16 +617,19 @@
                   fd
                   nil
 
-                ] ++ lib.optional (system != "aarch64-darwin") [
-                  rust-owl.packages.${system}.rustowl
                 ]
+                # ++ lib.optional (system != "aarch64-darwin") [
+                #   rust-owl.packages.${system}.rustowl
+                # ]
               ) |> pkgs.lib.makeBinPath
             }"
           ];
         };
-        myNeovim = pkgs.wrapNeovimUnstable (pkgs.neovim.overrideAttrs (oldAttrs: {
+        myNeovim = pkgs.wrapNeovimUnstable
+        (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
-        })) config;
+        }))
+        config;
       in
       {
         defaultPackage = myNeovim;

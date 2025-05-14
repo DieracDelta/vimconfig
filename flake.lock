@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "avante-nvim-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1747120179,
-        "narHash": "sha256-Bb7dbkUDwtfdurhEyU3/9vaBnKVYU2+WrmQBfFUopLU=",
-        "owner": "yetone",
-        "repo": "avante.nvim",
-        "rev": "d4672b7e1ee8bf94df5e1d3482e81418187f42aa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yetone",
-        "repo": "avante.nvim",
-        "type": "github"
-      }
-    },
     "blamer-nvim-src": {
       "flake": false,
       "locked": {
@@ -2287,7 +2271,6 @@
     },
     "root": {
       "inputs": {
-        "avante-nvim-src": "avante-nvim-src",
         "blamer-nvim-src": "blamer-nvim-src",
         "colorful-winsep-nvim-src": "colorful-winsep-nvim-src",
         "colorizer-src": "colorizer-src",
