@@ -140,23 +140,20 @@ require'lspconfig'.jsonls.setup {
 }
 
 function show_documentation()
-  local winid = require('ufo').peekFoldedLinesUnderCursor()
-  if not winid then
-    local filetype = vim.bo.filetype
-    if vim.tbl_contains({ 'vim','help' }, filetype) then
-      vim.cmd('h '..vim.fn.expand('<cword>'))
-    elseif vim.tbl_contains({ 'man' }, filetype) then
-      vim.cmd('Man '..vim.fn.expand('<cword>'))
-    elseif vim.fn.expand('%:t') == 'Cargo.toml' then
-      require('crates').show_popup()
-    elseif string.match(filetype, 'rust') == "rust" then
-      -- technically same as else statement
-      -- keeping it here in case I migrate to something else
-      -- also don't want to conflict with ferris
-      vim.cmd.RustLsp {'hover', 'actions'}
-    else
-      vim.lsp.buf.hover()
-    end
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains({ 'vim','help' }, filetype) then
+    vim.cmd('h '..vim.fn.expand('<cword>'))
+  elseif vim.tbl_contains({ 'man' }, filetype) then
+    vim.cmd('Man '..vim.fn.expand('<cword>'))
+  elseif vim.fn.expand('%:t') == 'Cargo.toml' then
+    require('crates').show_popup()
+  elseif string.match(filetype, 'rust') == "rust" then
+    -- technically same as else statement
+    -- keeping it here in case I migrate to something else
+    -- also don't want to conflict with ferris
+    vim.cmd.RustLsp {'hover', 'actions'}
+  else
+    vim.lsp.buf.hover()
   end
 end
 

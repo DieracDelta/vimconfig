@@ -511,7 +511,7 @@
 
           # treesitter
           nvim-async
-          vimPlugins.nvim-ufo
+          (nvim-ufo.overrideAttrs (oa: {doCheck = false;}))
           comment-nvim
           vimPlugins.nvim-treesitter-context
           vimPlugins.nvim-treesitter-textobjects

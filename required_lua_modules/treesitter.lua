@@ -52,8 +52,7 @@ require('nvim-treesitter.configs').setup({
  highlight = {
    enable = false,
    use_languagetree = false,
-   -- TODO why?
-   disable = { "css" },
+   -- disable = { "css" },
    additional_vim_regex_highlighting = false,
    -- disable = function(_, buf)
    --   return vim.api.nvim_buf_line_count(buf) > 3000
@@ -230,7 +229,7 @@ require('illuminate').resume()
 --require('ts-node-action').setup()
 --
 --
-vim.api.nvim_create_autocmd({ "BufReadPost", "FileType" }, {
+vim.api.nvim_create_autocmd({"BufNew", "BufNewFile", "BufReadPost", "BufWinEnter", "FileType"}, {
   callback = function()
     vim.treesitter.stop()  -- immediately halt any parser startup
   end,
