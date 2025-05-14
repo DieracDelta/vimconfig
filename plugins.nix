@@ -81,15 +81,12 @@ with inputs;
   guess-indent = plugin "guess-indent" guess-indent-src;
   leap = plugin "leap" leap-src;
   wilder-nvim = plugin "wilder-nvim" wilder-nvim-src;
-  plenary-nvim = plugin "plenary-nvim" plenary-nvim-src;
-  nvim-autopairs = plugin "nvim-autopairs" nvim-autopairs-src;
   vim-illuminate = plugin "vim-illuminate" vim-illuminate-src;
   nvim-ufo = plugin "nvim-ufo" nvim-ufo-src;
   nvim-async = plugin "nvim-async" nvim-async-src;
   conjure = plugin "conjure" conjure-src;
   lsp-config = plugin "lsp-config" lsp-config-src;
   # lsp_lines = plugin "lsp_lines" lsp_lines-src;
-  markid = plugin "markid" markid-src;
 
   copilot-lua = plugin "copilot-lua" copilot-lua-src;
   copilot-cmp = plugin "copilot-cmp" copilot-cmp-src;
@@ -147,13 +144,9 @@ with inputs;
 
   molten-nvim = plugin "molten-nvim" molten-nvim-src;
 
-  rustaceanvim = plugin "rustaceanvim" rustaceanvim-src;
-
   ferris-nvim = plugin "ferris-nvim" ferris-nvim-src;
 
   gitlinker-nvim = plugin "gitlinker-nvim" gitlinker-nvim-src;
-
-  yazi-nvim = plugin "yazi-nvim" yazi-nvim-src;
 
   coq-lsp-nvim = plugin "coq-lsp-nvim" coq-lsp-nvim-src;
 

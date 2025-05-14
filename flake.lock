@@ -1394,22 +1394,6 @@
         "type": "github"
       }
     },
-    "markid-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1697604241,
-        "narHash": "sha256-xTEKyc3+BadA0q0Kx9MMSdkzApEEYYZMtQqSCbt42Rs=",
-        "owner": "David-Kunz",
-        "repo": "markid",
-        "rev": "9b249e4d2ad0767a1091017cd52264590e41a274",
-        "type": "github"
-      },
-      "original": {
-        "owner": "David-Kunz",
-        "repo": "markid",
-        "type": "github"
-      }
-    },
     "molten-nvim-src": {
       "flake": false,
       "locked": {
@@ -2053,22 +2037,6 @@
         "type": "github"
       }
     },
-    "nvim-autopairs-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1744514355,
-        "narHash": "sha256-v7vqCbrXAlzj1oLS+pQ4CooGbnIYMvGcDYcW0BPa12A=",
-        "owner": "windwp",
-        "repo": "nvim-autopairs",
-        "rev": "4d74e75913832866aa7de35e4202463ddf6efd1b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "windwp",
-        "repo": "nvim-autopairs",
-        "type": "github"
-      }
-    },
     "nvim-dap-src": {
       "flake": false,
       "locked": {
@@ -2165,22 +2133,6 @@
         "type": "github"
       }
     },
-    "plenary-nvim-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1739311008,
-        "narHash": "sha256-8FV5RjF7QbDmQOQynpK7uRKONKbPRYbOPugf9ZxNvUs=",
-        "owner": "nvim-lua",
-        "repo": "plenary.nvim",
-        "rev": "857c5ac632080dba10aae49dba902ce3abf91b35",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-lua",
-        "repo": "plenary.nvim",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_7",
@@ -2262,7 +2214,6 @@
         "lsp-config-src": "lsp-config-src",
         "lze-flk": "lze-flk",
         "lzextras-flk": "lzextras-flk",
-        "markid-src": "markid-src",
         "molten-nvim-src": "molten-nvim-src",
         "neogen-src": "neogen-src",
         "neovim-nightly": "neovim-nightly_3",
@@ -2271,17 +2222,14 @@
         "nixpkgs": "nixpkgs_15",
         "node-type-nvim-src": "node-type-nvim-src",
         "nvim-async-src": "nvim-async-src",
-        "nvim-autopairs-src": "nvim-autopairs-src",
         "nvim-dap-src": "nvim-dap-src",
         "nvim-dap-ui-src": "nvim-dap-ui-src",
         "nvim-dap-virtual-text-src": "nvim-dap-virtual-text-src",
         "nvim-matchup-src": "nvim-matchup-src",
         "nvim-trailblazer-src": "nvim-trailblazer-src",
         "nvim-ufo-src": "nvim-ufo-src",
-        "plenary-nvim-src": "plenary-nvim-src",
         "quick-scope-src": "quick-scope-src",
         "rust-owl": "rust-owl",
-        "rustaceanvim-src": "rustaceanvim-src",
         "significant-nvim-src": "significant-nvim-src",
         "symbols-nvim-src": "symbols-nvim-src",
         "telescope-dap-nvim-src": "telescope-dap-nvim-src",
@@ -2294,8 +2242,7 @@
         "vim-circom-syntax-src": "vim-circom-syntax-src",
         "vim-illuminate-src": "vim-illuminate-src",
         "which-key-src": "which-key-src",
-        "wilder-nvim-src": "wilder-nvim-src",
-        "yazi-nvim-src": "yazi-nvim-src"
+        "wilder-nvim-src": "wilder-nvim-src"
       }
     },
     "rust-overlay": {
@@ -2356,22 +2303,6 @@
       "original": {
         "owner": "mrcjkb",
         "repo": "rustowl-flake",
-        "type": "github"
-      }
-    },
-    "rustaceanvim-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1746923079,
-        "narHash": "sha256-t3FJHIMP4QkyyG7MGFB0SKp7LXmTOUMLAREt5XeQMgI=",
-        "owner": "mrcjkb",
-        "repo": "rustaceanvim",
-        "rev": "cb532f57c1ed2463c66df683468eb3994e554002",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mrcjkb",
-        "repo": "rustaceanvim",
         "type": "github"
       }
     },
@@ -2688,22 +2619,6 @@
       "original": {
         "owner": "gelguy",
         "repo": "wilder.nvim",
-        "type": "github"
-      }
-    },
-    "yazi-nvim-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1737091224,
-        "narHash": "sha256-UNT0gJAPk9aY+ovBNAN/Eh891atP7RhfFwqWOoTpE/0=",
-        "owner": "mikavilpas",
-        "repo": "yazi.nvim",
-        "rev": "f57e1eed86b13eaf51f42a4ef68dbb19bc8d77a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mikavilpas",
-        "repo": "yazi.nvim",
         "type": "github"
       }
     }

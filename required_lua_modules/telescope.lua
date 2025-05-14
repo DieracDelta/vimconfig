@@ -1,7 +1,7 @@
 local z_utils = require("telescope._extensions.zoxide.utils")
 require("telescope").setup {
   defaults = {
-    preview = { treesitter = false, },
+    preview = { treesitter = true, },
     file_ignore_patterns = { "node_modules", "target", "target_dirs" },
     prompt_prefix = "   ",
     selection_caret = "  ",

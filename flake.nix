@@ -39,10 +39,6 @@
       flake = false;
     };
 
-    rustaceanvim-src = {
-      url = "github:mrcjkb/rustaceanvim";
-      flake = false;
-    };
     gitlinker-nvim-src = {
       url = "github:linrongbin16/gitlinker.nvim";
       flake = false;
@@ -88,11 +84,6 @@
 
     nil = {
       url = "github:oxalica/nil";
-    };
-
-    plenary-nvim-src = {
-      url = "github:nvim-lua/plenary.nvim";
-      flake = false;
     };
 
     telescope-src = {
@@ -169,10 +160,6 @@
       url = "github:ggandor/leap.nvim";
       flake = false;
     };
-    nvim-autopairs-src = {
-      url = "github:windwp/nvim-autopairs";
-      flake = false;
-    };
 
     nvim-ufo-src = {
       url = "github:kevinhwang91/nvim-ufo";
@@ -188,11 +175,6 @@
     #   url = "git+https://git.sr.ht/~whynothugo/lsp_lines.nvim";
     #   flake = false;
     # };
-
-    markid-src = {
-      url = "github:David-Kunz/markid";
-      flake = false;
-    };
 
     copilot-lua-src = {
       url = "github:zbirenbaum/copilot.lua";
@@ -299,10 +281,6 @@
       flake = false;
     };
 
-    yazi-nvim-src = {
-      url = "github:mikavilpas/yazi.nvim";
-      flake = false;
-    };
   };
 
   outputs =
@@ -457,7 +435,7 @@
             });
         # plugin, config file
         lazyPluginList = with pkgs; [
-          [rustaceanvim "rustaceanvim"]
+          [vimPlugins.rustaceanvim "rustaceanvim"]
           [vimPlugins.haskell-tools-nvim "haskell-tools-nvim"]
           [ferris-nvim "ferris"]
           [parinfer-rust-nvim "parinfer"]
@@ -470,6 +448,7 @@
           vimPlugins.lze
           vimPlugins.lzextras
           colorful-winsep-nvim
+          vimPlugins.markid
 
 
           # essentials
@@ -485,7 +464,7 @@
           telescope-nvim
           vimPlugins.telescope-file-browser-nvim
           telescope-ui-select
-          yazi-nvim
+          vimPlugins.yazi-nvim
 
           # github
           gitlinker-nvim
@@ -505,7 +484,7 @@
           vimPlugins.gitsigns-nvim
 
           # autopairs
-          nvim-autopairs
+          vimPlugins.nvim-autopairs
 
           # lsp
 
@@ -518,7 +497,7 @@
           vimPlugins.lsp_signature-nvim
           vimPlugins.lspkind-nvim
           lsp-config
-          plenary-nvim
+          vimPlugins.plenary-nvim
           vimPlugins.popup-nvim
 
           fidget
@@ -532,11 +511,11 @@
 
           # treesitter
           nvim-async
-          # nvim-ufo
+          vimPlugins.nvim-ufo
           comment-nvim
-          # vimPlugins.nvim-treesitter-context
-          # vimPlugins.nvim-treesitter-textobjects
-          # vimPlugins.nvim-treesitter
+          vimPlugins.nvim-treesitter-context
+          vimPlugins.nvim-treesitter-textobjects
+          vimPlugins.nvim-treesitter
           # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
 
           # ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
@@ -549,7 +528,6 @@
           vimPlugins.nvim-ts-autotag
           vimPlugins.rainbow-delimiters-nvim
           vim-illuminate
-          markid
           ts-node-action
 
           # TODO lazy load these
@@ -557,21 +535,21 @@
           vimPlugins.crates-nvim
           coqtail
           coq-lsp-nvim
-        ];
+        ]
         # ++ lib.optional (system != "aarch64-darwin") [
         #   rust-owl.packages.${system}.rustowl-nvim
         # ]
-        # ++
-        #   (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
-        #   |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
-        #   |> builtins.attrValues);
+        ++
+          (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
+          |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
+          |> builtins.attrValues);
         luaModules = [
           "essentials"
           "aesthetics"
           "telescope"
           "github"
           "misc"
-          # "treesitter"
+          "treesitter"
           "git"
           "autopairs"
           "lsp"
@@ -624,7 +602,7 @@
         };
         myNeovim = pkgs.wrapNeovimUnstable
         (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
-          # buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
+          buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
         }))
         config;
       in
