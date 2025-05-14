@@ -279,10 +279,10 @@
       flake = false;
     };
 
-    nvim-treesitter-src = {
-      url = "github:nvim-treesitter/nvim-treesitter";
-      flake = false;
-    };
+    # nvim-treesitter-src = {
+    #   url = "github:nvim-treesitter/nvim-treesitter";
+    #   flake = false;
+    # };
 
     nvim-matchup-src = {
       url = "github:andymass/vim-matchup";
@@ -532,11 +532,11 @@
 
           # treesitter
           nvim-async
-          nvim-ufo
+          # nvim-ufo
           comment-nvim
-          vimPlugins.nvim-treesitter-context
-          vimPlugins.nvim-treesitter-textobjects
-          vimPlugins.nvim-treesitter
+          # vimPlugins.nvim-treesitter-context
+          # vimPlugins.nvim-treesitter-textobjects
+          # vimPlugins.nvim-treesitter
           # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
 
           # ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
@@ -557,21 +557,21 @@
           vimPlugins.crates-nvim
           coqtail
           coq-lsp-nvim
-        ]
+        ];
         # ++ lib.optional (system != "aarch64-darwin") [
         #   rust-owl.packages.${system}.rustowl-nvim
         # ]
-        ++
-          (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
-          |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
-          |> builtins.attrValues);
+        # ++
+        #   (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
+        #   |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
+        #   |> builtins.attrValues);
         luaModules = [
           "essentials"
           "aesthetics"
           "telescope"
           "github"
           "misc"
-          "treesitter"
+          # "treesitter"
           "git"
           "autopairs"
           "lsp"
@@ -624,7 +624,7 @@
         };
         myNeovim = pkgs.wrapNeovimUnstable
         (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
+          # buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
         }))
         config;
       in

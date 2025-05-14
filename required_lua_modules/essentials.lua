@@ -196,3 +196,8 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileType" }, {
+  callback = function()
+    vim.treesitter.stop()  -- immediately halt any parser startup
+  end,
+})

@@ -137,7 +137,7 @@ with inputs;
 
   telescope-dapzzzz = plugin "telescope-dapzzzz" telescope-dapzzzz-src;
 
-  nvim-treesitter = plugin "nvim-treesitter" nvim-treesitter-src;
+  # nvim-treesitter = plugin "nvim-treesitter" nvim-treesitter-src;
 
   nvim-matchup = plugin "nvim-matchup" nvim-matchup-src;
 
