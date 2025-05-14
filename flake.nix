@@ -342,8 +342,9 @@
                 lze-flk.overlays.default
                 lzextras-flk.overlays.default
                 (prev: final: {
+                  nodejs = final.nodejs.overrideAttrs(oldAttrs: {doCheck = false;});
                   # credit: gerg/mnw
-                  neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
+                  neovim' = import "${neovim-nightly}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
                     neovim-src =
                       let
@@ -456,6 +457,7 @@
                       };
                   };
                 })
+                #     doCheck = false;
               ];
             });
         # plugin, config file
@@ -626,7 +628,7 @@
           ];
         };
         myNeovim = pkgs.wrapNeovimUnstable
-        (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
+        (pkgs.neovim'.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
         }))
         config;
