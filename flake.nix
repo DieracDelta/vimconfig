@@ -29,13 +29,9 @@
       flake = false;
     };
 
-    neovim-nightly-linux = {
-      url = "github:DieracDelta/neovim-nightly-overlay";
-      flake = false;
-    };
-
     neovim-nightly = {
-      url = "github:nix-community/neovim-nightly-overlay";
+      url = "github:DieracDelta/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
       flake = false;
     };
     ghostty-nvim-src = {
@@ -315,7 +311,6 @@
       flake-utils,
       nixpkgs,
       neovim-nightly,
-      neovim-nightly-linux,
       lze-flk,
       lzextras-flk,
       rust-owl,
@@ -442,7 +437,7 @@
                 # })
                 (prev: final: {
                   # credit: gerg/mnw
-                  neovim = import "${neovim-nightly}/flake/packages/neovim.nix" {
+                  neovim' = import "${neovim-nightly}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
                     neovim-src =
                       let
@@ -628,7 +623,7 @@
           ];
         };
         myNeovim = pkgs.wrapNeovimUnstable
-        (pkgs.neovim'.overrideAttrs (oldAttrs: {
+        (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
         }))
         config;

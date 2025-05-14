@@ -1510,22 +1510,6 @@
         "type": "github"
       }
     },
-    "neovim-nightly-linux": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741808278,
-        "narHash": "sha256-BwcWibzXnj4bNrYE/cMUUS9Fff4ZvPDqRLrJtQj6MF8=",
-        "owner": "DieracDelta",
-        "repo": "neovim-nightly-overlay",
-        "rev": "601f916d7d8971abb410a1498d48314f01f67827",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DieracDelta",
-        "repo": "neovim-nightly-overlay",
-        "type": "github"
-      }
-    },
     "neovim-nightly_2": {
       "inputs": {
         "flake-compat": "flake-compat_11",
@@ -1553,15 +1537,15 @@
     "neovim-nightly_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1747116559,
-        "narHash": "sha256-Pf1aCys/ZkkGaiqIyPVGGAMNmxOuBvlsFwog2MWM9wU=",
-        "owner": "nix-community",
+        "lastModified": 1747245803,
+        "narHash": "sha256-4R46EyVVV3cauJmzeCZFMD68mwXJYL6y/zlmtlXzu5k=",
+        "owner": "DieracDelta",
         "repo": "neovim-nightly-overlay",
-        "rev": "367e66cd3fafb4908c0aec44489fa20d7c911282",
+        "rev": "12390342cc328350fa971d2cf6f3b375173d06a0",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "DieracDelta",
         "repo": "neovim-nightly-overlay",
         "type": "github"
       }
@@ -2298,7 +2282,6 @@
         "molten-nvim-src": "molten-nvim-src",
         "neogen-src": "neogen-src",
         "neovim-nightly": "neovim-nightly_3",
-        "neovim-nightly-linux": "neovim-nightly-linux",
         "neural-src": "neural-src",
         "nil": "nil",
         "nixpkgs": "nixpkgs_15",
