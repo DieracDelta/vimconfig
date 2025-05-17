@@ -50,7 +50,7 @@ require('nvim-treesitter.configs').setup({
    end,
  },
  highlight = {
-   enable = false,
+   enable = true,
    use_languagetree = false,
    -- disable = { "css" },
    additional_vim_regex_highlighting = false,
