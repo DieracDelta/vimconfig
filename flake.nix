@@ -2,6 +2,10 @@
   description = "Neovim config";
 
   inputs = {
+
+    mnw.url = "github:Gerg-L/mnw";
+    blamer-nvim-src.url = "github:psjay/blamer.nvim";
+    blamer-nvim-src.flake = false;
     colorful-winsep-nvim-src = {
       url = "github:nvim-zh/colorful-winsep.nvim";
       flake = false;
@@ -122,10 +126,6 @@
     # };
     comment-nvim-src = {
       url = "github:numToStr/Comment.nvim";
-      flake = false;
-    };
-    blamer-nvim-src = {
-      url = "github:APZelos/blamer.nvim";
       flake = false;
     };
     telescope-ui-select-src = {
@@ -261,10 +261,10 @@
       flake = false;
     };
 
-    # nvim-treesitter-src = {
-    #   url = "github:nvim-treesitter/nvim-treesitter";
-    #   flake = false;
-    # };
+    nvim-treesitter-src = {
+      url = "github:nvim-treesitter/nvim-treesitter";
+      flake = false;
+    };
 
     nvim-matchup-src = {
       url = "github:andymass/vim-matchup";
@@ -292,6 +292,7 @@
       lze-flk,
       lzextras-flk,
       rust-owl,
+      mnw,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -434,21 +435,13 @@
               ];
             });
         # plugin, config file
-        lazyPluginList = with pkgs; [
-          [vimPlugins.rustaceanvim "rustaceanvim"]
-          [vimPlugins.haskell-tools-nvim "haskell-tools-nvim"]
-          [ferris-nvim "ferris"]
-          [parinfer-rust-nvim "parinfer"]
-          [ghostty-nvim "ghostty"]
-          # [vim-ormolu "vim-ormolu"]
-
-        ];
         requiredPluginList = with pkgs; [
           # lazy loading
           vimPlugins.lze
           vimPlugins.lzextras
           colorful-winsep-nvim
           vimPlugins.markid
+          blamer-nvim
 
 
           # essentials
@@ -480,8 +473,9 @@
           vimPlugins.img-clip-nvim
           # git
           vimPlugins.neogit
-          blamer-nvim
+
           vimPlugins.gitsigns-nvim
+
 
           # autopairs
           vimPlugins.nvim-autopairs
@@ -513,14 +507,15 @@
           nvim-async
           (nvim-ufo.overrideAttrs (oa: {doCheck = false;}))
           comment-nvim
-          vimPlugins.nvim-treesitter-context
-          vimPlugins.nvim-treesitter-textobjects
-          vimPlugins.nvim-treesitter
+          #vimPlugins.nvim-treesitter-context
+          #vimPlugins.nvim-treesitter-textobjects
+          #nvim-treesitter
+
           # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
 
-          # ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
-          #   src = pkgs.nvim-treesitter-src;
-          # })).withAllGrammars)
+          ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
+            src = pkgs.nvim-treesitter-src;
+          })).withAllGrammars)
 
           # (builtins.trace (lib.filterAttrs (name: val: name != "comment") pkgs.vimPlugins.nvim-treesitter.grammarPlugins)
           vimPlugins.telescope-zoxide
@@ -539,10 +534,11 @@
         # ++ lib.optional (system != "aarch64-darwin") [
         #   rust-owl.packages.${system}.rustowl-nvim
         # ]
-        ++
-          (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
-          |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
-          |> builtins.attrValues);
+       ++
+         (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
+         |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
+         |> builtins.attrValues);
+
         luaModules = [
           "essentials"
           "aesthetics"
@@ -553,66 +549,65 @@
           "git"
           "autopairs"
           "lsp"
-          # "avante"
+          #"avante"
         ];
-        luaRequire = module: builtins.readFile (builtins.toString ./required_lua_modules + "/${module}.lua");
-        luaLazyRequire = x: builtins.readFile (builtins.toString ./lazy_lua_modules + "/${builtins.elemAt x 1}.lua");
-        requiredPluginAttrSet = map (x: { plugin = x; }) requiredPluginList;
-        lazyPluginAttrSet = map (l :
-          {
-            plugin = builtins.elemAt l 0;
-            optional = true;
-          }
-        ) lazyPluginList;
-        orig_config = pkgs.neovimUtils.makeNeovimConfig {
-          withNodeJs = true;
-          withRuby = true;
-          withPython3 = true;
-          plugins = requiredPluginAttrSet ++ lazyPluginAttrSet;
-        };
-        config = orig_config // {
-          luaRcContent = builtins.concatStringsSep "\n" ((map luaRequire luaModules) ++ (map luaLazyRequire lazyPluginList));
-          wrapperArgs = [
-            "--suffix"
-            "PATH"
-            ":"
-            "${
-              (
-                with pkgs;
-                [
-                  ripgrep
-                  git
-                  terraform-ls
-                  lua-language-server
-                  clang-tools
-                  myRSetup
-                  nodejs
-                  nodePackages.vscode-json-languageserver
-                  ripgrep
-                  fd
-                  nil
+        luaLazyModules = [
+          "rustaceanvim"
+          "haskell-tools-nvim"
+          "ferris"
+          "parinfer"
+          "ghostty"
+        ];
 
-                ]
-                # ++ lib.optional (system != "aarch64-darwin") [
-                #   rust-owl.packages.${system}.rustowl
-                # ]
-              ) |> pkgs.lib.makeBinPath
-            }"
-          ];
+        luaRequire' = module: builtins.toString ./required_lua_modules + "/${module}.lua";
+        luaLazyRequire' = module: builtins.toString ./lazy_lua_modules + "/${module}.lua";
+
+        myNeovim' = mnw.lib.wrap pkgs {
+          providers = {
+            ruby.enable = true;
+            python3.enable = true;
+            nodeJs.enable = true;
+            perl.enable = true;
+          };
+          extraBinPath = builtins.attrValues {
+            inherit (pkgs)
+              ripgrep
+              git
+              terraform-ls
+              lua-language-server
+              clang-tools
+              myRSetup
+              nodejs
+              fd
+              nil
+              vscode-langservers-extracted
+              stylua
+              deadnix
+              statix
+              imagemagick
+              ;
+          };
+          extraLuaPackages = ps: [ ps.magick ];
+          plugins = {
+            start = requiredPluginList;
+            opt = with pkgs; [
+              vimPlugins.rustaceanvim
+              vimPlugins.haskell-tools-nvim
+              ferris-nvim
+              parinfer-rust-nvim
+              ghostty-nvim
+            ];
+          };
+          luaFiles = map luaRequire' luaModules ++ map luaLazyRequire' luaLazyModules;
         };
-        myNeovim = pkgs.wrapNeovimUnstable
-        (pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs ++ (with pkgs; [ tree-sitter ]);
-        }))
-        config;
       in
       {
-        defaultPackage = myNeovim;
+        defaultPackage = myNeovim';
         apps.defaultApp = {
           type = "app";
-          program = "${myNeovim}/bin/nvim";
+          program = "${myNeovim'}/bin/nvim";
         };
-        packages.neovim = myNeovim;
+        packages.neovim = myNeovim';
       }
     );
 }

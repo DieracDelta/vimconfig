@@ -229,8 +229,8 @@ require('illuminate').resume()
 --require('ts-node-action').setup()
 --
 --
-vim.api.nvim_create_autocmd({"BufNew", "BufNewFile", "BufReadPost", "BufWinEnter", "FileType"}, {
-  callback = function()
-    vim.treesitter.stop()  -- immediately halt any parser startup
-  end,
-})
+-- vim.api.nvim_create_autocmd({"BufNew", "BufNewFile", "BufReadPost", "BufWinEnter", "FileType"}, {
+--   callback = function()
+--     vim.treesitter.stop()  -- immediately halt any parser startup
+--   end,
+-- })
