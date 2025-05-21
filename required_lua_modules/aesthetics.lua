@@ -17,7 +17,7 @@ require("gruvbox").setup({
   invert_tabline = false,
   invert_intend_guides = false,
   inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "",  -- can be "hard", "soft" or empty string
+  contrast = "", -- can be "hard", "soft" or empty string
   palette_overrides = {},
   overrides = {
     SignColumn = { link = "Normal" },
@@ -31,11 +31,11 @@ require("gruvbox").setup({
     TelescopeSelection = { link = "Visual" },
     ["@variable"] = { link = "GruvboxBlue" },
     TermCursor = { bg = "#fabd2f", fg = "#282828" },
-    Visual = {bg = "#d79921", fg = "#282828"},
-    Linenr = {fg = "#7c6f64", bg = ""},
-    debugPC = {fg = "", bg = "#3d4220"},
-    DapBreakpoint = {fg = "", bg = "#472322"},
-    DapBreakpointSymbol = {bg = ""}
+    Visual = { bg = "#d79921", fg = "#282828" },
+    Linenr = { fg = "#7c6f64", bg = "" },
+    debugPC = { fg = "", bg = "#3d4220" },
+    DapBreakpoint = { fg = "", bg = "#472322" },
+    DapBreakpointSymbol = { bg = "" },
   },
   dim_inactive = false,
   transparent_mode = false,
@@ -43,26 +43,24 @@ require("gruvbox").setup({
 vim.o.background = "dark"
 vim.cmd("colorscheme gruvbox")
 -- lualine
-require('lualine').setup(
-  {
-    option = {
-      component_separators = {
-        left = "",
-        right = "",
-      },
-      sections_separators = {
-        left = "",
-        right = "",
-      },
-      globalstatus = true,
+require("lualine").setup({
+  option = {
+    component_separators = {
+      left = "",
+      right = "",
     },
-    sections = {
-      lualine_a = {'mode'},
-      lualine_b = {'branch', 'diff', 'diagnostics'},
-      lualine_c = {'filename'},
-      lualine_z = {'location'},
+    sections_separators = {
+      left = "",
+      right = "",
     },
-  }
-)
+    globalstatus = true,
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diff", "diagnostics" },
+    lualine_c = { "filename" },
+    lualine_z = { "location" },
+  },
+})
 
-require('colorful-winsep').setup({only_line_seq = false})
+require("colorful-winsep").setup({ only_line_seq = false })

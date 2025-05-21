@@ -2,6 +2,7 @@
   description = "Neovim config";
 
   inputs = {
+    nixfmt.url = "github:nixos/nixfmt";
 
     mnw.url = "github:Gerg-L/mnw";
     blamer-nvim-src.url = "github:psjay/blamer.nvim";
@@ -316,7 +317,10 @@
                 lze-flk.overlays.default
                 lzextras-flk.overlays.default
                 (prev: final: {
-                  nodejs = final.nodejs.overrideAttrs(oldAttrs: {doCheck = false;});
+                  nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
+                  nodejs = final.nodejs.overrideAttrs (oldAttrs: {
+                    doCheck = false;
+                  });
                   # credit: gerg/mnw
                   neovim' = import "${neovim-nightly}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
@@ -326,8 +330,7 @@
                         nodeName = lock.nodes.root.inputs.neovim-src;
                         input = lock.nodes.${nodeName}.locked;
                       in
-                      builtins.trace input
-                      pkgs.fetchFromGitHub {
+                      builtins.trace input pkgs.fetchFromGitHub {
                         inherit (input) owner repo rev;
                         hash = input.narHash;
                       };
@@ -415,6 +418,7 @@
 
                 # })
                 (prev: final: {
+                  nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
                   # credit: gerg/mnw
                   neovim' = import "${neovim-nightly}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
@@ -424,8 +428,7 @@
                         nodeName = lock.nodes.root.inputs.neovim-src;
                         input = lock.nodes.${nodeName}.locked;
                       in
-                      builtins.trace input
-                      pkgs.fetchFromGitHub {
+                      builtins.trace input pkgs.fetchFromGitHub {
                         inherit (input) owner repo rev;
                         hash = input.narHash;
                       };
@@ -435,109 +438,115 @@
               ];
             });
         # plugin, config file
-        requiredPluginList = with pkgs; [
-          # lazy loading
-          vimPlugins.lze
-          vimPlugins.lzextras
-          colorful-winsep-nvim
-          vimPlugins.markid
-          blamer-nvim
+        requiredPluginList =
+          with pkgs;
+          [
+            # lazy loading
+            vimPlugins.lze
+            vimPlugins.lzextras
+            colorful-winsep-nvim
+            vimPlugins.markid
+            blamer-nvim
 
+            # essentials
+            which-key
 
-          # essentials
-          which-key
+            # aesthetics
+            gruvbox-nvim
+            vimPlugins.lualine-nvim
+            vimPlugins.tabline-nvim
+            vimPlugins.nvim-web-devicons
 
-          # aesthetics
-          gruvbox-nvim
-          vimPlugins.lualine-nvim
-          vimPlugins.tabline-nvim
-          vimPlugins.nvim-web-devicons
+            # telescope
+            telescope-nvim
+            vimPlugins.telescope-file-browser-nvim
+            telescope-ui-select
+            vimPlugins.yazi-nvim
 
-          # telescope
-          telescope-nvim
-          vimPlugins.telescope-file-browser-nvim
-          telescope-ui-select
-          vimPlugins.yazi-nvim
+            # github
+            gitlinker-nvim
 
-          # github
-          gitlinker-nvim
+            # misc
+            vimPlugins.surround-nvim
+            vimPlugins.undotree
+            colorizer
 
-          # misc
-          vimPlugins.surround-nvim
-          vimPlugins.undotree
-          colorizer
+            vimPlugins.dressing-nvim
+            vimPlugins.nui-nvim
+            vimPlugins.render-markdown-nvim
+            vimPlugins.img-clip-nvim
+            # git
+            vimPlugins.neogit
 
-          vimPlugins.dressing-nvim
-          vimPlugins.nui-nvim
-          vimPlugins.render-markdown-nvim
-          vimPlugins.img-clip-nvim
-          # git
-          vimPlugins.neogit
+            vimPlugins.gitsigns-nvim
 
-          vimPlugins.gitsigns-nvim
+            # autopairs
+            vimPlugins.nvim-autopairs
 
+            # lsp
 
-          # autopairs
-          vimPlugins.nvim-autopairs
+            vimPlugins.nvim-nio # async-io
+            vimPlugins.rust-vim # for formatting
+            vimPlugins.image-nvim
+            typst-vim
+            vimPlugins.vim-ormolu # haskell
+            vimPlugins.coq_nvim
+            vimPlugins.lsp_signature-nvim
+            vimPlugins.lspkind-nvim
+            lsp-config
+            vimPlugins.plenary-nvim
+            vimPlugins.popup-nvim
 
-          # lsp
+            vimPlugins.conform-nvim
 
-          vimPlugins.nvim-nio # async-io
-          vimPlugins.rust-vim # for formatting
-          vimPlugins.image-nvim
-          typst-vim
-          vimPlugins.vim-ormolu # haskell
-          vimPlugins.coq_nvim
-          vimPlugins.lsp_signature-nvim
-          vimPlugins.lspkind-nvim
-          lsp-config
-          vimPlugins.plenary-nvim
-          vimPlugins.popup-nvim
+            fidget
+            vimPlugins.trouble-nvim
+            copilot-lua
+            # copilot-cmp
+            node-type-nvim
+            floating-input
 
-          fidget
-          vimPlugins.trouble-nvim
-          copilot-lua
-          # copilot-cmp
-          node-type-nvim
-          floating-input
+            symbols-nvim
 
-          symbols-nvim
+            # treesitter
+            nvim-async
+            (nvim-ufo.overrideAttrs (oa: {
+              doCheck = false;
+            }))
+            comment-nvim
+            #vimPlugins.nvim-treesitter-context
+            #vimPlugins.nvim-treesitter-textobjects
+            #nvim-treesitter
 
-          # treesitter
-          nvim-async
-          (nvim-ufo.overrideAttrs (oa: {doCheck = false;}))
-          comment-nvim
-          #vimPlugins.nvim-treesitter-context
-          #vimPlugins.nvim-treesitter-textobjects
-          #nvim-treesitter
+            # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
 
-          # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
+            ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
+              src = pkgs.nvim-treesitter-src;
+            })).withAllGrammars
+            )
 
-          ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
-            src = pkgs.nvim-treesitter-src;
-          })).withAllGrammars)
+            # (builtins.trace (lib.filterAttrs (name: val: name != "comment") pkgs.vimPlugins.nvim-treesitter.grammarPlugins)
+            vimPlugins.telescope-zoxide
+            # )
+            vimPlugins.nvim-ts-autotag
+            vimPlugins.rainbow-delimiters-nvim
+            vim-illuminate
+            ts-node-action
 
-          # (builtins.trace (lib.filterAttrs (name: val: name != "comment") pkgs.vimPlugins.nvim-treesitter.grammarPlugins)
-          vimPlugins.telescope-zoxide
-          # )
-          vimPlugins.nvim-ts-autotag
-          vimPlugins.rainbow-delimiters-nvim
-          vim-illuminate
-          ts-node-action
-
-          # TODO lazy load these
-          vimPlugins.typescript-tools-nvim
-          vimPlugins.crates-nvim
-          coqtail
-          coq-lsp-nvim
-        ]
-        # ++ lib.optional (system != "aarch64-darwin") [
-        #   rust-owl.packages.${system}.rustowl-nvim
-        # ]
-       ++
-         (pkgs.vimPlugins.nvim-treesitter.grammarPlugins
-         |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
-         |> builtins.attrValues);
+            # TODO lazy load these
+            vimPlugins.typescript-tools-nvim
+            vimPlugins.crates-nvim
+            coqtail
+            coq-lsp-nvim
+          ]
+          # ++ lib.optional (system != "aarch64-darwin") [
+          #   rust-owl.packages.${system}.rustowl-nvim
+          # ]
+          ++ (
+            pkgs.vimPlugins.nvim-treesitter.grammarPlugins
+            |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
+            |> builtins.attrValues
+          );
 
         luaModules = [
           "essentials"
@@ -571,6 +580,8 @@
           };
           extraBinPath = builtins.attrValues {
             inherit (pkgs)
+              nixfmt
+              ruff
               ripgrep
               git
               terraform-ls
@@ -585,6 +596,8 @@
               deadnix
               statix
               imagemagick
+              shellcheck
+              shfmt
               ;
           };
           extraLuaPackages = ps: [ ps.magick ];

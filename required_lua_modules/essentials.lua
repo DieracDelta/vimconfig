@@ -56,27 +56,27 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
-vim.api.nvim_set_keymap('n', 'j', 'gj', {}) -- wrapped down
-vim.api.nvim_set_keymap('n', 'k', 'gk', {}) -- wrapped up
+vim.api.nvim_set_keymap("n", "j", "gj", {}) -- wrapped down
+vim.api.nvim_set_keymap("n", "k", "gk", {}) -- wrapped up
 
-vim.api.nvim_set_keymap('n', '<leader>ws', '<cmd>sp<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wv', '<cmd>vs<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>bd', '<cmd>q<cr>', {})
+vim.api.nvim_set_keymap("n", "<leader>ws", "<cmd>sp<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wv", "<cmd>vs<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>bd", "<cmd>q<cr>", {})
 -- vim.api.nvim_set_keymap('n', '<leader>bn', '<cmd>bnext<cr>', {})
 -- vim.api.nvim_set_keymap('n', '<leader>bp', '<cmd>bprev<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>bN', '<cmd>tabedit<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>bD', '<cmd>Bclose!<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wd', '<cmd>q<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wl', '<cmd>wincmd l<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wj', '<cmd>wincmd j<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wk', '<cmd>wincmd k<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wh', '<cmd>wincmd h<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wL', '<cmd>wincmd x<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wJ', '<cmd>wincmd J<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wK', '<cmd>wincmd K<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>wH', '<cmd>wincmd H<cr>', {})
+vim.api.nvim_set_keymap("n", "<leader>bN", "<cmd>tabedit<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>bD", "<cmd>Bclose!<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wd", "<cmd>q<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wl", "<cmd>wincmd l<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wj", "<cmd>wincmd j<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wk", "<cmd>wincmd k<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wh", "<cmd>wincmd h<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wL", "<cmd>wincmd x<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wJ", "<cmd>wincmd J<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wK", "<cmd>wincmd K<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>wH", "<cmd>wincmd H<cr>", {})
 
-vim.api.nvim_set_keymap('n', 'k', 'gk', {}) -- show docs. TODO move to lsp file
+vim.api.nvim_set_keymap("n", "k", "gk", {}) -- show docs. TODO move to lsp file
 
 -- Flag to check if clipboard has been set
 local clipboard_set = false
@@ -88,49 +88,48 @@ vim.api.nvim_create_autocmd("BufRead", {
       vim.opt.clipboard:append("unnamedplus")
       clipboard_set = true
     end
-  end
+  end,
 })
 
 vim.g.clipboard = {
-  name = 'OSC 52',
+  name = "OSC 52",
   copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
   },
   paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
   },
 }
 
 -- Function to clean trailing spaces on save
 local function clean_extra_spaces()
-    local save_cursor = vim.fn.getpos(".")
-    local old_query = vim.fn.getreg("/")
-    vim.cmd([[%s/\s\+$//e]])
-    vim.fn.setpos('.', save_cursor)
-    vim.fn.setreg('/', old_query)
+  local save_cursor = vim.fn.getpos(".")
+  local old_query = vim.fn.getreg("/")
+  vim.cmd([[%s/\s\+$//e]])
+  vim.fn.setpos(".", save_cursor)
+  vim.fn.setreg("/", old_query)
 end
 
 -- Autocommand to call clean_extra_spaces function before saving
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = clean_extra_spaces,
+  pattern = "*",
+  callback = clean_extra_spaces,
 })
 
 -- Preserve cursor location after opening a file
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function()
-        local line = vim.fn.line
-        if line("'\"") >= 1 and line("'\"") <= line("$") then
-            vim.cmd([[normal! g`"]])
-        end
-    end,
+  pattern = "*",
+  callback = function()
+    local line = vim.fn.line
+    if line("'\"") >= 1 and line("'\"") <= line("$") then
+      vim.cmd([[normal! g`"]])
+    end
+  end,
 })
 
-
-vim.api.nvim_set_keymap('n', '<leader>fy', [[:let @+ = expand('%:p')<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fy", [[:let @+ = expand('%:p')<CR>]], { noremap = true, silent = true })
 
 function filtered_bufnav(direction)
   -- Get all listed buffers as a table of info.
@@ -181,18 +180,7 @@ function filtered_bufnav(direction)
 end
 
 -- Map for bnext (direction = 1)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>bn',
-  '<cmd>lua filtered_bufnav(1)<cr>',
-  { noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap("n", "<leader>bn", "<cmd>lua filtered_bufnav(1)<cr>", { noremap = true, silent = true })
 
 -- Map for bprev (direction = -1)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>bp',
-  '<cmd>lua filtered_bufnav(-1)<cr>',
-  { noremap = true, silent = true }
-)
-
+vim.api.nvim_set_keymap("n", "<leader>bp", "<cmd>lua filtered_bufnav(-1)<cr>", { noremap = true, silent = true })
