@@ -241,7 +241,19 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   end,
 })
 
-require("lspconfig").nil_ls.setup({})
+require("lspconfig").nil_ls.setup({
+  settings = {
+    ["nil"] = {
+      nix = {
+        flake = {
+          autoArchive = false,
+          autoEvalInputs = false,
+        },
+      },
+    },
+  },
+})
+
 require("lspconfig").ruff.setup({
   init_options = {
     settings = {},

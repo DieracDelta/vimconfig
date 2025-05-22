@@ -3,7 +3,6 @@
 
   inputs = {
     nixfmt.url = "github:nixos/nixfmt";
-
     mnw.url = "github:Gerg-L/mnw";
     blamer-nvim-src.url = "github:psjay/blamer.nvim";
     blamer-nvim-src.flake = false;
@@ -317,6 +316,7 @@
                 lze-flk.overlays.default
                 lzextras-flk.overlays.default
                 (prev: final: {
+                  nil = inputs.nil.packages.${system}.nil;
                   nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
                   nodejs = final.nodejs.overrideAttrs (oldAttrs: {
                     doCheck = false;
@@ -419,6 +419,7 @@
                 # })
                 (prev: final: {
                   nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
+                  nil = inputs.nil.packages.${system}.nil;
                   # credit: gerg/mnw
                   neovim' = import "${neovim-nightly}/flake/packages/neovim.nix" {
                     inherit (final) lib pkgs;
