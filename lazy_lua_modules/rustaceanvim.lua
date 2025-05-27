@@ -1,12 +1,12 @@
-require("lze").load {
+require("lze").load({
   "rustaceanvim",
-  ft = {"rust"},
+  ft = { "rust" },
   before = function()
-    require('lspconfig').rustowl = {
-      cmd = "rustowl",
-      filetypes = { "rust"},
-      root_markers = {".git", "Cargo.lock"},
-    }
+    -- require("lspconfig").rustowl = {
+    --   cmd = "rustowl",
+    --   filetypes = { "rust" },
+    --   root_markers = { ".git", "Cargo.lock" },
+    -- }
     vim.g.rustaceanvim = {
       client = { server_capabilities = { inlayHintProvider = true } },
       tools = {
@@ -37,4 +37,4 @@ require("lze").load {
   after = function()
     vim.cmd("doautocmd FileType rust")
   end,
-}
+})
