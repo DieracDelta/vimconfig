@@ -594,8 +594,6 @@
               nil
               vscode-langservers-extracted
               stylua
-              deadnix
-              statix
               imagemagick
               shellcheck
               shfmt
