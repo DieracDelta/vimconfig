@@ -280,6 +280,7 @@ require("conform").setup({
     rustfmt = { "rustfmt" },
     shellcheck = { "shellcheck" },
     shfmt = { "shfmt" },
+    just = { "just" },
   },
   -- Command to toggle format-on-save
   -- https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
