@@ -339,14 +339,6 @@
               ];
             })
           else
-            let
-              pkgs' = import nixpkgs { inherit system; };
-              pkgs'' = pkgs'.applyPatches {
-                src = nixpkgs;
-                name = "144748.patch";
-                patches = [ ./144748.patch ];
-              };
-            in
             # (import pkgs {
             (import nixpkgs {
               # config.replaceStdenv = { pkgs }: (pkgs.clangStdenv);
@@ -364,6 +356,7 @@
                 gcc.arch = "znver3";
                 gcc.mtune = "znver3";
               };
+
               overlays = [
                 (import ./plugins.nix inputs)
                 lze-flk.overlays.default
@@ -418,6 +411,10 @@
 
                 # })
                 (prev: final: {
+                  stdenvnew = prev.stdenvAdapters.addAttrsToDerivation {
+                    NIX_CFLAGS_COMPILE = "-flto";
+                  } prev.stdenv;
+
                   nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
                   nil = inputs.nil.packages.${system}.nil;
                   # credit: gerg/mnw
@@ -597,6 +594,7 @@
               imagemagick
               shellcheck
               shfmt
+              prettierd
               ;
           };
           extraLuaPackages = ps: [ ps.magick ];

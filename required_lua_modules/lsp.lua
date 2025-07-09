@@ -86,6 +86,12 @@ require("lsp_signature").setup({
   hi_parameter = "Visual",
   handler_opts = { border = "single" },
 })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "typst",
+  callback = function()
+    vim.b.lsp_signature_enabled = false
+  end,
+})
 
 -- require('cmp').setup({
 --   mapping = {
@@ -281,6 +287,9 @@ require("conform").setup({
     shellcheck = { "shellcheck" },
     shfmt = { "shfmt" },
     just = { "just" },
+    typst = { "prettypst" },
+    html = { "prettierd" },
+    ocaml = { "ocamlformat" },
   },
   -- Command to toggle format-on-save
   -- https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
