@@ -62,7 +62,7 @@
       flake = false;
     };
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/6c0f48664b5db9f4ff812f7b1f0ae0b2f5194238";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
     cornelis.url = "github:isovector/cornelis";
 
@@ -536,6 +536,7 @@
             vimPlugins.crates-nvim
             coqtail
             coq-lsp-nvim
+            vimPlugins.haskell-tools-nvim
           ]
           # ++ lib.optional (system != "aarch64-darwin") [
           #   rust-owl.packages.${system}.rustowl-nvim
@@ -602,7 +603,6 @@
             start = requiredPluginList;
             opt = with pkgs; [
               vimPlugins.rustaceanvim
-              vimPlugins.haskell-tools-nvim
               ferris-nvim
               parinfer-rust-nvim
               ghostty-nvim
