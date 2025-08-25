@@ -17,6 +17,7 @@ let
       inherit pname src;
       version = "master";
       doCheck = false;
+      #nvimSkipModules = ["spec_init"];
     };
 in
 with inputs;
@@ -153,7 +154,9 @@ with inputs;
 
   ferris-nvim = plugin "ferris-nvim" ferris-nvim-src;
 
-  gitlinker-nvim = pluginNoChecks "gitlinker-nvim" gitlinker-nvim-src;
+  gitlinker-nvim = (plugin "gitlinker-nvim" gitlinker-nvim-src).overrideAttrs (oldAttrs: {
+    nvimSkipModules = [ "spec_init" ]; # I think this is just used for tests
+  });
 
   coq-lsp-nvim = plugin "coq-lsp-nvim" coq-lsp-nvim-src;
 
