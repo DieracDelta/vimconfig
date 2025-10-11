@@ -140,7 +140,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require("lspconfig").jsonls.setup({
-  cmd = { "vscode-json-languageserver", "--stdio" },
+  cmd = { "vscode-json-language-server", "--stdio" },
   capabilities = capabilities,
 })
 
@@ -290,6 +290,7 @@ require("conform").setup({
     typst = { "prettypst" },
     html = { "prettierd" },
     ocaml = { "ocamlformat" },
+    haskell = { "fourmolu" },
   },
   -- Command to toggle format-on-save
   -- https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
