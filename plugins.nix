@@ -168,4 +168,6 @@ with inputs;
 
   colorful-winsep-nvim = plugin "colorful-winsep-nvim" colorful-winsep-nvim-src;
 
+  telescope-live-grep-args = plugin "telescope-live-grep-args" telescope-live-grep-args-src;
+
 }

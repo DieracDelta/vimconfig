@@ -1,7 +1,7 @@
 local z_utils = require("telescope._extensions.zoxide.utils")
-require("telescope").setup {
+require("telescope").setup({
   defaults = {
-    preview = { treesitter = true, },
+    preview = { treesitter = true },
     file_ignore_patterns = { "node_modules", "target", "target_dirs" },
     prompt_prefix = "   ",
     selection_caret = "  ",
@@ -18,10 +18,25 @@ require("telescope").setup {
     },
   },
   extensions = {
+    live_grep_args = {
+      auto_quoting = true, -- makes phrases with spaces painless
+      mappings = {
+        i = {
+          -- Quickly wrap the prompt in quotes
+          ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+          -- Insert a glob flag and keep typing (e.g., press this, then type *.cc)
+          ["<C-g>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -g " }),
+          -- If you prefer ripgrep’s --iglob:
+          ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
+          -- Swap to “refine by filename” mode
+          ["<C-f>"] = require("telescope-live-grep-args.actions").to_fuzzy_refine,
+        },
+      },
+    },
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
+      require("telescope.themes").get_dropdown({
         -- even more opts
-      }
+      }),
     },
     zoxide = {
       prompt_title = "[ Walking on the shoulders of TJ ]",
@@ -29,38 +44,48 @@ require("telescope").setup {
         default = {
           after_action = function(selection)
             print("Update to (" .. selection.z_score .. ") " .. selection.path)
-          end
+          end,
         },
         ["<leader>Z"] = {
-          before_action = function(selection) print("before C-s") end,
+          before_action = function(selection)
+            print("before C-s")
+          end,
           action = function(selection)
             vim.cmd.edit(selection.path)
-          end
+          end,
         },
         -- Opens the selected entry in a new split
         ["<leader>Y"] = { action = z_utils.create_basic_command("split") },
       },
-    }
-  }
-}
+    },
+  },
+})
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("ui-select")
 
 vim.api.nvim_set_keymap(
-  'n',
-  '<leader>bb',
+  "n",
+  "<leader>bb",
   '<cmd>lua require("telescope.builtin").buffers({ file_ignore_patterns = {"^CoqInfoPanel:"} })<cr>',
   { noremap = true, silent = true }
 )
-vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope file_browser<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>Telescope live_grep<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>gf', '<cmd>require("telescope.builtins").live_grep {default_text="function"}<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>l', '<cmd>Telescope resume<cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>', '<cmd><cr>', {})
-vim.api.nvim_set_keymap('n', '<leader>', '<cmd><cr>', {})
+vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>Telescope file_browser<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>Telescope live_grep<cr>", {})
+vim.keymap.set("n", "<leader>gF", function()
+  require("telescope").extensions.live_grep_args.live_grep_args()
+end, {})
+vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", {})
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>gf",
+  '<cmd>require("telescope.builtins").live_grep {default_text="function"}<cr>',
+  {}
+)
+vim.api.nvim_set_keymap("n", "<leader>l", "<cmd>Telescope resume<cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>", "<cmd><cr>", {})
+vim.api.nvim_set_keymap("n", "<leader>", "<cmd><cr>", {})
 
-vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>lua require("yazi").yazi()<cr>', {})
+vim.api.nvim_set_keymap("n", "<leader>z", '<cmd>lua require("yazi").yazi()<cr>', {})
 
 function coq_panels_picker()
   local telescope = require("telescope")
@@ -76,9 +101,9 @@ function coq_panels_picker()
     return name:match("CoqInfoPanel")
   end, all_bufs)
 
-  require('telescope.builtin').buffers({
+  require("telescope.builtin").buffers({
     prompt_title = "Coq Info Panels",
-    finder = finders.new_table {
+    finder = finders.new_table({
       results = coq_bufs,
       entry_maker = function(buf)
         local name = vim.api.nvim_buf_get_name(buf)
@@ -89,7 +114,7 @@ function coq_panels_picker()
           bufnr = buf,
         }
       end,
-    },
+    }),
     sorter = sorters.get_generic_fuzzy_sorter(),
     previewer = false,
     attach_mappings = function(_, map)
@@ -103,12 +128,8 @@ function coq_panels_picker()
   })
 end
 
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>bc',
-  '<cmd>lua coq_panels_picker()<cr>',
-  { noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap("n", "<leader>bc", "<cmd>lua coq_panels_picker()<cr>", { noremap = true, silent = true })
 
-require("telescope").load_extension('zoxide')
+require("telescope").load_extension("zoxide")
+require("telescope").load_extension("live_grep_args")
 vim.keymap.set("n", "<leader>cd", require("telescope").extensions.zoxide.list)

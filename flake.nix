@@ -95,6 +95,11 @@
       flake = false;
     };
 
+    telescope-live-grep-args-src = {
+      url = "github:nvim-telescope/telescope-live-grep-args.nvim";
+      flake = false;
+    };
+
     lsp-config-src = {
       url = "github:neovim/nvim-lspconfig";
       flake = false;
@@ -458,6 +463,7 @@
             # telescope
             telescope-nvim
             vimPlugins.telescope-file-browser-nvim
+            vimPlugins.telescope-live-grep-args-nvim
             telescope-ui-select
             vimPlugins.yazi-nvim
 

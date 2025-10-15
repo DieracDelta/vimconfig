@@ -2284,6 +2284,7 @@
         "symbols-nvim-src": "symbols-nvim-src",
         "telescope-dap-nvim-src": "telescope-dap-nvim-src",
         "telescope-dapzzzz-src": "telescope-dapzzzz-src",
+        "telescope-live-grep-args-src": "telescope-live-grep-args-src",
         "telescope-src": "telescope-src",
         "telescope-ui-select-src": "telescope-ui-select-src",
         "terraform-ls-src": "terraform-ls-src",
@@ -2457,6 +2458,22 @@
       "original": {
         "owner": "HUAHUAI23",
         "repo": "telescope-dapzzzz",
+        "type": "github"
+      }
+    },
+    "telescope-live-grep-args-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740416323,
+        "narHash": "sha256-VmX7K21v3lErm7f5I7/1rJ/+fSbFxZPrbDokra9lZpQ=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-live-grep-args.nvim",
+        "rev": "b80ec2c70ec4f32571478b501218c8979fab5201",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-live-grep-args.nvim",
         "type": "github"
       }
     },
