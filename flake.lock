@@ -115,11 +115,11 @@
     "coq-lsp-nvim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1742139685,
-        "narHash": "sha256-xcedErb4NjkbMdADgTzpWQu465smc4XSp6kAYwTK+dk=",
+        "lastModified": 1761328326,
+        "narHash": "sha256-P5qR8UurP1XnM5orPpMsz8OIqb18cX7ISkFufEjjbHE=",
         "owner": "DieracDelta",
         "repo": "coq-lsp.nvim",
-        "rev": "b41f89982c11bad9fc64fd0f01abb326016acc3d",
+        "rev": "d82c583b0b19bf3200a6498bd91515558489c0ec",
         "type": "github"
       },
       "original": {
@@ -1228,22 +1228,6 @@
         "type": "github"
       }
     },
-    "lsp-config-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1761228387,
-        "narHash": "sha256-wxlqAN0wzETHMBCSxVIUzCB7F39et8a9ekWEb8fzJAI=",
-        "owner": "neovim",
-        "repo": "nvim-lspconfig",
-        "rev": "ececa531ecae813422697b5ef627a11cc964c2a7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "neovim",
-        "repo": "nvim-lspconfig",
-        "type": "github"
-      }
-    },
     "luvit-meta": {
       "flake": false,
       "locked": {
@@ -2222,7 +2206,6 @@
         "gruvbox-nvim-src": "gruvbox-nvim-src",
         "guess-indent-src": "guess-indent-src",
         "leap-src": "leap-src",
-        "lsp-config-src": "lsp-config-src",
         "lze-flk": "lze-flk",
         "lzextras-flk": "lzextras-flk",
         "mnw": "mnw",

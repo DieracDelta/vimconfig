@@ -45,10 +45,12 @@ require("crates").setup({
 })
 
 require("trouble").setup({})
-require("lspconfig").terraformls.setup({
+vim.lsp.config("terraformls", {
   cmd = { "terraform-lsp" },
 })
-require("lspconfig").lua_ls.setup({
+vim.lsp.enable("terraformls")
+
+vim.lsp.config("lua_ls", {
   cmd = { "lua-language-server" },
   settings = {
     Lua = {
@@ -60,6 +62,7 @@ require("lspconfig").lua_ls.setup({
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
       telemetry = {
         enable = false,
@@ -67,18 +70,22 @@ require("lspconfig").lua_ls.setup({
     },
   },
 })
+vim.lsp.enable("lua_ls")
 
-require("lspconfig").clangd.setup({
+vim.lsp.config("clangd", {
   cmd = { "clangd" },
 })
+vim.lsp.enable("clangd")
 
-require("lspconfig").gopls.setup({
+vim.lsp.config("gopls", {
   cmd = { "gopls" },
 })
+vim.lsp.enable("gopls")
 
-require("lspconfig").r_language_server.setup({
+vim.lsp.config("r_language_server", {
   cmd = { "R", "--slave", "-e", "langaugeserver::run()" },
 })
+vim.lsp.enable("r_language_sever")
 
 require("lsp_signature").setup({
   bind = true,
@@ -139,10 +146,12 @@ vim.api.nvim_create_autocmd("FileType", {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require("lspconfig").jsonls.setup({
+vim.lsp.config("jsonls", {
   cmd = { "vscode-json-language-server", "--stdio" },
   capabilities = capabilities,
 })
+
+vim.lsp.enable("jsonls")
 
 function show_documentation()
   local filetype = vim.bo.filetype
@@ -164,7 +173,7 @@ end
 
 vim.fn.setenv("CARGO_TARGET_DIR", "target_dirs/nix_ra")
 
-require("lspconfig").tinymist.setup({})
+vim.lsp.enable("tinymist")
 require("typescript-tools").setup({
   tsserver_path = "./node_modules/typescript/lib/",
 })
@@ -236,9 +245,10 @@ vim.g.loaded_coqtail = 1
 vim.g["coqtail#supported"] = 0
 require("coq-lsp").setup()
 
-require("lspconfig").ocamllsp.setup({
+vim.lsp.config("ocamllsp", {
   cmd = { "ocamllsp", "--fallback-read-dot-merlin" },
 })
+vim.lsp.enable("ocamllsp")
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*.ml", "*.mli" },
@@ -247,7 +257,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   end,
 })
 
-require("lspconfig").nil_ls.setup({
+vim.lsp.config("nil_ls", {
   settings = {
     ["nil"] = {
       nix = {
@@ -259,12 +269,14 @@ require("lspconfig").nil_ls.setup({
     },
   },
 })
+vim.lsp.enable("nil_ls")
 
-require("lspconfig").ruff.setup({
+vim.lsp.config("ruff", {
   init_options = {
     settings = {},
   },
 })
+vim.lsp.enable("ruff")
 
 local r = require("symbols.recipes")
 require("symbols").setup(r.DefaultFilters, r.AsciiSymbols, {

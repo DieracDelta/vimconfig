@@ -100,11 +100,6 @@
       flake = false;
     };
 
-    lsp-config-src = {
-      url = "github:neovim/nvim-lspconfig";
-      flake = false;
-    };
-
     wilder-nvim-src = {
       url = "github:gelguy/wilder.nvim";
       flake = false;
@@ -497,7 +492,7 @@
             vimPlugins.coq_nvim
             vimPlugins.lsp_signature-nvim
             vimPlugins.lspkind-nvim
-            lsp-config
+            # lsp-config
             vimPlugins.plenary-nvim
             vimPlugins.popup-nvim
 
