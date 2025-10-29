@@ -176,10 +176,10 @@
     #   flake = false;
     # };
 
-    copilot-lua-src = {
-      url = "github:zbirenbaum/copilot.lua";
-      flake = false;
-    };
+    # copilot-lua-src = {
+    #   url = "github:zbirenbaum/copilot.lua";
+    #   flake = false;
+    # };
 
     # copilot-cmp-src = {
     #   url = "github:zbirenbaum/copilot-cmp";
@@ -500,7 +500,7 @@
 
             fidget
             vimPlugins.trouble-nvim
-            copilot-lua
+            # copilot-lua
             # copilot-cmp
             node-type-nvim
             floating-input

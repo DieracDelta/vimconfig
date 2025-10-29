@@ -1,10 +1,10 @@
 require("node-type").setup({})
 require("floating-input").setup({})
-require("copilot").setup({
-  suggestion = { enable = true },
-  panel = { enabled = true },
-  copilot_node_command = "node",
-})
+-- require("copilot").setup({
+--   suggestion = { enable = true },
+--   panel = { enabled = true },
+--   copilot_node_command = "node",
+-- })
 vim.g.coq_settings = {
   auto_start = "shut-up",
   keymap = { recommended = false },

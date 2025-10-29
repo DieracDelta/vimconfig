@@ -96,9 +96,9 @@ with inputs;
   lsp-config = plugin "lsp-config" lsp-config-src;
   # lsp_lines = plugin "lsp_lines" lsp_lines-src;
 
-  copilot-lua = plugin "copilot-lua" copilot-lua-src;
-  copilot-cmp = plugin "copilot-cmp" copilot-cmp-src;
-  copilot-vim = plugin "copilot-vim" copilot-vim-src;
+  # copilot-lua = plugin "copilot-lua" copilot-lua-src;
+  # copilot-cmp = plugin "copilot-cmp" copilot-cmp-src;
+  # copilot-vim = plugin "copilot-vim" copilot-vim-src;
 
   neural = plugin "neural" neural-src;
 
