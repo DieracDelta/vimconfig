@@ -33,10 +33,10 @@
       flake = false;
     };
 
-    neovim-nightly = {
-      url = "github:DieracDelta/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      flake = false;
+      flake = true;
     };
     ghostty-nvim-src = {
       url = "github:isak102/ghostty.nvim";
@@ -288,7 +288,7 @@
       self,
       flake-utils,
       nixpkgs,
-      neovim-nightly,
+      neovim-nightly-overlay,
       lze-flk,
       lzextras-flk,
       rust-owl,
@@ -321,20 +321,6 @@
                   nodejs = final.nodejs.overrideAttrs (oldAttrs: {
                     doCheck = false;
                   });
-                  # credit: gerg/mnw
-                  neovim' = import "${neovim-nightly}/flake/packages/neovim.nix" {
-                    inherit (final) lib pkgs;
-                    neovim-src =
-                      let
-                        lock = final.lib.importJSON "${neovim-nightly}/flake.lock";
-                        nodeName = lock.nodes.root.inputs.neovim-src;
-                        input = lock.nodes.${nodeName}.locked;
-                      in
-                      builtins.trace input pkgs.fetchFromGitHub {
-                        inherit (input) owner repo rev;
-                        hash = input.narHash;
-                      };
-                  };
                 })
               ];
             })
@@ -417,20 +403,8 @@
 
                   nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
                   nil = inputs.nil.packages.${system}.nil;
+
                   # credit: gerg/mnw
-                  neovim' = import "${neovim-nightly}/flake/packages/neovim.nix" {
-                    inherit (final) lib pkgs;
-                    neovim-src =
-                      let
-                        lock = final.lib.importJSON "${neovim-nightly}/flake.lock";
-                        nodeName = lock.nodes.root.inputs.neovim-src;
-                        input = lock.nodes.${nodeName}.locked;
-                      in
-                      builtins.trace input pkgs.fetchFromGitHub {
-                        inherit (input) owner repo rev;
-                        hash = input.narHash;
-                      };
-                  };
                 })
                 #     doCheck = false;
               ];
@@ -489,8 +463,13 @@
             vimPlugins.image-nvim
             typst-vim
             vimPlugins.vim-ormolu # haskell
-            vimPlugins.coq_nvim
+            # vimPlugins.coq_nvim
             vimPlugins.lsp_signature-nvim
+            vimPlugins.nvim-cmp
+            vimPlugins.cmp-path
+            vimPlugins.cmp-buffer
+            vimPlugins.cmp-cmdline
+            vimPlugins.cmp-nvim-lsp
             vimPlugins.lspkind-nvim
             # lsp-config
             vimPlugins.plenary-nvim
@@ -597,8 +576,10 @@
               shellcheck
               shfmt
               prettierd
+              ty
               ;
           };
+          neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.system}.default;
           extraLuaPackages = ps: [ ps.magick ];
           plugins = {
             start = requiredPluginList;

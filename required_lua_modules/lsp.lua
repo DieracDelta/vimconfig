@@ -1,15 +1,78 @@
 require("node-type").setup({})
 require("floating-input").setup({})
+local cmp = require("cmp")
+
+local mappings = {
+  ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+  ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+
+  ["<C-f>"] = cmp.mapping.scroll_docs(4),
+  ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+
+  ["<CR>"] = cmp.mapping.confirm({
+    select = false,
+  }),
+
+  ["<C-e>"] = cmp.mapping.abort(),
+}
+
+cmp.setup({
+  mapping = mappings,
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "path" },
+  }, {
+    { name = "buffer" },
+  }),
+})
+
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline({
+    ["<C-n>"] = {
+      c = cmp.mapping.select_next_item(),
+    },
+    ["<C-p>"] = {
+      c = cmp.mapping.select_prev_item(),
+    },
+    ["<CR>"] = {
+      c = cmp.mapping.confirm({ select = false }),
+    },
+  }),
+
+  sources = {
+    { name = "path" },
+    { name = "cmdline" },
+  },
+})
+
+cmp.setup.cmdline({ "/", "?" }, {
+  mapping = cmp.mapping.preset.cmdline({
+    ["<C-n>"] = {
+      c = cmp.mapping.select_next_item(),
+    },
+    ["<C-p>"] = {
+      c = cmp.mapping.select_prev_item(),
+    },
+    ["<CR>"] = {
+      c = cmp.mapping.confirm({ select = false }),
+    },
+  }),
+
+  sources = {
+    { name = "buffer" },
+  },
+})
+
 -- require("copilot").setup({
 --   suggestion = { enable = true },
 --   panel = { enabled = true },
 --   copilot_node_command = "node",
 -- })
-vim.g.coq_settings = {
-  auto_start = "shut-up",
-  keymap = { recommended = false },
-}
-require("coq")
+-- vim.g.coq_settings = {
+--   auto_start = "shut-up",
+--   keymap = { recommended = false },
+-- }
+-- require("coq")
 -- require("coq_3p")({
 --   { src = "nvimlua", short_name = "nLUA" },
 --   { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
@@ -330,4 +393,22 @@ vim.api.nvim_create_user_command("FormatEnable", function()
   vim.g.disable_autoformat = false
 end, {
   desc = "Re-enable autoformat-on-save",
+})
+-- errors
+require("vim._extui").enable({
+  enable = true,
+  msg = {
+    target = "cmd",
+    timeout = 4000,
+  },
+})
+
+vim.opt.messagesopt = "wait:2000,history:1000"
+vim.opt.shortmess:append("sIWFcC")
+
+-- python
+vim.lsp.config("ty", {})
+vim.lsp.enable("ty")
+vim.keymap.set("n", "<leader>m", "<Cmd>messages<CR>", {
+  desc = "Show message history (:messages pager)",
 })
