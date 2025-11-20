@@ -184,3 +184,24 @@ vim.api.nvim_set_keymap("n", "<leader>bn", "<cmd>lua filtered_bufnav(1)<cr>", { 
 
 -- Map for bprev (direction = -1)
 vim.api.nvim_set_keymap("n", "<leader>bp", "<cmd>lua filtered_bufnav(-1)<cr>", { noremap = true, silent = true })
+-- Helper function to yank text to system clipboard
+local function yank_to_clipboard(text)
+  vim.fn.setreg("+", text)
+  print("Yanked: " .. text)
+end
+
+vim.keymap.set("n", "<leader>yp", function()
+  local cwd = vim.fn.getcwd()
+  yank_to_clipboard(cwd)
+end, { desc = "Yank CWD to clipboard" })
+
+vim.keymap.set("n", "<leader>yf", function()
+  local file = vim.fn.expand("%:t") -- just filename
+  yank_to_clipboard(file)
+end, { desc = "Yank filename to clipboard" })
+
+vim.keymap.set("n", "<leader>yF", function()
+  local cwd = vim.fn.getcwd()
+  local file = vim.fn.expand("%:t")
+  yank_to_clipboard(cwd .. "/" .. file)
+end, { desc = "Yank CWD and filename to clipboard" })

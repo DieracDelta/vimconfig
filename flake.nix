@@ -576,6 +576,7 @@
               shellcheck
               shfmt
               prettierd
+              just-lsp
               ty
               ;
           };

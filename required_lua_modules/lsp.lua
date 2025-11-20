@@ -108,6 +108,7 @@ require("crates").setup({
 })
 
 require("trouble").setup({})
+vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>Trouble<cr>", {})
 vim.lsp.config("terraformls", {
   cmd = { "terraform-lsp" },
 })
@@ -412,3 +413,5 @@ vim.lsp.enable("ty")
 vim.keymap.set("n", "<leader>m", "<Cmd>messages<CR>", {
   desc = "Show message history (:messages pager)",
 })
+vim.lsp.config("just", {})
+vim.lsp.enable("just")
