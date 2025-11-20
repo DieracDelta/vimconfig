@@ -557,29 +557,33 @@
             nodeJs.enable = true;
             perl.enable = true;
           };
-          extraBinPath = builtins.attrValues {
-            inherit (pkgs)
-              nixfmt
-              ruff
-              ripgrep
-              git
-              terraform-ls
-              lua-language-server
-              clang-tools
-              myRSetup
-              nodejs
-              fd
-              nil
-              vscode-langservers-extracted
-              stylua
-              imagemagick
-              shellcheck
-              shfmt
-              prettierd
-              just-lsp
-              ty
-              ;
-          };
+          extraBinPath =
+            builtins.attrValues {
+              inherit (pkgs)
+                nixfmt
+                ruff
+                ripgrep
+                git
+                terraform-ls
+                lua-language-server
+                clang-tools
+                myRSetup
+                nodejs
+                fd
+                nil
+                vscode-langservers-extracted
+                stylua
+                imagemagick
+                shellcheck
+                shfmt
+                prettierd
+                just-lsp
+                ty
+                ;
+            }
+            ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+              pkgs.inotify-tools
+            ];
           neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.system}.default;
           extraLuaPackages = ps: [ ps.magick ];
           plugins = {
