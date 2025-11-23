@@ -170,4 +170,7 @@ with inputs;
 
   telescope-live-grep-args = plugin "telescope-live-grep-args" telescope-live-grep-args-src;
 
+  claudecode-nvim = plugin "claudecode-nvim" claudecode-nvim-src;
+
 }
+

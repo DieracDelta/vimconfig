@@ -43,6 +43,11 @@
       flake = false;
     };
 
+    claudecode-nvim-src = {
+      url = "github:coder/claudecode.nvim";
+      flake = false;
+    };
+
     gitlinker-nvim-src = {
       url = "github:linrongbin16/gitlinker.nvim";
       flake = false;
@@ -486,6 +491,10 @@
 
             symbols-nvim
 
+            # claude code
+            vimPlugins.snacks-nvim
+            claudecode-nvim
+
             # treesitter
             nvim-async
             (nvim-ufo.overrideAttrs (oa: {
@@ -537,6 +546,7 @@
           "git"
           "autopairs"
           "lsp"
+          "claudecode"
           #"avante"
         ];
         luaLazyModules = [

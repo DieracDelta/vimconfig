@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "claudecode-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760892433,
+        "narHash": "sha256-XYmf1RQ2bVK6spINZW4rg6OQQ5CWWcR0Tw4QX8ZDjgs=",
+        "owner": "coder",
+        "repo": "claudecode.nvim",
+        "rev": "1552086ebcce9f4a2ea3b9793018a884d6b60169",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coder",
+        "repo": "claudecode.nvim",
+        "type": "github"
+      }
+    },
     "colorful-winsep-nvim-src": {
       "flake": false,
       "locked": {
@@ -2214,6 +2230,7 @@
     "root": {
       "inputs": {
         "blamer-nvim-src": "blamer-nvim-src",
+        "claudecode-nvim-src": "claudecode-nvim-src",
         "colorful-winsep-nvim-src": "colorful-winsep-nvim-src",
         "colorizer-src": "colorizer-src",
         "comment-nvim-src": "comment-nvim-src",
