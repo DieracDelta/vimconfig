@@ -616,5 +616,12 @@
         };
         packages.neovim = myNeovim';
       }
-    );
+    )
+    // {
+      hydraJobs = {
+        x86_64-linux.neovim = self.packages.x86_64-linux.neovim;
+        aarch64-linux.neovim = self.packages.aarch64-linux.neovim;
+        aarch64-darwin.neovim = self.packages.aarch64-darwin.neovim;
+      };
+    };
 }
