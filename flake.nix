@@ -555,6 +555,7 @@
           "ferris"
           "parinfer"
           "ghostty"
+          "lean"
         ];
 
         luaRequire' = module: builtins.toString ./required_lua_modules + "/${module}.lua";
@@ -603,6 +604,7 @@
               ferris-nvim
               parinfer-rust-nvim
               ghostty-nvim
+              vimPlugins.lean-nvim
             ];
           };
           luaFiles = map luaRequire' luaModules ++ map luaLazyRequire' luaLazyModules;
