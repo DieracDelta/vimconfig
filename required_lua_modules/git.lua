@@ -3,6 +3,11 @@ require('blamer').setup({
   window_width = 40,               -- Width of the blame window
   show_summary = true              -- Whether to show commit summaries
 })
+
+-- Fix for cursor jumping in Telescope when blamer is enabled
+vim.g.blamer_show_in_insert_modes = 0
+vim.g.blamer_ignored_filetypes = { 'TelescopePrompt', 'TelescopeResults' }
+
 require('gitsigns').setup({})
 require('neogit').setup({
   signs = {
