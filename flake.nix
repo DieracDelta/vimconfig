@@ -451,8 +451,6 @@
 
             vimPlugins.dressing-nvim
             vimPlugins.nui-nvim
-            vimPlugins.render-markdown-nvim
-            vimPlugins.img-clip-nvim
             # git
             vimPlugins.neogit
 
@@ -491,10 +489,6 @@
 
             symbols-nvim
 
-            # claude code
-            vimPlugins.snacks-nvim
-            claudecode-nvim
-
             # treesitter
             nvim-async
             (nvim-ufo.overrideAttrs (oa: {
@@ -520,11 +514,6 @@
             vim-illuminate
             ts-node-action
 
-            # TODO lazy load these
-            vimPlugins.typescript-tools-nvim
-            vimPlugins.crates-nvim
-            coqtail
-            coq-lsp-nvim
             vimPlugins.haskell-tools-nvim
           ]
           # ++ lib.optional (system != "aarch64-darwin") [
@@ -546,8 +535,6 @@
           "git"
           "autopairs"
           "lsp"
-          "claudecode"
-          #"avante"
         ];
         luaLazyModules = [
           "rustaceanvim"
@@ -556,6 +543,11 @@
           "parinfer"
           "ghostty"
           "lean"
+          "claudecode"
+          "lsp_servers"
+          "typescript"
+          "coq"
+          "crates"
         ];
 
         luaRequire' = module: builtins.toString ./required_lua_modules + "/${module}.lua";
@@ -605,6 +597,12 @@
               parinfer-rust-nvim
               ghostty-nvim
               vimPlugins.lean-nvim
+              vimPlugins.snacks-nvim
+              claudecode-nvim
+              vimPlugins.typescript-tools-nvim
+              coq-lsp-nvim
+              coqtail
+              vimPlugins.crates-nvim
             ];
           };
           luaFiles = map luaRequire' luaModules ++ map luaLazyRequire' luaLazyModules;
