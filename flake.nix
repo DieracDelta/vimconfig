@@ -415,126 +415,91 @@
               ];
             });
         # plugin, config file
-        requiredPluginList =
-          with pkgs;
-          [
-            # lazy loading
-            vimPlugins.lze
-            vimPlugins.lzextras
-            colorful-winsep-nvim
-            vimPlugins.markid
-            blamer-nvim
+        requiredPluginList = with pkgs; [
+          # lazy loading
+          vimPlugins.lze
+          vimPlugins.lzextras
+          # colorful-winsep-nvim
+          # vimPlugins.markid
+          # blamer-nvim
 
-            # essentials
-            which-key
+          # essentials
+          which-key
 
-            # aesthetics
-            gruvbox-nvim
-            vimPlugins.lualine-nvim
-            vimPlugins.tabline-nvim
-            vimPlugins.nvim-web-devicons
+          # aesthetics
+          gruvbox-nvim
+          vimPlugins.lualine-nvim
+          vimPlugins.tabline-nvim
+          vimPlugins.nvim-web-devicons
 
-            # telescope
-            telescope-nvim
-            vimPlugins.telescope-file-browser-nvim
-            vimPlugins.telescope-live-grep-args-nvim
-            telescope-ui-select
-            vimPlugins.yazi-nvim
+          # github
+          # gitlinker-nvim
 
-            # github
-            gitlinker-nvim
+          # misc
 
-            # misc
-            vimPlugins.surround-nvim
-            vimPlugins.undotree
-            colorizer
+          # vimPlugins.dressing-nvim
+          vimPlugins.nui-nvim
+          # git
+          # vimPlugins.neogit
 
-            vimPlugins.dressing-nvim
-            vimPlugins.nui-nvim
-            # git
-            vimPlugins.neogit
+          # vimPlugins.gitsigns-nvim
 
-            vimPlugins.gitsigns-nvim
+          # autopairs
+          # vimPlugins.nvim-autopairs
 
-            # autopairs
-            vimPlugins.nvim-autopairs
+          # lsp
 
-            # lsp
+          vimPlugins.nvim-nio # async-io
+          vimPlugins.rust-vim # for formatting
+          vimPlugins.image-nvim
+          typst-vim
+          vimPlugins.vim-ormolu # haskell
+          # vimPlugins.coq_nvim
+          vimPlugins.lsp_signature-nvim
+          vimPlugins.nvim-cmp
+          vimPlugins.cmp-path
+          vimPlugins.cmp-buffer
+          vimPlugins.cmp-cmdline
+          vimPlugins.cmp-nvim-lsp
+          vimPlugins.lspkind-nvim
+          # lsp-config          vimPlugins.plenary-nvim
+          vimPlugins.popup-nvim
 
-            vimPlugins.nvim-nio # async-io
-            vimPlugins.rust-vim # for formatting
-            vimPlugins.image-nvim
-            typst-vim
-            vimPlugins.vim-ormolu # haskell
-            # vimPlugins.coq_nvim
-            vimPlugins.lsp_signature-nvim
-            vimPlugins.nvim-cmp
-            vimPlugins.cmp-path
-            vimPlugins.cmp-buffer
-            vimPlugins.cmp-cmdline
-            vimPlugins.cmp-nvim-lsp
-            vimPlugins.lspkind-nvim
-            # lsp-config
-            vimPlugins.plenary-nvim
-            vimPlugins.popup-nvim
+          # vimPlugins.conform-nvim
 
-            vimPlugins.conform-nvim
+          # fidget
+          # vimPlugins.trouble-nvim
+          # copilot-lua
+          # copilot-cmp
+          # node-type-nvim
+          # floating-input
 
-            fidget
-            vimPlugins.trouble-nvim
-            # copilot-lua
-            # copilot-cmp
-            node-type-nvim
-            floating-input
+          # symbols-nvim
 
-            symbols-nvim
+          # treesitter
+          nvim-async
 
-            # treesitter
-            nvim-async
-            (nvim-ufo.overrideAttrs (oa: {
-              doCheck = false;
-            }))
-            comment-nvim
-            #vimPlugins.nvim-treesitter-context
-            #vimPlugins.nvim-treesitter-textobjects
-            #nvim-treesitter
+          # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
 
-            # (builtins.attrValues ((lib.filterAttrs (n: v: !(builtins.elem v ["comment"]))) pkgs.vimPlugins.nvim-treesitter.grammarPlugins))
+          # ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
+          #   src = pkgs.nvim-treesitter-src;
+          # })).withAllGrammars
+          # )
 
-            ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
-              src = pkgs.nvim-treesitter-src;
-            })).withAllGrammars
-            )
-
-            # (builtins.trace (lib.filterAttrs (name: val: name != "comment") pkgs.vimPlugins.nvim-treesitter.grammarPlugins)
-            vimPlugins.telescope-zoxide
-            # )
-            vimPlugins.nvim-ts-autotag
-            vimPlugins.rainbow-delimiters-nvim
-            vim-illuminate
-            ts-node-action
-
-            vimPlugins.haskell-tools-nvim
-          ]
-          # ++ lib.optional (system != "aarch64-darwin") [
-          #   rust-owl.packages.${system}.rustowl-nvim
-          # ]
-          ++ (
-            pkgs.vimPlugins.nvim-treesitter.grammarPlugins
-            |> (lib.filterAttrs (n: _: !(builtins.elem n [ "comment" ])))
-            |> builtins.attrValues
-          );
+          # (builtins.trace (lib.filterAttrs (name: val: name != "comment") pkgs.vimPlugins.nvim-treesitter.grammarPlugins)
+          # vimPlugins.telescope-zoxide
+          # )
+          # vimPlugins.nvim-ts-autotag
+          # vimPlugins.rainbow-delimiters-nvim
+          # vim-illuminate
+          # ts-node-action
+        ];
 
         luaModules = [
           "essentials"
           "aesthetics"
-          "telescope"
-          "github"
-          "misc"
-          "treesitter"
-          "git"
-          "autopairs"
           "lsp"
+          "completion"
         ];
         luaLazyModules = [
           "rustaceanvim"
@@ -548,6 +513,15 @@
           "typescript"
           "coq"
           "crates"
+          "telescope"
+          "gitlinker"
+          "git"
+          "gitsigns"
+          "treesitter"
+          "autopairs"
+          "misc"
+          "ui"
+          "formatting"
         ];
 
         luaRequire' = module: builtins.toString ./required_lua_modules + "/${module}.lua";
@@ -603,6 +577,42 @@
               coq-lsp-nvim
               coqtail
               vimPlugins.crates-nvim
+              telescope-nvim
+              vimPlugins.telescope-file-browser-nvim
+              vimPlugins.telescope-live-grep-args-nvim
+              telescope-ui-select
+              vimPlugins.telescope-zoxide
+              vimPlugins.yazi-nvim
+              gitlinker-nvim
+              vimPlugins.neogit
+              vimPlugins.gitsigns-nvim
+              blamer-nvim
+              (nvim-ufo.overrideAttrs (oa: {
+                doCheck = false;
+              }))
+              comment-nvim
+              # ((pkgs.vimPlugins.nvim-treesitter.overrideAttrs (oldAttrs: {
+              #   src = pkgs.nvim-treesitter-src;
+              # })).withAllGrammars
+              # )
+              vimPlugins.nvim-ts-autotag
+              vimPlugins.rainbow-delimiters-nvim
+              vim-illuminate
+              vimPlugins.surround-nvim
+              vimPlugins.undotree
+              colorizer
+              vimPlugins.nvim-autopairs
+              vimPlugins.haskell-tools-nvim
+              vimPlugins.markid
+              ts-node-action
+              colorful-winsep-nvim
+              fidget
+              vimPlugins.trouble-nvim
+              symbols-nvim
+              node-type-nvim
+              floating-input
+              vimPlugins.dressing-nvim
+              vimPlugins.conform-nvim
             ];
           };
           luaFiles = map luaRequire' luaModules ++ map luaLazyRequire' luaLazyModules;

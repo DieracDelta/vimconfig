@@ -15,7 +15,7 @@ require("lze").load({
   after = function()
     require("snacks").setup()
     require("claudecode").setup()
-    
+
     -- keymaps are handled by lze keys, but we can double check
   end,
 })

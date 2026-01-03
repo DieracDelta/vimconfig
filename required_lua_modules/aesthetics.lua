@@ -62,5 +62,3 @@ require("lualine").setup({
     lualine_z = { "location" },
   },
 })
-
-require("colorful-winsep").setup({ only_line_seq = false })
