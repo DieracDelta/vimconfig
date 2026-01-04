@@ -1,6 +1,5 @@
 local lze = require("lze")
 
--- 1. Main Telescope Plugin
 lze.load({
   "telescope.nvim",
   cmd = { "Telescope" },
@@ -47,15 +46,9 @@ lze.load({
     )
     vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", {})
     vim.api.nvim_set_keymap("n", "<leader><leader>", "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
-    vim.api.nvim_set_keymap(
-      "n",
-      "<leader>gf",
-      "<cmd>lua require('telescope.builtin').grep_string()<cr>",
-      {}
-    )
+    vim.api.nvim_set_keymap("n", "<leader>gf", "<cmd>lua require('telescope.builtin').grep_string()<cr>", {})
     vim.api.nvim_set_keymap("n", "<leader>l", "<cmd>lua require('telescope.builtin').resume()<cr>", {})
 
-    -- Coq panels picker (this function is specific to Coq integration, not general Telescope)
     function coq_panels_picker()
       local telescope = require("telescope")
       local finders = require("telescope.finders")
@@ -99,15 +92,14 @@ lze.load({
   end,
 })
 
--- 2. Telescope Zoxide Extension
 lze.load({
   "telescope-zoxide",
   keys = {
     { "<leader>cd", "<cmd>Telescope zoxide list<cr>", desc = "Zoxide" },
   },
   load = function(name)
-      vim.cmd("packadd telescope.nvim")
-      vim.cmd("packadd " .. name)
+    vim.cmd("packadd telescope.nvim")
+    vim.cmd("packadd " .. name)
   end,
   after = function()
     require("telescope").load_extension("zoxide")
@@ -135,15 +127,18 @@ lze.load({
   end,
 })
 
--- 3. Telescope Live Grep Args Extension
 lze.load({
   "telescope-live-grep-args.nvim",
   keys = {
-    { "<leader>gF", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>", desc = "Grep Args" },
+    {
+      "<leader>gF",
+      "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>",
+      desc = "Grep Args",
+    },
   },
   load = function(name)
-      vim.cmd("packadd telescope.nvim")
-      vim.cmd("packadd " .. name)
+    vim.cmd("packadd telescope.nvim")
+    vim.cmd("packadd " .. name)
   end,
   after = function()
     require("telescope").load_extension("live_grep_args")
@@ -171,8 +166,8 @@ lze.load({
     { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
   },
   load = function(name)
-      vim.cmd("packadd telescope.nvim")
-      vim.cmd("packadd " .. name)
+    vim.cmd("packadd telescope.nvim")
+    vim.cmd("packadd " .. name)
   end,
   after = function()
     require("telescope").load_extension("file_browser")
@@ -180,28 +175,23 @@ lze.load({
   end,
 })
 
--- 5. Telescope UI Select Extension
 lze.load({
   "telescope-ui-select",
   load = function(name)
-      vim.cmd("packadd telescope.nvim")
-      vim.cmd("packadd " .. name)
+    vim.cmd("packadd telescope.nvim")
+    vim.cmd("packadd " .. name)
   end,
   after = function()
     require("telescope").load_extension("ui-select")
   end,
 })
 
--- 6. Yazi Extension (if it integrates with Telescope, otherwise it should be a separate lze.load)
--- Assuming Yazi is also a Telescope extension or triggered similarly.
--- If yazi is a separate plugin, it should have its own lze.load
 lze.load({
-  "yazi.nvim", -- pname check: vimPlugins.yazi-nvim
+  "yazi.nvim",
   keys = {
     { "<leader>z", '<cmd>lua require("yazi").yazi()<cr>', desc = "Yazi" },
   },
   after = function()
-    -- Assuming yazi.nvim directly provides the yazi() function
     vim.api.nvim_set_keymap("n", "<leader>z", '<cmd>lua require("yazi").yazi()<cr>', {})
   end,
 })

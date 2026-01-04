@@ -1,6 +1,5 @@
 local lze = require("lze")
 
--- Existing plugins...
 lze.load({
   "colorful-winsep-nvim",
   event = { "WinNew" },

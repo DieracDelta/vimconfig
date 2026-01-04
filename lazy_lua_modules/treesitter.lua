@@ -3,17 +3,17 @@ local lze = require("lze")
 local function is_big_file(buf)
   local max_lines = 10000
   local max_size = 1024 * 1024 -- 1MB
-  
+
   local lines = vim.api.nvim_buf_line_count(buf)
   if lines > max_lines then
     return true
   end
-  
+
   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
   if ok and stats and stats.size > max_size then
     return true
   end
-  
+
   return false
 end
 
@@ -25,13 +25,17 @@ lze.load({
       ensure_installed = {},
       markid = {
         enable = true,
-        disable = function(_, buf) return is_big_file(buf) end,
+        disable = function(_, buf)
+          return is_big_file(buf)
+        end,
       },
       highlight = {
         enable = true,
         use_languagetree = false,
         additional_vim_regex_highlighting = false,
-        disable = function(_, buf) return is_big_file(buf) end,
+        disable = function(_, buf)
+          return is_big_file(buf)
+        end,
       },
       ignore = { "QuickScopePrimary", "QuickScopeSecondary" },
       incremental_selection = {
@@ -42,11 +46,15 @@ lze.load({
           scope_incremental = "<C-s>",
           node_decremental = "<C-p>",
         },
-        disable = function(_, buf) return is_big_file(buf) end,
+        disable = function(_, buf)
+          return is_big_file(buf)
+        end,
       },
       rainbow = {
         enable = true,
-        disable = function(_, buf) return is_big_file(buf) end,
+        disable = function(_, buf)
+          return is_big_file(buf)
+        end,
         extended_mode = true,
         max_file_lines = 10000,
         colors = {
@@ -160,7 +168,9 @@ lze.load({
       },
       autotag = {
         enable = true,
-        disable = function(_, buf) return is_big_file(buf) end,
+        disable = function(_, buf)
+          return is_big_file(buf)
+        end,
       },
     })
   end,
@@ -168,7 +178,7 @@ lze.load({
 
 lze.load({
   "nvim-ufo",
-  event = { "BufReadPost" }, 
+  event = { "BufReadPost" },
   after = function()
     vim.keymap.set("n", "zR", require("ufo").openAllFolds)
     vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
