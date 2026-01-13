@@ -63,3 +63,50 @@ vim.opt.shortmess:append("sIWFcC")
 vim.keymap.set("n", "<leader>m", "<Cmd>messages<CR>", {
   desc = "Show message history (:messages pager)",
 })
+
+-- Custom LSP Helpers
+local function lsp_info()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if #clients == 0 then
+    print("No LSP clients attached to this buffer.")
+    return
+  end
+  local info = { "Active LSP Clients:" }
+  for _, client in ipairs(clients) do
+    table.insert(info, string.format("- [%d] %s (root: %s)", client.id, client.name, client.config.root_dir))
+  end
+  vim.notify(table.concat(info, "\n"), vim.log.levels.INFO)
+end
+
+local function lsp_restart()
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
+  if #clients == 0 then
+    print("No active clients to restart. Attempting to reload buffer to trigger autostart...")
+    vim.cmd("edit")
+    return
+  end
+
+  -- Stop all clients attached to current buffer
+  local client_names = {}
+  for _, client in ipairs(clients) do
+    table.insert(client_names, client.name)
+    client.stop()
+  end
+
+  vim.notify("Stopping clients: " .. table.concat(client_names, ", "), vim.log.levels.INFO)
+
+  -- Wait a bit then reload buffer to re-trigger attach
+  vim.defer_fn(function()
+    vim.cmd("edit")
+    vim.notify("LSP Restarted (buffer reloaded)", vim.log.levels.INFO)
+  end, 500)
+end
+
+local function lsp_log()
+  local path = vim.lsp.get_log_path()
+  vim.cmd("tabnew " .. path)
+end
+
+vim.keymap.set("n", "<leader>Li", lsp_info, { desc = "LSP Info" })
+vim.keymap.set("n", "<leader>Lr", lsp_restart, { desc = "LSP Restart" })
+vim.keymap.set("n", "<leader>Ll", lsp_log, { desc = "LSP Log" })

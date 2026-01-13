@@ -2,8 +2,12 @@ require("lze").load({
   "coq-lsp-nvim",
   ft = { "coq" },
   after = function()
-    vim.g.loaded_coqtail = 1
-    vim.g["coqtail#supported"] = 0
+    -- Load coqtail for syntax highlighting (it's in opt plugins)
+    vim.g["coqtail#supported"] = 0  -- Disable interactive features
+    vim.cmd("packadd coqtail")
+    -- Re-trigger syntax loading for the current buffer
+    vim.cmd("doautocmd Syntax")
+
     require("coq-lsp").setup()
     
     -- telescope picker for coq panels (moved from telescope.lua as it seems coq specific)

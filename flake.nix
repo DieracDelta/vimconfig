@@ -238,7 +238,7 @@
     # };
 
     coq-lsp-nvim-src = {
-      url = "github:DieracDelta/coq-lsp.nvim";
+      url = "path:/home/jrestivo/dev/coq-lsp.nvim";
       flake = false;
     };
 
