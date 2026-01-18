@@ -115,14 +115,17 @@
     "coq-lsp-nvim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1768313514,
-        "narHash": "sha256-MGkzbh7DDdjH0eWg12PAnyfOG/CaoLC6cTQB+TrBFQQ=",
-        "path": "/home/jrestivo/dev/coq-lsp.nvim",
-        "type": "path"
+        "lastModified": 1768315137,
+        "narHash": "sha256-UNfOhDsQ4OFrHwSiBvRcLKrTGeDrn9/tf/xCAP/a4LM=",
+        "owner": "DieracDelta",
+        "repo": "coq-lsp.nvim",
+        "rev": "cfe0960f020b0e06cdd1304c929d74f7324105da",
+        "type": "github"
       },
       "original": {
-        "path": "/home/jrestivo/dev/coq-lsp.nvim",
-        "type": "path"
+        "owner": "DieracDelta",
+        "repo": "coq-lsp.nvim",
+        "type": "github"
       }
     },
     "coqtail-src": {
