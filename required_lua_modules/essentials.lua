@@ -9,7 +9,8 @@ vim.g.maplocalleader = ","
 vim.g.nofoldenable = true
 vim.g.noshowmode = true
 vim.g.completeopt = "menu,menuone,noselect"
-vim.g.noswapfile = true
+vim.opt.swapfile = true
+vim.opt.shortmess:append("A")
 
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2

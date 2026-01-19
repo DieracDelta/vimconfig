@@ -560,6 +560,11 @@
             }
             ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
               pkgs.inotify-tools
+            ]
+            ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+              pkgs.sourcekit-lsp
+              pkgs.swift-format
+              pkgs.swiftlint
             ];
           neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.system}.default;
           extraLuaPackages = ps: [ ps.magick ];
