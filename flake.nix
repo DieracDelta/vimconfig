@@ -335,7 +335,7 @@
         myNeovim' = mnw.lib.wrap pkgs {
           providers = {
             ruby.enable = !isMinimal;
-            python3.enable = true;
+            python3.enable = !isMinimal;
             nodeJs.enable = true;
             perl.enable = !isMinimal;
           };
@@ -345,7 +345,6 @@
                 nixfmt
                 ruff
                 ripgrep
-                git
                 nodejs
                 fd
                 nil
@@ -358,6 +357,7 @@
                 ty
                 ;
             }
+            ++ [ (if isMinimal then pkgs.gitMinimal else pkgs.git) ]
             ++ pkgs.lib.optionals (!isMinimal) [
               # Full builds only - excluded from aarch64-linux minimal
               pkgs.clang-tools
