@@ -336,7 +336,7 @@
           providers = {
             ruby.enable = !isMinimal;
             python3.enable = !isMinimal;
-            nodeJs.enable = true;
+            nodeJs.enable = !isMinimal;
             perl.enable = !isMinimal;
           };
           extraBinPath =
@@ -345,7 +345,6 @@
                 nixfmt
                 ruff
                 ripgrep
-                nodejs
                 fd
                 nil
                 vscode-langservers-extracted
