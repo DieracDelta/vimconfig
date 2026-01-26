@@ -880,17 +880,14 @@
     "gruvbox-nvim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1756990871,
-        "narHash": "sha256-EJG0MQ5fEh2lUxUnJhcBGJdV1l7AmKjUjwNdGAFIpnQ=",
-        "owner": "ellisonleao",
-        "repo": "gruvbox.nvim",
-        "rev": "5e0a460d8e0f7f669c158dedd5f9ae2bcac31437",
-        "type": "github"
+        "lastModified": 1769436403,
+        "narHash": "sha256-h1Bw8XYegQ3i2rkdZIe6/PV1BurGtd1UjiWKdVL4ZQI=",
+        "path": "/home/jrestivo/dev/gruvbox.nvim",
+        "type": "path"
       },
       "original": {
-        "owner": "ellisonleao",
-        "repo": "gruvbox.nvim",
-        "type": "github"
+        "path": "/home/jrestivo/dev/gruvbox.nvim",
+        "type": "path"
       }
     },
     "luvit-meta": {

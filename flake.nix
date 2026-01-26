@@ -258,6 +258,20 @@
                 })
               ];
             });
+
+        # Build-time theme variant based on target system
+        # darwin = green forest theme, arm = red crimson theme, default = original gruvbox
+        themeVariant =
+          if nixpkgs.lib.hasInfix "darwin" system then "darwin"
+          else if system == "aarch64-linux" then "arm"
+          else "default";
+
+        # Write theme config to a Lua file that sets a global variable for aesthetics.lua
+        themeConfigFile = pkgs.writeText "gruvbox-theme-variant.lua" ''
+          -- Set by Nix at build time based on target system
+          vim.g.gruvbox_theme_variant = "${themeVariant}"
+        '';
+
         # plugin, config file
         requiredPluginList = with pkgs; [
           # lazy loading
@@ -425,7 +439,7 @@
               vimPlugins.haskell-tools-nvim
             ];
           };
-          luaFiles = map luaRequire' luaModules ++ map luaLazyRequire' luaLazyModules;
+          luaFiles = [ themeConfigFile ] ++ map luaRequire' luaModules ++ map luaLazyRequire' luaLazyModules;
         };
       in
       myNeovim';
