@@ -206,3 +206,6 @@ vim.keymap.set("n", "<leader>yF", function()
   local file = vim.fn.expand("%:t")
   yank_to_clipboard(cwd .. "/" .. file)
 end, { desc = "Yank CWD and filename to clipboard" })
+
+-- Duplicate visual selection below
+vim.keymap.set("v", "<leader>yc", "y'>p", { desc = "Duplicate selection below" })
