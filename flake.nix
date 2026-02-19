@@ -2,7 +2,6 @@
   description = "Neovim config";
 
   inputs = {
-    nixfmt.url = "github:nixos/nixfmt";
     mnw.url = "github:Gerg-L/mnw";
     blamer-nvim-src.url = "github:psjay/blamer.nvim";
     blamer-nvim-src.flake = false;
@@ -219,7 +218,6 @@
                   stdenvnew = prev.stdenvAdapters.addAttrsToDerivation {
                     NIX_CFLAGS_COMPILE = "-flto";
                   } prev.stdenv;
-                  nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
                   nil = inputs.nil.packages.${system}.nil;
                 })
               ];
@@ -231,7 +229,6 @@
               overlays = commonOverlays ++ [
                 (prev: final: {
                   nil = inputs.nil.packages.${system}.nil;
-                  nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
                 })
               ];
             })
@@ -251,7 +248,6 @@
               overlays = commonOverlays ++ [
                 (prev: final: {
                   nil = inputs.nil.packages.${system}.nil;
-                  nixfmt = inputs.nixfmt.packages.${system}.nixfmt;
                   nodejs = final.nodejs.overrideAttrs (oldAttrs: {
                     doCheck = false;
                   });
@@ -356,7 +352,7 @@
           extraBinPath =
             builtins.attrValues {
               inherit (pkgs)
-                nixfmt
+                nixfmt-rfc-style
                 ruff
                 ripgrep
                 fd

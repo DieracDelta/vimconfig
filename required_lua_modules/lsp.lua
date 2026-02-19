@@ -49,7 +49,7 @@ vim.api.nvim_set_keymap("n", "<leader>rh", "<cmd>lua toggle_inlay_hints()<cr>", 
 -- Keep empty leader mappings for now if intended
 vim.api.nvim_set_keymap("n", "<leader>", "<cmd><cr>", {})
 
-require("vim._extui").enable({
+require("vim._core.ui2").enable({
   enable = true,
   msg = {
     target = "cmd",
