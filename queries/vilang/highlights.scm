@@ -26,10 +26,14 @@
 (schema_primitive) @type.builtin
 (schema_ref) @type
 (enum_variant) @constant
+(enum_literal) @constant
 (boolean) @boolean
 (break_statement) @keyword
+(print_statement) @keyword
 (match_statement) @keyword
+(wildcard) @variable.builtin
 (identifier) @variable
-(number) @number
+(integer) @number
+(float) @float
 (string) @string
 (comment) @comment
