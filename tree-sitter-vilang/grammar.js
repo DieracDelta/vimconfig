@@ -123,6 +123,7 @@ module.exports = grammar({
     subagent_context: ($) => seq($.enum_literal, optional(choice($.identifier, $.string, $.boolean))),
     subagent_key: () =>
       choice(
+        "options",
         "skill",
         "input",
         "output",

@@ -1294,6 +1294,10 @@
       "members": [
         {
           "type": "STRING",
+          "value": "options"
+        },
+        {
+          "type": "STRING",
           "value": "skill"
         },
         {
