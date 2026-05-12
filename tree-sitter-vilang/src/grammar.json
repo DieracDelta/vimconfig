@@ -844,6 +844,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "record_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "default_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "call_expression"
         },
         {
@@ -890,6 +898,125 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        }
+      ]
+    },
+    "default_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "default"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "schema",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "record_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "schema",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "field_separator"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "record_field_list"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "record_field_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "record_field"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "field_separator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "record_field"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "field_separator"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "record_field": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "spread_field"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pair"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "shorthand_field"
         }
       ]
     },
@@ -1178,7 +1305,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "pair_list"
+              "name": "dict_field_list"
             },
             {
               "type": "BLANK"
@@ -1191,12 +1318,12 @@
         }
       ]
     },
-    "pair_list": {
+    "dict_field_list": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "pair"
+          "name": "dict_field"
         },
         {
           "type": "REPEAT",
@@ -1209,7 +1336,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "pair"
+                "name": "dict_field"
               }
             ]
           }
@@ -1225,6 +1352,23 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "dict_field": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "spread_field"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "pair"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "shorthand_field"
         }
       ]
     },
@@ -1251,6 +1395,31 @@
         {
           "type": "STRING",
           "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        }
+      ]
+    },
+    "shorthand_field": {
+      "type": "FIELD",
+      "name": "name",
+      "content": {
+        "type": "SYMBOL",
+        "name": "identifier"
+      }
+    },
+    "spread_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ".."
         },
         {
           "type": "FIELD",

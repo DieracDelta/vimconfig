@@ -81,6 +81,8 @@ module.exports = grammar({
     primary_expression: ($) =>
       choice(
         $.subagent_expression,
+        $.record_expression,
+        $.default_expression,
         $.call_expression,
         $.dictionary,
         $.list,
@@ -92,6 +94,12 @@ module.exports = grammar({
         $.identifier,
       ),
     enum_literal: ($) => seq("'", $.identifier),
+    default_expression: ($) => seq(token("default"), field("schema", $.identifier)),
+    record_expression: ($) =>
+      seq(field("schema", $.identifier), "{", optional($.field_separator), optional($.record_field_list), "}"),
+    record_field_list: ($) =>
+      seq($.record_field, repeat(seq($.field_separator, $.record_field)), optional($.field_separator)),
+    record_field: ($) => choice($.spread_field, $.pair, $.shorthand_field),
 
     subagent_expression: ($) =>
       seq("subagent", field("agent", $.identifier), "{", optional($.field_separator), $.subagent_field_list, "}"),
@@ -118,9 +126,13 @@ module.exports = grammar({
     call_expression: ($) =>
       seq(field("function", $.identifier), "(", optional($.field_separator), optional($.expression_list), ")"),
 
-    dictionary: ($) => seq("{", optional($.field_separator), optional($.pair_list), "}"),
-    pair_list: ($) => seq($.pair, repeat(seq($.field_separator, $.pair)), optional($.field_separator)),
+    dictionary: ($) => seq("{", optional($.field_separator), optional($.dict_field_list), "}"),
+    dict_field_list: ($) =>
+      seq($.dict_field, repeat(seq($.field_separator, $.dict_field)), optional($.field_separator)),
+    dict_field: ($) => choice($.spread_field, $.pair, $.shorthand_field),
     pair: ($) => seq(field("key", choice($.identifier, $.string)), ":", field("value", $.expression)),
+    shorthand_field: ($) => field("name", $.identifier),
+    spread_field: ($) => seq("..", field("value", $.expression)),
 
     list: ($) => seq("[", optional($.field_separator), optional($.expression_list), "]"),
     expression_list: ($) => seq($.expression, repeat(seq($.field_separator, $.expression)), optional($.field_separator)),

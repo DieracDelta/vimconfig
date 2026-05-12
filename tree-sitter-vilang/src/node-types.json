@@ -141,6 +141,64 @@
     }
   },
   {
+    "type": "default_expression",
+    "named": true,
+    "fields": {
+      "schema": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "dict_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "pair",
+          "named": true
+        },
+        {
+          "type": "shorthand_field",
+          "named": true
+        },
+        {
+          "type": "spread_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dict_field_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dict_field",
+          "named": true
+        },
+        {
+          "type": "field_separator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dictionary",
     "named": true,
     "fields": {},
@@ -149,11 +207,11 @@
       "required": false,
       "types": [
         {
-          "type": "field_separator",
+          "type": "dict_field_list",
           "named": true
         },
         {
-          "type": "pair_list",
+          "type": "field_separator",
           "named": true
         }
       ]
@@ -677,25 +735,6 @@
     }
   },
   {
-    "type": "pair_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "field_separator",
-          "named": true
-        },
-        {
-          "type": "pair",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "param",
     "named": true,
     "fields": {
@@ -762,6 +801,10 @@
           "named": true
         },
         {
+          "type": "default_expression",
+          "named": true
+        },
+        {
           "type": "dictionary",
           "named": true
         },
@@ -783,6 +826,10 @@
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "record_expression",
           "named": true
         },
         {
@@ -810,6 +857,78 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "record_expression",
+    "named": true,
+    "fields": {
+      "schema": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "field_separator",
+          "named": true
+        },
+        {
+          "type": "record_field_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_field",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "pair",
+          "named": true
+        },
+        {
+          "type": "shorthand_field",
+          "named": true
+        },
+        {
+          "type": "spread_field",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_field_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "field_separator",
+          "named": true
+        },
+        {
+          "type": "record_field",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1019,6 +1138,22 @@
     }
   },
   {
+    "type": "shorthand_field",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "skill_statement",
     "named": true,
     "fields": {
@@ -1068,6 +1203,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "spread_field",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1323,6 +1474,10 @@
     "named": false
   },
   {
+    "type": "..",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -1377,6 +1532,10 @@
   },
   {
     "type": "context",
+    "named": false
+  },
+  {
+    "type": "default",
     "named": false
   },
   {

@@ -25,6 +25,19 @@
 (schema_pair
   key: (_) @property)
 
+(record_expression
+  schema: (identifier) @type)
+
+(default_expression
+  "default" @keyword
+  schema: (identifier) @type)
+
+(shorthand_field
+  name: (identifier) @property)
+
+(spread_field
+  ".." @operator)
+
 (field_expression
   field: (identifier) @property)
 
