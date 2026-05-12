@@ -305,6 +305,8 @@
           vimPlugins.popup-nvim
 
           # treesitter
+          nvim-treesitter
+          tree-sitter-vilang
           nvim-async
         ] ++ pkgs.lib.optionals (!isMinimal) [
           # Full builds only - excluded from aarch64-linux minimal

@@ -1,0 +1,29 @@
+{
+  "grammars": [
+    {
+      "name": "vilang",
+      "camelcase": "Vilang",
+      "scope": "source.vilang",
+      "path": ".",
+      "file-types": [
+        "vi",
+        "vilang"
+      ],
+      "highlights": "queries/highlights.scm",
+      "injection-regex": "^vilang$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for vi-lang",
+    "authors": [
+      {
+        "name": "vi-lang contributors"
+      }
+    ],
+    "links": {
+      "repository": "https://example.invalid/vi-lang"
+    }
+  }
+}
