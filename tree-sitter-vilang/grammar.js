@@ -15,6 +15,7 @@ module.exports = grammar({
       choice(
         $.function_statement,
         $.loop_statement,
+        $.if_statement,
         $.match_statement,
         $.fact_statement,
         $.print_statement,
@@ -57,6 +58,17 @@ module.exports = grammar({
         optional("function"),
       ),
     loop_statement: ($) => seq("loop", $.separator, optional($.statement_list), "end", optional("loop")),
+    if_statement: ($) =>
+      seq(
+        "if",
+        field("condition", $.expression),
+        $.separator,
+        optional(field("then", $.statement_list)),
+        optional($.else_clause),
+        "end",
+        optional("if"),
+      ),
+    else_clause: ($) => seq("else", $.separator, optional(field("else", $.statement_list))),
     match_statement: ($) =>
       seq("match", field("value", $.expression), $.separator, optional($.match_arm_list), "end", optional("match")),
     match_arm_list: ($) => seq($.match_arm, repeat(seq($.separator, $.match_arm)), optional($.separator)),

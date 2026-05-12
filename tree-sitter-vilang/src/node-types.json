@@ -218,6 +218,32 @@
     }
   },
   {
+    "type": "else_clause",
+    "named": true,
+    "fields": {
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "statement_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "separator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "enum_literal",
     "named": true,
     "fields": {},
@@ -449,6 +475,46 @@
       "types": [
         {
           "type": "type_annotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_statement",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "then": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "statement_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "else_clause",
+          "named": true
+        },
+        {
+          "type": "separator",
           "named": true
         }
       ]
@@ -1254,6 +1320,10 @@
           "named": true
         },
         {
+          "type": "if_statement",
+          "named": true
+        },
+        {
           "type": "let_statement",
           "named": true
         },
@@ -1539,6 +1609,10 @@
     "named": false
   },
   {
+    "type": "else",
+    "named": false
+  },
+  {
     "type": "end",
     "named": false
   },
@@ -1584,6 +1658,10 @@
   },
   {
     "type": "idle_timeout_seconds",
+    "named": false
+  },
+  {
+    "type": "if",
     "named": false
   },
   {

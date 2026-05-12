@@ -48,6 +48,8 @@
 (enum_literal) @constant
 (boolean) @boolean
 (break_statement) @keyword
+(if_statement) @keyword
+(else_clause) @keyword
 (print_statement) @keyword
 (match_statement) @keyword
 (wildcard) @variable.builtin
