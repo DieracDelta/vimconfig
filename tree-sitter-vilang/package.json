@@ -1,0 +1,26 @@
+{
+  "name": "tree-sitter-vilang",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for vi-lang",
+  "main": "grammar.js",
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "vi-lang"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.22.6"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.vilang",
+      "file-types": [
+        "vi",
+        "vilang"
+      ],
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm"
+    }
+  ]
+}

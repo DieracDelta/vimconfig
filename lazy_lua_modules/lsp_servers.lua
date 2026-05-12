@@ -1,5 +1,65 @@
 local lze = require("lze")
 
+vim.filetype.add({
+  extension = {
+    cbl = "cobol",
+    cob = "cobol",
+    cobol = "cobol",
+    jcl = "jcl",
+    pli = "pli",
+    pl1 = "pli",
+    hlasm = "hlasm",
+    asm = "hlasm",
+    mac = "hlasm",
+    s = "hlasm",
+  },
+})
+
+local function resolve_ironmain_bin()
+  local env_bin = vim.env.IRONMAIN_BIN
+  if env_bin and env_bin ~= "" then
+    return env_bin
+  end
+
+  if vim.fn.executable("ironmain") == 1 then
+    return "ironmain"
+  end
+
+  return "/home/jrestivo/IronMain.workspace/.worktrees/feature-whereareweat/ironmain/target/release/ironmain"
+end
+
+local function resolve_ironmain_root(source)
+  if type(source) == "number" then
+    local name = vim.api.nvim_buf_get_name(source)
+    if name == "" then
+      return nil
+    end
+    return vim.fs.root(source, { "Cargo.toml", ".git" }) or vim.fs.dirname(name)
+  end
+
+  if type(source) == "string" and source ~= "" then
+    return vim.fs.root(source, { "Cargo.toml", ".git" }) or vim.fs.dirname(source)
+  end
+
+  return nil
+end
+
+local function attach_ironmain_to_existing_buffers(config)
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[bufnr].buftype == "" and vim.tbl_contains(config.filetypes, vim.bo[bufnr].filetype) then
+      local fname = vim.api.nvim_buf_get_name(bufnr)
+      if fname ~= "" then
+        local start_config = vim.deepcopy(config)
+        start_config.root_dir = resolve_ironmain_root(bufnr)
+        vim.lsp.start(start_config, {
+          bufnr = bufnr,
+          silent = true,
+        })
+      end
+    end
+  end
+end
+
 -- Terraform
 lze.load({
   "terraformls", -- Virtual name, not a plugin name
@@ -128,6 +188,36 @@ lze.load({
       },
     })
     vim.lsp.enable("ruff")
+  end,
+})
+
+-- IronMain mainframe LSP
+lze.load({
+  "ironmain",
+  ft = { "cobol", "jcl", "pli", "hlasm" },
+  after = function()
+    local ironmain_bin = resolve_ironmain_bin()
+
+    if vim.fn.executable(ironmain_bin) == 0 and vim.uv.fs_stat(ironmain_bin) == nil then
+      vim.schedule(function()
+        vim.notify(
+          "IronMain binary not found: " .. ironmain_bin ..
+          ". Build /home/jrestivo/IronMain.workspace/.worktrees/feature-whereareweat/ironmain with cargo build -p ironmain-cli --release or set $IRONMAIN_BIN.",
+          vim.log.levels.WARN
+        )
+      end)
+    end
+
+    vim.lsp.config("ironmain", {
+      cmd = { ironmain_bin, "lsp", "stdio" },
+      filetypes = { "cobol", "jcl", "pli", "hlasm" },
+      root_dir = function(bufnr, on_dir)
+        on_dir(resolve_ironmain_root(bufnr))
+      end,
+      single_file_support = true,
+    })
+    vim.lsp.enable("ironmain")
+    attach_ironmain_to_existing_buffers(vim.lsp.config.ironmain)
   end,
 })
 

@@ -110,7 +110,31 @@ with inputs;
 
   telescope-dapzzzz = plugin "telescope-dapzzzz" telescope-dapzzzz-src;
 
-  nvim-treesitter = plugin "nvim-treesitter" nvim-treesitter-src;
+  nvim-treesitter = pluginNoChecks "nvim-treesitter" nvim-treesitter-src;
+
+  tree-sitter-vilang = prev.stdenv.mkDerivation {
+    pname = "tree-sitter-vilang";
+    version = "0.1.0";
+    src = ./tree-sitter-vilang;
+
+    nativeBuildInputs = [
+      prev.tree-sitter
+    ];
+
+    buildPhase = ''
+      runHook preBuild
+      $CC -shared -fPIC -I src -o vilang.so src/parser.c
+      runHook postBuild
+    '';
+
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/parser $out/queries/vilang
+      cp vilang.so $out/parser/vilang.so
+      cp queries/*.scm $out/queries/vilang/
+      runHook postInstall
+    '';
+  };
 
   typst-vim = plugin "typst-vim" typst-vim-src;
 
@@ -137,4 +161,3 @@ with inputs;
   claudecode-nvim = plugin "claudecode-nvim" claudecode-nvim-src;
 
 }
-

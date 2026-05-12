@@ -1,5 +1,12 @@
 local lze = require("lze")
 
+vim.filetype.add({
+  extension = {
+    vi = "vilang",
+    vilang = "vilang",
+  },
+})
+
 local function is_big_file(buf)
   local max_lines = 10000
   local max_size = 1024 * 1024 -- 1MB
