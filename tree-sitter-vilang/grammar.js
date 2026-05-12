@@ -15,8 +15,10 @@ module.exports = grammar({
       choice(
         $.function_statement,
         $.loop_statement,
+        $.match_statement,
         $.fact_statement,
         $.global_statement,
+        $.let_statement,
         $.local_statement,
         $.schema_statement,
         $.skill_statement,
@@ -27,8 +29,9 @@ module.exports = grammar({
 
     fact_statement: ($) => seq("fact", field("value", $.expression)),
     global_statement: ($) => seq("global", field("name", $.identifier), "=", field("value", $.expression)),
+    let_statement: ($) => seq("let", field("name", $.identifier), "=", field("value", $.expression)),
     local_statement: ($) => seq("local", field("name", $.identifier), "=", field("value", $.expression)),
-    schema_statement: ($) => seq("schema", field("name", $.identifier), "=", field("value", $.dictionary)),
+    schema_statement: ($) => seq("schema", field("name", $.identifier), "=", field("value", $.schema_type)),
     skill_statement: ($) =>
       seq("skill", field("name", $.identifier), "=", field("scope", $.path_scope), field("path", $.string)),
     function_statement: ($) =>
@@ -36,19 +39,28 @@ module.exports = grammar({
         "function",
         field("name", $.identifier),
         "(",
-        optional($.identifier_list),
+        optional($.param_list),
         ")",
+        optional($.return_type),
         "=",
         $.separator,
         optional($.statement_list),
         "end",
       ),
     loop_statement: ($) => seq("loop", $.separator, optional($.statement_list), "end"),
-    break_statement: () => "break",
+    match_statement: ($) => seq("match", field("value", $.expression), $.separator, optional($.match_arm_list), "end"),
+    match_arm_list: ($) => seq($.match_arm, repeat(seq($.separator, $.match_arm)), optional($.separator)),
+    match_arm: ($) => seq(field("pattern", $.match_pattern), "=>", field("body", $.statement)),
+    match_pattern: ($) => choice($.string, $.boolean, $.number, $.identifier),
+    break_statement: ($) => seq("break", optional(field("value", $.expression))),
     return_statement: ($) => seq("return", field("value", $.expression)),
     expression_statement: ($) => $.expression,
 
-    expression: ($) =>
+    expression: ($) => $.field_expression,
+
+    field_expression: ($) => seq($.primary_expression, repeat(seq(".", field("field", $.identifier)))),
+
+    primary_expression: ($) =>
       choice(
         $.subagent_expression,
         $.call_expression,
@@ -65,7 +77,7 @@ module.exports = grammar({
     subagent_field_list: ($) =>
       seq($.subagent_field, repeat(seq($.field_separator, $.subagent_field)), optional($.field_separator)),
     subagent_field: ($) => seq(field("name", $.subagent_key), ":", field("value", $.expression)),
-    subagent_key: () => choice("skill", "input", "output", "facts", "resume"),
+    subagent_key: () => choice("skill", "input", "output", "facts", "resume", "interactive"),
 
     call_expression: ($) => seq(field("function", $.identifier), "(", optional($.expression_list), ")"),
 
@@ -76,6 +88,23 @@ module.exports = grammar({
     list: ($) => seq("[", optional($.expression_list), "]"),
     expression_list: ($) => seq($.expression, repeat(seq(",", $.expression)), optional(",")),
     identifier_list: ($) => seq($.identifier, repeat(seq(",", $.identifier)), optional(",")),
+    param_list: ($) => seq($.param, repeat(seq(",", $.param)), optional(",")),
+    param: ($) => seq(field("name", $.identifier), optional(seq(":", field("type", $.schema_type)))),
+    return_type: ($) => seq(":", $.schema_type),
+
+    schema_type: ($) =>
+      choice($.schema_enum, $.schema_object, $.schema_list, $.schema_primitive, $.schema_ref),
+    schema_primitive: () => choice("string", "bool", "number", "json"),
+    schema_ref: ($) => $.identifier,
+    schema_list: ($) => seq("[", $.schema_type, "]"),
+    schema_object: ($) => seq("{", optional($.field_separator), optional($.schema_pair_list), "}"),
+    schema_pair_list: ($) =>
+      seq($.schema_pair, repeat(seq($.field_separator, $.schema_pair)), optional($.field_separator)),
+    schema_pair: ($) => seq(field("key", choice($.identifier, $.string)), ":", field("value", $.schema_type)),
+    schema_enum: ($) => seq("enum", "{", optional($.enum_variant_list), "}"),
+    enum_variant_list: ($) =>
+      seq($.enum_variant, repeat(seq(choice(",", $.separator), $.enum_variant)), optional(choice(",", $.separator))),
+    enum_variant: ($) => choice($.identifier, $.string),
 
     path_scope: () => choice("global", "relative"),
     boolean: () => choice("true", "false"),
