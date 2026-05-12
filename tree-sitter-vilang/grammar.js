@@ -97,15 +97,16 @@ module.exports = grammar({
       seq("subagent", field("agent", $.identifier), "{", optional($.field_separator), $.subagent_field_list, "}"),
     subagent_field_list: ($) =>
       seq($.subagent_field, repeat(seq($.field_separator, $.subagent_field)), optional($.field_separator)),
-    subagent_field: ($) => seq(field("name", $.subagent_key), ":", field("value", $.expression)),
+    subagent_field: ($) => choice($.context_field, $.normal_subagent_field),
+    normal_subagent_field: ($) => seq(field("name", $.subagent_key), ":", field("value", $.expression)),
+    context_field: ($) => seq("context", ":", field("value", $.subagent_context)),
+    subagent_context: ($) => seq($.enum_literal, optional(choice($.identifier, $.string, $.boolean))),
     subagent_key: () =>
       choice(
         "skill",
         "input",
         "output",
         "facts",
-        "context",
-        "resume",
         "interactive",
         "timeout_seconds",
         "idle_timeout_seconds",

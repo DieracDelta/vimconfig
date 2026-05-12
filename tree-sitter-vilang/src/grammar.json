@@ -972,6 +972,19 @@
       ]
     },
     "subagent_field": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "context_field"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "normal_subagent_field"
+        }
+      ]
+    },
+    "normal_subagent_field": {
       "type": "SEQ",
       "members": [
         {
@@ -996,6 +1009,61 @@
         }
       ]
     },
+    "context_field": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "context"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "subagent_context"
+          }
+        }
+      ]
+    },
+    "subagent_context": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "enum_literal"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "string"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "boolean"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "subagent_key": {
       "type": "CHOICE",
       "members": [
@@ -1014,14 +1082,6 @@
         {
           "type": "STRING",
           "value": "facts"
-        },
-        {
-          "type": "STRING",
-          "value": "context"
-        },
-        {
-          "type": "STRING",
-          "value": "resume"
         },
         {
           "type": "STRING",
