@@ -10,8 +10,11 @@
 (subagent_expression
   agent: (identifier) @constant)
 
-(subagent_field
+(normal_subagent_field
   name: (subagent_key) @property)
+
+(context_field
+  "context" @property)
 
 (assignment_statement
   name: (identifier) @variable)

@@ -125,6 +125,22 @@
     "fields": {}
   },
   {
+    "type": "context_field",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "subagent_context",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "dictionary",
     "named": true,
     "fields": {},
@@ -602,6 +618,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "normal_subagent_field",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "subagent_key",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1134,6 +1176,33 @@
     }
   },
   {
+    "type": "subagent_context",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "enum_literal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "subagent_expression",
     "named": true,
     "fields": {
@@ -1166,27 +1235,20 @@
   {
     "type": "subagent_field",
     "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "subagent_key",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "context_field",
+          "named": true
+        },
+        {
+          "type": "normal_subagent_field",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1415,10 +1477,6 @@
   },
   {
     "type": "relative",
-    "named": false
-  },
-  {
-    "type": "resume",
     "named": false
   },
   {
