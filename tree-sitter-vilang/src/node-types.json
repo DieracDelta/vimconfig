@@ -1314,6 +1314,10 @@
     "extra": true
   },
   {
+    "type": "context",
+    "named": false
+  },
+  {
     "type": "end",
     "named": false
   },
