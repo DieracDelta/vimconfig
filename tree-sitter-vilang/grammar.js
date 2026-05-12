@@ -17,6 +17,7 @@ module.exports = grammar({
         $.loop_statement,
         $.match_statement,
         $.fact_statement,
+        $.print_statement,
         $.global_statement,
         $.let_statement,
         $.local_statement,
@@ -28,9 +29,13 @@ module.exports = grammar({
       ),
 
     fact_statement: ($) => seq("fact", field("value", $.expression)),
-    global_statement: ($) => seq("global", field("name", $.identifier), "=", field("value", $.expression)),
-    let_statement: ($) => seq("let", field("name", $.identifier), "=", field("value", $.expression)),
-    local_statement: ($) => seq("local", field("name", $.identifier), "=", field("value", $.expression)),
+    print_statement: ($) => seq("print", field("value", $.expression)),
+    global_statement: ($) =>
+      seq("global", field("name", $.identifier), optional($.type_annotation), "=", field("value", $.expression)),
+    let_statement: ($) =>
+      seq("let", field("name", $.identifier), optional($.type_annotation), "=", field("value", $.expression)),
+    local_statement: ($) =>
+      seq("local", field("name", $.identifier), optional($.type_annotation), "=", field("value", $.expression)),
     schema_statement: ($) => seq("schema", field("name", $.identifier), "=", field("value", $.schema_type)),
     skill_statement: ($) =>
       seq("skill", field("name", $.identifier), "=", field("scope", $.path_scope), field("path", $.string)),
@@ -39,6 +44,7 @@ module.exports = grammar({
         "function",
         field("name", $.identifier),
         "(",
+        optional($.field_separator),
         optional($.param_list),
         ")",
         optional($.return_type),
@@ -46,17 +52,27 @@ module.exports = grammar({
         $.separator,
         optional($.statement_list),
         "end",
+        optional("function"),
       ),
-    loop_statement: ($) => seq("loop", $.separator, optional($.statement_list), "end"),
-    match_statement: ($) => seq("match", field("value", $.expression), $.separator, optional($.match_arm_list), "end"),
+    loop_statement: ($) => seq("loop", $.separator, optional($.statement_list), "end", optional("loop")),
+    match_statement: ($) =>
+      seq("match", field("value", $.expression), $.separator, optional($.match_arm_list), "end", optional("match")),
     match_arm_list: ($) => seq($.match_arm, repeat(seq($.separator, $.match_arm)), optional($.separator)),
     match_arm: ($) => seq(field("pattern", $.match_pattern), "=>", field("body", $.statement)),
-    match_pattern: ($) => choice($.string, $.boolean, $.number, $.identifier),
+    match_pattern: ($) => choice($.wildcard, $.enum_literal, $.string, $.boolean, $.integer, $.float, $.identifier),
+    wildcard: () => "_",
     break_statement: ($) => seq("break", optional(field("value", $.expression))),
     return_statement: ($) => seq("return", field("value", $.expression)),
     expression_statement: ($) => $.expression,
 
-    expression: ($) => $.field_expression,
+    expression: ($) => $.comparison_expression,
+
+    comparison_expression: ($) =>
+      seq($.additive_expression, optional(seq($.comparison_operator, $.additive_expression))),
+    comparison_operator: () => choice("==", "!=", "<=", ">=", "<", ">"),
+    additive_expression: ($) =>
+      seq($.field_expression, repeat(seq($.additive_operator, $.field_expression))),
+    additive_operator: () => choice("+", "-"),
 
     field_expression: ($) => seq($.primary_expression, repeat(seq(".", field("field", $.identifier)))),
 
@@ -66,11 +82,14 @@ module.exports = grammar({
         $.call_expression,
         $.dictionary,
         $.list,
+        $.enum_literal,
         $.string,
         $.boolean,
-        $.number,
+        $.float,
+        $.integer,
         $.identifier,
       ),
+    enum_literal: ($) => seq("'", $.identifier),
 
     subagent_expression: ($) =>
       seq("subagent", field("agent", $.identifier), "{", optional($.field_separator), $.subagent_field_list, "}"),
@@ -79,22 +98,24 @@ module.exports = grammar({
     subagent_field: ($) => seq(field("name", $.subagent_key), ":", field("value", $.expression)),
     subagent_key: () => choice("skill", "input", "output", "facts", "resume", "interactive"),
 
-    call_expression: ($) => seq(field("function", $.identifier), "(", optional($.expression_list), ")"),
+    call_expression: ($) =>
+      seq(field("function", $.identifier), "(", optional($.field_separator), optional($.expression_list), ")"),
 
     dictionary: ($) => seq("{", optional($.field_separator), optional($.pair_list), "}"),
     pair_list: ($) => seq($.pair, repeat(seq($.field_separator, $.pair)), optional($.field_separator)),
     pair: ($) => seq(field("key", choice($.identifier, $.string)), ":", field("value", $.expression)),
 
-    list: ($) => seq("[", optional($.expression_list), "]"),
-    expression_list: ($) => seq($.expression, repeat(seq(",", $.expression)), optional(",")),
+    list: ($) => seq("[", optional($.field_separator), optional($.expression_list), "]"),
+    expression_list: ($) => seq($.expression, repeat(seq($.field_separator, $.expression)), optional($.field_separator)),
     identifier_list: ($) => seq($.identifier, repeat(seq(",", $.identifier)), optional(",")),
-    param_list: ($) => seq($.param, repeat(seq(",", $.param)), optional(",")),
+    param_list: ($) => seq($.param, repeat(seq($.field_separator, $.param)), optional($.field_separator)),
     param: ($) => seq(field("name", $.identifier), optional(seq(":", field("type", $.schema_type)))),
     return_type: ($) => seq(":", $.schema_type),
+    type_annotation: ($) => seq(":", $.schema_type),
 
     schema_type: ($) =>
       choice($.schema_enum, $.schema_object, $.schema_list, $.schema_primitive, $.schema_ref),
-    schema_primitive: () => choice("string", "bool", "number", "json"),
+    schema_primitive: () => choice("string", "bool", "int", "float", "json"),
     schema_ref: ($) => $.identifier,
     schema_list: ($) => seq("[", $.schema_type, "]"),
     schema_object: ($) => seq("{", optional($.field_separator), optional($.schema_pair_list), "}"),
@@ -108,7 +129,8 @@ module.exports = grammar({
 
     path_scope: () => choice("global", "relative"),
     boolean: () => choice("true", "false"),
-    number: () => /-?[0-9]+(\.[0-9]+)?/,
+    float: () => /-?[0-9]+\.[0-9]+/,
+    integer: () => /-?[0-9]+/,
     identifier: () => /[A-Za-z_][A-Za-z0-9_]*/,
 
     string: ($) => choice($.normal_string, $.triple_string),
@@ -116,7 +138,7 @@ module.exports = grammar({
     triple_string: () => token(seq('"""', repeat(/(.|\n)/), '"""')),
 
     separator: () => /[\n;]+/,
-    field_separator: ($) => choice(",", $.separator),
+    field_separator: ($) => choice(seq(",", optional($.separator)), $.separator),
     comment: () => token(seq("#", /.*/)),
   },
 });
