@@ -110,7 +110,9 @@ with inputs;
 
   telescope-dapzzzz = plugin "telescope-dapzzzz" telescope-dapzzzz-src;
 
-  nvim-treesitter = pluginNoChecks "nvim-treesitter" nvim-treesitter-src;
+  nvim-treesitter = prev.vimPlugins.nvim-treesitter.overrideAttrs (_: {
+    doCheck = false;
+  });
 
   tree-sitter-vilang = prev.stdenv.mkDerivation {
     pname = "tree-sitter-vilang";
