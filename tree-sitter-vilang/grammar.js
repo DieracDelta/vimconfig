@@ -104,6 +104,7 @@ module.exports = grammar({
         "input",
         "output",
         "facts",
+        "context",
         "resume",
         "interactive",
         "timeout_seconds",
