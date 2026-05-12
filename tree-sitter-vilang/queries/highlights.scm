@@ -13,6 +13,9 @@
 (subagent_field
   name: (subagent_key) @property)
 
+(assignment_statement
+  name: (identifier) @variable)
+
 (pair
   key: (_) @property)
 

@@ -21,6 +21,7 @@ module.exports = grammar({
         $.global_statement,
         $.let_statement,
         $.local_statement,
+        $.assignment_statement,
         $.schema_statement,
         $.skill_statement,
         $.break_statement,
@@ -36,6 +37,7 @@ module.exports = grammar({
       seq("let", field("name", $.identifier), optional($.type_annotation), "=", field("value", $.expression)),
     local_statement: ($) =>
       seq("local", field("name", $.identifier), optional($.type_annotation), "=", field("value", $.expression)),
+    assignment_statement: ($) => seq(field("name", $.identifier), "=", field("value", $.expression)),
     schema_statement: ($) => seq("schema", field("name", $.identifier), "=", field("value", $.schema_type)),
     skill_statement: ($) =>
       seq("skill", field("name", $.identifier), "=", field("scope", $.path_scope), field("path", $.string)),
@@ -96,7 +98,20 @@ module.exports = grammar({
     subagent_field_list: ($) =>
       seq($.subagent_field, repeat(seq($.field_separator, $.subagent_field)), optional($.field_separator)),
     subagent_field: ($) => seq(field("name", $.subagent_key), ":", field("value", $.expression)),
-    subagent_key: () => choice("skill", "input", "output", "facts", "resume", "interactive"),
+    subagent_key: () =>
+      choice(
+        "skill",
+        "input",
+        "output",
+        "facts",
+        "resume",
+        "interactive",
+        "timeout_seconds",
+        "idle_timeout_seconds",
+        "tool_call_idle_timeout_seconds",
+        "exclude_tool_time",
+        "unlimited_tool_call",
+      ),
 
     call_expression: ($) =>
       seq(field("function", $.identifier), "(", optional($.field_separator), optional($.expression_list), ")"),

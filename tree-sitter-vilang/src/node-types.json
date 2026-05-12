@@ -24,6 +24,32 @@
     "fields": {}
   },
   {
+    "type": "assignment_statement",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "boolean",
     "named": true,
     "fields": {}
@@ -1011,6 +1037,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
           "type": "break_statement",
           "named": true
         },
@@ -1292,6 +1322,10 @@
     "named": false
   },
   {
+    "type": "exclude_tool_time",
+    "named": false
+  },
+  {
     "type": "fact",
     "named": false
   },
@@ -1322,6 +1356,10 @@
   {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "idle_timeout_seconds",
+    "named": false
   },
   {
     "type": "input",
@@ -1404,11 +1442,23 @@
     "named": false
   },
   {
+    "type": "timeout_seconds",
+    "named": false
+  },
+  {
+    "type": "tool_call_idle_timeout_seconds",
+    "named": false
+  },
+  {
     "type": "triple_string",
     "named": true
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "unlimited_tool_call",
     "named": false
   },
   {
