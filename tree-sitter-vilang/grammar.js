@@ -99,6 +99,7 @@ module.exports = grammar({
         $.dictionary,
         $.list,
         $.enum_literal,
+        $.none,
         $.string,
         $.boolean,
         $.float,
@@ -106,6 +107,7 @@ module.exports = grammar({
         $.identifier,
       ),
     enum_literal: ($) => seq("'", $.identifier),
+    none: () => token("none"),
     default_expression: ($) => seq(token("default"), field("schema", $.identifier)),
     record_expression: ($) =>
       seq(field("schema", $.identifier), "{", optional($.field_separator), optional($.record_field_list), "}"),
@@ -158,9 +160,10 @@ module.exports = grammar({
     type_annotation: ($) => seq(":", $.schema_type),
 
     schema_type: ($) =>
-      choice($.schema_enum, $.schema_object, $.schema_list, $.schema_primitive, $.schema_ref),
+      choice($.schema_enum, $.schema_object, $.schema_option, $.schema_list, $.schema_primitive, $.schema_ref),
     schema_primitive: () => choice("string", "bool", "int", "float", "context", "json"),
     schema_ref: ($) => $.identifier,
+    schema_option: ($) => seq("option", "[", $.schema_type, "]"),
     schema_list: ($) => seq("[", $.schema_type, "]"),
     schema_object: ($) => seq("{", optional($.field_separator), optional($.schema_pair_list), "}"),
     schema_pair_list: ($) =>

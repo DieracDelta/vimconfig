@@ -49,6 +49,7 @@
 (schema_ref) @type
 (enum_variant) @constant
 (enum_literal) @constant
+(none) @constant.builtin
 (boolean) @boolean
 (break_statement) @keyword
 (if_statement) @keyword
