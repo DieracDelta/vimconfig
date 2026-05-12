@@ -1,27 +1,3 @@
-[
-  "fact"
-  "global"
-  "local"
-  "schema"
-  "skill"
-  "function"
-  "loop"
-  "break"
-  "return"
-  "subagent"
-  "end"
-] @keyword
-
-[
-  "true"
-  "false"
-] @boolean
-
-[
-  "relative"
-  "global"
-] @type
-
 (function_statement
   name: (identifier) @function)
 
@@ -37,6 +13,9 @@
 (pair
   key: (_) @property)
 
+(path_scope) @type
+(boolean) @boolean
+(break_statement) @keyword
 (identifier) @variable
 (number) @number
 (string) @string
