@@ -1475,6 +1475,19 @@
       ]
     },
     "pair": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "context_pair"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "normal_pair"
+        }
+      ]
+    },
+    "normal_pair": {
       "type": "SEQ",
       "members": [
         {
@@ -1504,6 +1517,31 @@
           "content": {
             "type": "SYMBOL",
             "name": "expression"
+          }
+        }
+      ]
+    },
+    "context_pair": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "key",
+          "content": {
+            "type": "STRING",
+            "value": "context"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "subagent_context"
           }
         }
       ]
@@ -1788,6 +1826,10 @@
         {
           "type": "STRING",
           "value": "float"
+        },
+        {
+          "type": "STRING",
+          "value": "context"
         },
         {
           "type": "STRING",

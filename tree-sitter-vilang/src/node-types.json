@@ -141,6 +141,32 @@
     }
   },
   {
+    "type": "context_pair",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "context",
+            "named": false
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "subagent_context",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "default_expression",
     "named": true,
     "fields": {
@@ -745,6 +771,36 @@
     }
   },
   {
+    "type": "normal_pair",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "normal_subagent_field",
     "named": true,
     "fields": {
@@ -773,31 +829,20 @@
   {
     "type": "pair",
     "named": true,
-    "fields": {
-      "key": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "context_pair",
+          "named": true
+        },
+        {
+          "type": "normal_pair",
+          "named": true
+        }
+      ]
     }
   },
   {

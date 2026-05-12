@@ -22,6 +22,9 @@
 (pair
   key: (_) @property)
 
+(context_pair
+  key: (_) @property)
+
 (schema_pair
   key: (_) @property)
 

@@ -143,7 +143,9 @@ module.exports = grammar({
     dict_field_list: ($) =>
       seq($.dict_field, repeat(seq($.field_separator, $.dict_field)), optional($.field_separator)),
     dict_field: ($) => choice($.spread_field, $.pair, $.shorthand_field),
-    pair: ($) => seq(field("key", choice($.identifier, $.string)), ":", field("value", $.expression)),
+    pair: ($) => choice($.context_pair, $.normal_pair),
+    normal_pair: ($) => seq(field("key", choice($.identifier, $.string)), ":", field("value", $.expression)),
+    context_pair: ($) => seq(field("key", "context"), ":", field("value", $.subagent_context)),
     shorthand_field: ($) => field("name", $.identifier),
     spread_field: ($) => seq("..", field("value", $.expression)),
 
@@ -157,7 +159,7 @@ module.exports = grammar({
 
     schema_type: ($) =>
       choice($.schema_enum, $.schema_object, $.schema_list, $.schema_primitive, $.schema_ref),
-    schema_primitive: () => choice("string", "bool", "int", "float", "json"),
+    schema_primitive: () => choice("string", "bool", "int", "float", "context", "json"),
     schema_ref: ($) => $.identifier,
     schema_list: ($) => seq("[", $.schema_type, "]"),
     schema_object: ($) => seq("{", optional($.field_separator), optional($.schema_pair_list), "}"),
