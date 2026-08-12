@@ -163,7 +163,10 @@
     };
 
     nvim-treesitter-src = {
-      url = "github:nvim-treesitter/nvim-treesitter";
+      # The configuration and Markid still use the compatibility API. Package
+      # that upstream branch directly instead of nixpkgs' deprecated
+      # nvim-treesitter-legacy attribute, which is removed in 26.11.
+      url = "github:nvim-treesitter/nvim-treesitter/master";
       flake = false;
     };
 
