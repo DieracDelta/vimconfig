@@ -352,7 +352,7 @@
           extraBinPath =
             builtins.attrValues {
               inherit (pkgs)
-                nixfmt-rfc-style
+                nixfmt
                 ruff
                 ripgrep
                 fd
