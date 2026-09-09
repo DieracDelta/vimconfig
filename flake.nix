@@ -101,11 +101,7 @@
       flake = false;
     };
     fidget-src = {
-      url = "github:j-hui/fidget.nvim/legacy";
-      flake = false;
-    };
-    which-key-src = {
-      url = "github:folke/which-key.nvim?ref=bd4411a2ed4dd8bb69c125e339d837028a6eea71";
+      url = "github:j-hui/fidget.nvim";
       flake = false;
     };
     colorizer-src = {
@@ -162,11 +158,6 @@
       flake = false;
     };
 
-    nvim-treesitter-src = {
-      url = "github:nvim-treesitter/nvim-treesitter";
-      flake = false;
-    };
-
     telescope-dapzzzz-src = {
       url = "github:HUAHUAI23/telescope-dapzzzz";
       flake = false;
@@ -186,7 +177,7 @@
       ...
     }:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems f;
 
       mkNeovim = { system, isMinimal ? false }:
@@ -199,61 +190,17 @@
           lzextras-flk.overlays.default
         ];
 
-        pkgs =
-          if system == "x86_64-linux" then
-            # Full config with znver3 useflags
-            (import nixpkgs {
-              localSystem = {
-                inherit system;
-                gcc.arch = "znver3";
-                gcc.mtune = "znver3";
-              };
-              crossSystem = {
-                inherit system;
-                gcc.arch = "znver3";
-                gcc.mtune = "znver3";
-              };
-              overlays = commonOverlays ++ [
-                (prev: final: {
-                  stdenvnew = prev.stdenvAdapters.addAttrsToDerivation {
-                    NIX_CFLAGS_COMPILE = "-flto";
-                  } prev.stdenv;
-                  nil = inputs.nil.packages.${system}.nil;
-                })
-              ];
+        # Keep builds portable: do not inject host-specific CPU flags or LTO.
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = commonOverlays ++ nixpkgs.lib.optionals (nixpkgs.lib.hasInfix "darwin" system) [
+            (_: prev: {
+              nodejs = prev.nodejs.overrideAttrs (_: {
+                doCheck = false;
+              });
             })
-          else if system == "aarch64-linux" then
-            # Minimal config for ARM Linux - no arch tuning, space-optimized
-            (import nixpkgs {
-              inherit system;
-              overlays = commonOverlays ++ [
-                (prev: final: {
-                  nil = inputs.nil.packages.${system}.nil;
-                })
-              ];
-            })
-          else
-            # aarch64-darwin: Full config, no useflags
-            (import nixpkgs {
-              localSystem = {
-                inherit system;
-                gcc.arch = "-march=apple-m1";
-                gcc.mtune = "-march=apple-m1";
-              };
-              crossSystem = {
-                inherit system;
-                gcc.arch = "-march=apple-m1";
-                gcc.mtune = "-march=apple-m1";
-              };
-              overlays = commonOverlays ++ [
-                (prev: final: {
-                  nil = inputs.nil.packages.${system}.nil;
-                  nodejs = final.nodejs.overrideAttrs (oldAttrs: {
-                    doCheck = false;
-                  });
-                })
-              ];
-            });
+          ];
+        };
 
         # Build-time theme variant based on target system
         # darwin = green forest theme, arm = red crimson theme, default = original gruvbox
@@ -275,7 +222,7 @@
           vimPlugins.lzextras
 
           # essentials
-          which-key
+          vimPlugins.which-key-nvim
 
           # aesthetics
           gruvbox-nvim
@@ -301,7 +248,11 @@
           vimPlugins.popup-nvim
 
           # treesitter
-          nvim-treesitter
+          vimPlugins.nvim-treesitter
+          vimPlugins.nvim-treesitter-textobjects
+          vimPlugins.treesitter-modules-nvim
+          vimPlugins.nvim-ts-autotag
+          vimPlugins.rainbow-delimiters-nvim
           tree-sitter-vilang
           nvim-async
         ] ++ pkgs.lib.optionals (!isMinimal) [
@@ -341,8 +292,8 @@
           "coq"
         ];
 
-        luaRequire' = module: builtins.toString ./required_lua_modules + "/${module}.lua";
-        luaLazyRequire' = module: builtins.toString ./lazy_lua_modules + "/${module}.lua";
+        luaRequire' = module: ./required_lua_modules + "/${module}.lua";
+        luaLazyRequire' = module: ./lazy_lua_modules + "/${module}.lua";
 
         myNeovim' = mnw.lib.wrap pkgs {
           providers = {
@@ -354,7 +305,7 @@
           extraBinPath =
             builtins.attrValues {
               inherit (pkgs)
-                nixfmt-rfc-style
+                nixfmt
                 ruff
                 ripgrep
                 fd
@@ -377,15 +328,15 @@
               pkgs.myRSetup
               pkgs.imagemagick
             ]
-            ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
               pkgs.inotify-tools
             ]
-            ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
               pkgs.sourcekit-lsp
               pkgs.swift-format
               pkgs.swiftlint
             ];
-          neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.system}.default;
+          neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
           extraLuaPackages = ps: pkgs.lib.optionals (!isMinimal) [ ps.magick ];
           plugins = {
             start = requiredPluginList;
@@ -410,14 +361,11 @@
                 doCheck = false;
               }))
               comment-nvim
-              vimPlugins.nvim-ts-autotag
-              vimPlugins.rainbow-delimiters-nvim
               vim-illuminate
               vimPlugins.surround-nvim
               vimPlugins.undotree
               colorizer
               vimPlugins.nvim-autopairs
-              vimPlugins.markid
               ts-node-action
               colorful-winsep-nvim
               fidget
@@ -444,15 +392,16 @@
 
     in
     {
-      defaultPackage = forAllSystems (system: mkNeovim { inherit system; isMinimal = false; });
       apps = forAllSystems (system: {
         default = {
           type = "app";
           program = "${mkNeovim { inherit system; isMinimal = false; }}/bin/nvim";
+          meta.description = "Full Neovim configuration";
         };
         minimal = {
           type = "app";
           program = "${mkNeovim { inherit system; isMinimal = true; }}/bin/nvim";
+          meta.description = "Minimal Neovim configuration";
         };
       });
       packages = forAllSystems (system: {

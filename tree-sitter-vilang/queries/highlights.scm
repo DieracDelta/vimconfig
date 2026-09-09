@@ -19,11 +19,11 @@
 (assignment_statement
   name: (identifier) @variable)
 
-(pair
+(normal_pair
   key: (_) @property)
 
 (context_pair
-  key: (_) @property)
+  key: "context" @property)
 
 (schema_pair
   key: (_) @property)

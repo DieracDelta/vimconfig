@@ -4,9 +4,11 @@ My personal vim config, assembled with `Nix`.
 
 # Usage
 
-```
+```sh
 nix run github:DieracDelta/vimconfig
 ```
+
+Builds are portable across the supported systems and do not add host-specific CPU compiler flags.
 
 # What's enabled
 
